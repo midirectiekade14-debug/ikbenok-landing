@@ -144,7 +144,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
         {/* progress ring */}
         <div style={{
           position: 'absolute', width: 200, height: 200, borderRadius: '50%',
-          background: `conic-gradient(var(--coral) ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
+          background: `conic-gradient(var(--sage) ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
         }} />
         <div style={{
           position: 'absolute', width: 182, height: 182, borderRadius: '50%',
@@ -173,7 +173,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
           <span style={{
             fontFamily: 'var(--font-display)', lineHeight: 1,
             letterSpacing: '-0.015em', fontWeight: 500,
-            whiteSpace: 'nowrap', color: '#fff', fontSize: "41px", margin: "2px 0px 20px"
+            whiteSpace: 'nowrap', color: 'var(--cream)', fontSize: "41px", margin: "2px 0px 20px"
           }}>
             ik ben ok
           </span>
@@ -181,24 +181,24 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
       </div>
 
       {/* meta cards */}
-      <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
+      <div style={{ display: 'flex', gap: 6, marginTop: 'auto' }}>
         <div style={{
-          flex: 1, padding: '10px 12px',
+          flex: 1, minWidth: 0, padding: '9px 10px',
           background: 'var(--paper-raised)',
           border: '1px solid var(--line-soft)',
           borderRadius: 14
         }}>
-          <div style={{ fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>vorige check-in</div>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--sage-deep)' }}>gisteren · 14:32</div>
+          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>vorige check-in</div>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--sage-deep)', whiteSpace: 'nowrap' }}>gisteren · 14:32</div>
         </div>
         <div style={{
-          flex: 1, padding: '10px 12px',
+          flex: 1, minWidth: 0, padding: '9px 10px',
           background: 'var(--paper-raised)',
           border: '1px solid var(--line-soft)',
           borderRadius: 14
         }}>
-          <div style={{ fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>volgende check-in</div>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--navy)' }}>vandaag · 16:00</div>
+          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>volgende check-in</div>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--navy)', whiteSpace: 'nowrap' }}>vandaag · 16:00</div>
         </div>
       </div>
     </div>);
@@ -325,19 +325,22 @@ const PhoneCaregiver = () =>
     ['maandag', '08:14', '14:02', '20:06'],
     ['zondag', '08:30', '14:22', '20:11'],
     ['zaterdag', '08:05', '14:34', '20:02']].
-    map(([day, ...times]) =>
+    map(([day, ...times], idx, arr) =>
     <div key={day} style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '7px 0',
-      borderBottom: day === 'zaterdag' ? 'none' : '1px solid var(--line-soft)'
+      padding: '7px 0', gap: 8, flexWrap: 'nowrap',
+      borderBottom: idx === arr.length - 1 ? 'none' : '1px solid var(--line-soft)'
     }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 11.5, color: 'var(--fg-default)' }}>{day}</span>
-          <div style={{ display: 'flex', gap: 6 }}>
+          <span style={{
+            fontFamily: 'var(--font-body)', fontSize: 11, color: 'var(--fg-default)',
+            flexShrink: 0
+          }}>{day}</span>
+          <div style={{ display: 'flex', gap: 4, flexWrap: 'nowrap', flexShrink: 0 }}>
             {times.map((t) =>
         <span key={t} style={{
-          fontFamily: 'var(--font-body)', fontSize: 10, color: 'var(--sage-deep)',
-          padding: '2px 6px', background: 'rgba(110,150,128,0.14)',
-          borderRadius: 999
+          fontFamily: 'var(--font-body)', fontSize: 9.5, color: 'var(--sage-deep)',
+          padding: '2px 5px', background: 'rgba(110,150,128,0.14)',
+          borderRadius: 999, whiteSpace: 'nowrap', lineHeight: 1.4
         }}>{t}</span>
         )}
           </div>

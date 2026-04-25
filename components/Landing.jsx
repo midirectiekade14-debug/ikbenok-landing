@@ -349,7 +349,7 @@ const HowItWorks = ({ intensity }) => {
   {
     label: 'Bij stilte',
     title: 'Geen reactie?<br/>Dan <em>alarmeren</em> wij!',
-    body: 'Reageert de ander niet binnen 30 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp.',
+    body: 'Reageert de ander niet binnen 10 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp.',
     phone: <PhoneHome intensity={intensity} progress={1} />
   },
   {
