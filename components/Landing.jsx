@@ -62,8 +62,7 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         fontWeight: 700,
         fontSize: okFontSize,
         letterSpacing: '-0.01em',
-        lineHeight: 1,
-        paddingBottom: '0.06em' /* optical balance for descender-less "ok" */
+        lineHeight: 1
       }}>ok</span>
   </span>);
 
@@ -148,11 +147,15 @@ const Nav = () => {
       <Wordmark size={isMobile ? 22 : 26} />
     </div>
     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 0 : 36 }}>
-      {!isMobile && ['Zo werkt het', 'Voor wie', 'Prijs'].map((l) =>
-        <a key={l} href={`#${l.toLowerCase().replace(/\s/g, '-')}`} style={{
+      {!isMobile && [
+        { label: 'Zo werkt het', href: '#zo-werkt-het' },
+        { label: 'Voor wie', href: '#zo-werkt-het' },
+        { label: 'Prijs', href: '#prijs' }
+      ].map((l) =>
+        <a key={l.label} href={l.href} style={{
           fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-default)',
           textDecoration: 'none', letterSpacing: '0.01em'
-        }}>{l}</a>
+        }}>{l.label}</a>
       )}
       <a href="#download" style={{
         padding: isMobile ? '9px 14px' : '11px 18px', borderRadius: 999,
@@ -618,7 +621,7 @@ const Pricing = () => {
     fontSize: 15, color: 'var(--fg-muted)',
     textAlign: 'center', marginTop: 28
   }}>
-      Voor zorgorganisaties — <a href="#contact" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>neem contact op</a> voor volumetarieven.
+      Voor zorgorganisaties — <a href="mailto:hallo@ikbenok.nl?subject=Zorgorganisatie%20-%20volumetarieven" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>neem contact op</a> voor volumetarieven.
     </p>
   </section>);
 };
@@ -647,9 +650,24 @@ const Footer = ({ intensity }) => {
       </div>
 
       {[
-    { title: 'Product', items: ['Zo werkt het', 'Voor wie', 'Prijs', 'Veelgestelde vragen'] },
-    { title: 'Contact', items: ['hallo@ikbenok.nl', '+31 20 123 4567', 'Voor zorgorganisaties', 'Pers & partners'] },
-    { title: 'Juridisch', items: ['Privacybeleid', 'Algemene voorwaarden', 'Verwerkingsovereenkomst', 'Cookies'] }].
+    { title: 'Product', items: [
+      { label: 'Zo werkt het', href: '#zo-werkt-het' },
+      { label: 'Voor wie', href: '#zo-werkt-het' },
+      { label: 'Prijs', href: '#prijs' },
+      { label: 'Veelgestelde vragen', href: null }
+    ]},
+    { title: 'Contact', items: [
+      { label: 'hallo@ikbenok.nl', href: 'mailto:hallo@ikbenok.nl' },
+      { label: '+31 20 123 4567', href: 'tel:+31201234567' },
+      { label: 'Voor zorgorganisaties', href: 'mailto:hallo@ikbenok.nl?subject=Zorgorganisatie' },
+      { label: 'Pers & partners', href: 'mailto:hallo@ikbenok.nl?subject=Pers' }
+    ]},
+    { title: 'Juridisch', items: [
+      { label: 'Privacybeleid', href: null },
+      { label: 'Algemene voorwaarden', href: null },
+      { label: 'Verwerkingsovereenkomst', href: null },
+      { label: 'Cookies', href: null }
+    ]}].
     map((col) =>
     <div key={col.title}>
           <div style={{
@@ -658,14 +676,24 @@ const Footer = ({ intensity }) => {
         color: 'var(--fg-muted)', fontWeight: 500, marginBottom: 16
       }}>{col.title}</div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {col.items.map((it) =>
-        <li key={it} style={{ padding: '6px 0' }}>
-                <a href="#" style={{
-            fontFamily: 'var(--font-body)', fontSize: 14,
-            color: 'var(--fg-default)', textDecoration: 'none'
-          }}>{it}</a>
-              </li>
-        )}
+            {col.items.map((it) => {
+              const disabled = !it.href;
+              return (
+        <li key={it.label} style={{ padding: '6px 0' }}>
+                <a
+                  href={it.href || '#'}
+                  onClick={disabled ? (e) => e.preventDefault() : undefined}
+                  aria-disabled={disabled || undefined}
+                  title={disabled ? 'Volgt — momenteel nog niet beschikbaar' : undefined}
+                  style={{
+                    fontFamily: 'var(--font-body)', fontSize: 14,
+                    color: disabled ? 'var(--fg-muted)' : 'var(--fg-default)',
+                    textDecoration: 'none',
+                    cursor: disabled ? 'default' : 'pointer',
+                    opacity: disabled ? 0.55 : 1
+                  }}>{it.label}</a>
+              </li>);
+            })}
           </ul>
         </div>
     )}

@@ -32,8 +32,7 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         color: 'var(--cream)',
         fontFamily: 'var(--font-display)', fontWeight: 700,
         fontSize: okFontSize, letterSpacing: '-0.01em',
-        lineHeight: 1,
-        paddingBottom: '0.06em'
+        lineHeight: 1
       }}>ok</span>
     </span>);
 
@@ -144,7 +143,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
         {/* progress ring */}
         <div style={{
           position: 'absolute', width: 200, height: 200, borderRadius: '50%',
-          background: `conic-gradient(var(--sage) ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
+          background: `conic-gradient(var(--sage-deep) ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
         }} />
         <div style={{
           position: 'absolute', width: 182, height: 182, borderRadius: '50%',
@@ -335,12 +334,17 @@ const PhoneCaregiver = () =>
             fontFamily: 'var(--font-body)', fontSize: 11, color: 'var(--fg-default)',
             flexShrink: 0
           }}>{day}</span>
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'nowrap', flexShrink: 0 }}>
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 4, flexShrink: 0
+          }}>
             {times.map((t) =>
         <span key={t} style={{
           fontFamily: 'var(--font-body)', fontSize: 9.5, color: 'var(--sage-deep)',
-          padding: '2px 5px', background: 'rgba(110,150,128,0.14)',
-          borderRadius: 999, whiteSpace: 'nowrap', lineHeight: 1.4
+          padding: '2px 0', background: 'rgba(110,150,128,0.14)',
+          borderRadius: 999, whiteSpace: 'nowrap', lineHeight: 1.4,
+          textAlign: 'center', minWidth: 36,
+          fontVariantNumeric: 'tabular-nums'
         }}>{t}</span>
         )}
           </div>
