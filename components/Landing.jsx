@@ -3,6 +3,20 @@
 
 const { useState, useEffect } = React;
 
+// Responsive breakpoint hook — phone-portrait threshold.
+const useIsMobile = (bp = 768) => {
+  const q = `(max-width: ${bp}px)`;
+  const get = () => typeof window !== 'undefined' && window.matchMedia(q).matches;
+  const [m, setM] = useState(get);
+  useEffect(() => {
+    const mq = window.matchMedia(q);
+    const onChange = (e) => setM(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, [q]);
+  return m;
+};
+
 // ─────────────────────────────────────────────────────
 // Brand mark — the ik-ben-ok ring-gap "ok" button (breathing)
 // ─────────────────────────────────────────────────────
@@ -121,38 +135,42 @@ const Eyebrow = ({ children }) =>
 // ─────────────────────────────────────────────────────
 // Nav
 // ─────────────────────────────────────────────────────
-const Nav = () =>
-<div style={{
-  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-  padding: '28px 40px 0', maxWidth: 1260, margin: '0 auto',
-  position: 'relative', zIndex: 3
-}}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-      <Wordmark size={26} />
+const Nav = () => {
+  const isMobile = useIsMobile();
+  return (
+  <div style={{
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    padding: isMobile ? '20px 20px 0' : '28px 40px 0',
+    maxWidth: 1260, margin: '0 auto',
+    position: 'relative', zIndex: 3, gap: 12
+  }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 14, minWidth: 0 }}>
+      <Wordmark size={isMobile ? 22 : 26} />
     </div>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
-      {['Zo werkt het', 'Voor wie', 'Prijs'].map((l) =>
-    <a key={l} href={`#${l.toLowerCase().replace(/\s/g, '-')}`} style={{
-      fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-default)',
-      textDecoration: 'none', letterSpacing: '0.01em'
-    }}>{l}</a>
-    )}
+    <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 0 : 36 }}>
+      {!isMobile && ['Zo werkt het', 'Voor wie', 'Prijs'].map((l) =>
+        <a key={l} href={`#${l.toLowerCase().replace(/\s/g, '-')}`} style={{
+          fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-default)',
+          textDecoration: 'none', letterSpacing: '0.01em'
+        }}>{l}</a>
+      )}
       <a href="#download" style={{
-      padding: '11px 18px', borderRadius: 999,
-      background: 'var(--sage-deep)', color: 'var(--cream)',
-      fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 500,
-      textDecoration: 'none', letterSpacing: '0.01em',
-      display: 'inline-flex', alignItems: 'center', gap: 8,
-      boxShadow: '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)',
-      transition: 'all 180ms var(--ease-out)'
-    }}
-    onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--coral)';e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = '0 14px 26px -8px rgba(255,107,71,0.55), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)';}}
-    onMouseLeave={(e) => {e.currentTarget.style.background = 'var(--sage-deep)';e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)';}}>
-        Download de app
+        padding: isMobile ? '9px 14px' : '11px 18px', borderRadius: 999,
+        background: 'var(--sage-deep)', color: 'var(--cream)',
+        fontFamily: 'var(--font-body)', fontSize: isMobile ? 13 : 14, fontWeight: 500,
+        textDecoration: 'none', letterSpacing: '0.01em',
+        display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap',
+        boxShadow: '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)',
+        transition: 'all 180ms var(--ease-out)'
+      }}
+      onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--coral)';e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = '0 14px 26px -8px rgba(255,107,71,0.55), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)';}}
+      onMouseLeave={(e) => {e.currentTarget.style.background = 'var(--sage-deep)';e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)';}}>
+        {isMobile ? 'Download' : 'Download de app'}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
       </a>
     </div>
-  </div>;
+  </div>);
+};
 
 
 // Micro tripartite bar
@@ -180,26 +198,32 @@ const MicroBar = () =>
 // ─────────────────────────────────────────────────────
 // Hero
 // ─────────────────────────────────────────────────────
-const Hero = ({ intensity }) =>
-<section style={{
-  maxWidth: 1260, margin: '0 auto', padding: '80px 40px 120px',
-  display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: 80, alignItems: 'center',
-  position: 'relative', zIndex: 2
-}}>
+const Hero = ({ intensity }) => {
+  const isMobile = useIsMobile();
+  return (
+  <section style={{
+    maxWidth: 1260, margin: '0 auto',
+    padding: isMobile ? '40px 20px 60px' : '80px 40px 120px',
+    display: 'grid',
+    gridTemplateColumns: isMobile ? '1fr' : '1.15fr 0.85fr',
+    gap: isMobile ? 48 : 80, alignItems: 'center',
+    position: 'relative', zIndex: 2
+  }}>
     <div style={{ position: 'relative', zIndex: 2 }}>
       <h1 style={{
       fontFamily: 'var(--font-display)', fontWeight: 400,
-      fontSize: 'clamp(56px, 7vw, 104px)', lineHeight: 0.98,
+      fontSize: isMobile ? 'clamp(40px, 11vw, 56px)' : 'clamp(56px, 7vw, 104px)',
+      lineHeight: 0.98,
       letterSpacing: '-0.025em', color: 'var(--navy)',
       margin: '0 0 26px', textWrap: 'balance'
     }}>
         Een alarm dat afgaat als er <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>níet</em> gereageerd wordt.
       </h1>
       <p style={{
-      fontFamily: 'var(--font-body)', fontSize: 19, lineHeight: 1.55,
+      fontFamily: 'var(--font-body)', fontSize: isMobile ? 17 : 19, lineHeight: 1.55,
       color: 'var(--fg-default)', maxWidth: 520, margin: '0 0 36px'
     }}>
-        <Wordmark size={22} /> brengt dagelijkse gemoedsrust aan alleenwonende ouderen en hun mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.
+        <Wordmark size={isMobile ? 19 : 22} /> brengt dagelijkse gemoedsrust aan alleenwonende ouderen en hun mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.
       </p>
 
       {/* CTAs */}
@@ -219,11 +243,11 @@ const Hero = ({ intensity }) =>
       filter: 'blur(30px)', zIndex: 0, top: '50%', left: '50%',
       transform: 'translate(-50%, -50%)'
     }} />
-      <Phone width={304} height={620} tilt={-1.2}>
+      <Phone width={isMobile ? 268 : 304} height={isMobile ? 552 : 620} tilt={-1.2}>
         <PhoneHome intensity={intensity} />
       </Phone>
-      {/* floating caregiver notification */}
-      <div style={{
+      {/* floating caregiver notification — desktop only (overflows on mobile) */}
+      {!isMobile && <div style={{
       position: 'absolute', right: -20, top: 140,
       padding: '14px 16px 14px 14px',
       background: 'var(--bg-raised)',
@@ -251,9 +275,9 @@ const Hero = ({ intensity }) =>
           color: 'var(--navy)'
         }}><em style={{ fontStyle: 'italic', color: 'var(--sage-deep)' }}>Margriet</em> · 16:00</div>
         </div>
-      </div>
-      {/* small corner badge — missed reply */}
-      <div style={{
+      </div>}
+      {/* small corner badge — missed reply (desktop only) */}
+      {!isMobile && <div style={{
       position: 'absolute', left: -30, bottom: 90,
       padding: '12px 14px',
       background: 'var(--navy)', color: 'var(--cream)',
@@ -267,9 +291,10 @@ const Hero = ({ intensity }) =>
         color: 'var(--coral)', fontWeight: 600, marginBottom: 4
       }}>Alarmering contactpersoon</div>
         Na 10 minuten zonder reactie<br />— wanneer de knop niet wordt ingedrukt —
-      </div>
+      </div>}
     </div>
-  </section>;
+  </section>);
+};
 
 
 const StoreButton = ({ kind }) => {
@@ -313,6 +338,7 @@ const StoreButton = ({ kind }) => {
 // How it works — 3 steps with roman numerals
 // ─────────────────────────────────────────────────────
 const HowItWorks = ({ intensity }) => {
+  const isMobile = useIsMobile();
   const steps = [
   {
     label: 'Op vaste tijden',
@@ -336,27 +362,30 @@ const HowItWorks = ({ intensity }) => {
 
   return (
     <section id="zo-werkt-het" style={{
-      maxWidth: 1260, margin: '0 auto', padding: '120px 40px',
+      maxWidth: 1260, margin: '0 auto',
+      padding: isMobile ? '60px 20px' : '120px 40px',
       position: 'relative', zIndex: 2
     }}>
       <SectionLabel>Zo werkt het</SectionLabel>
       <h2 style={{
         fontFamily: 'var(--font-display)', fontWeight: 400,
-        fontSize: 64, lineHeight: 1.04,
+        fontSize: isMobile ? 'clamp(32px, 8vw, 44px)' : 64,
+        lineHeight: 1.04,
         letterSpacing: '-0.02em', color: 'var(--navy)',
-        margin: '0 0 80px', maxWidth: 780, textWrap: 'balance'
+        margin: isMobile ? '0 0 48px' : '0 0 80px',
+        maxWidth: 780, textWrap: 'balance'
       }}>
         Je bepaalt zelf het moment, voegt een <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>contactpersoon</em> toe en <Brand /> doet de rest.
       </h2>
 
-      <div style={{ display: 'grid', gap: 80 }}>
+      <div style={{ display: 'grid', gap: isMobile ? 56 : 80 }}>
         {steps.map((step, i) =>
         <div key={i} style={{
           display: 'grid',
-          gridTemplateColumns: i % 2 === 0 ? '1fr 340px' : '340px 1fr',
-          gap: 80, alignItems: 'center'
+          gridTemplateColumns: isMobile ? '1fr' : (i % 2 === 0 ? '1fr 340px' : '340px 1fr'),
+          gap: isMobile ? 32 : 80, alignItems: 'center'
         }}>
-            <div style={{ order: i % 2 === 0 ? 1 : 2 }}>
+            <div style={{ order: isMobile ? 1 : (i % 2 === 0 ? 1 : 2) }}>
               <div style={{
               display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20
             }}>
@@ -369,17 +398,19 @@ const HowItWorks = ({ intensity }) => {
               </div>
               <h3 style={{
               fontFamily: 'var(--font-display)', fontWeight: 400,
-              fontSize: 46, lineHeight: 1.05,
+              fontSize: isMobile ? 'clamp(28px, 7vw, 36px)' : 46,
+              lineHeight: 1.05,
               letterSpacing: '-0.02em', color: 'var(--navy)',
               margin: '0 0 22px', textWrap: 'balance'
             }} dangerouslySetInnerHTML={{ __html: step.title.replace(/<em>/g, '<em style="font-style:italic;color:var(--coral)">').replace(/ik ben ok/g, 'ik ben <em style="color:var(--coral);font-weight:600;font-style:normal">ok</em>') }} />
               <p style={{
-              fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.55,
+              fontFamily: 'var(--font-body)',
+              fontSize: isMobile ? 16 : 17, lineHeight: 1.55,
               color: 'var(--fg-default)', maxWidth: 520, margin: 0
             }}>{step.body}</p>
             </div>
             <div style={{
-            order: i % 2 === 0 ? 2 : 1,
+            order: isMobile ? 2 : (i % 2 === 0 ? 2 : 1),
             display: 'flex', justifyContent: 'center', position: 'relative'
           }}>
               <div style={{
@@ -389,7 +420,10 @@ const HowItWorks = ({ intensity }) => {
               transform: 'translate(-50%, -50%)'
             }} />
               <div style={{ position: 'relative' }}>
-                <Phone width={260} height={540} tilt={i % 2 === 0 ? 1.5 : -1.5}>
+                <Phone
+                  width={isMobile ? 240 : 260}
+                  height={isMobile ? 500 : 540}
+                  tilt={isMobile ? 0 : (i % 2 === 0 ? 1.5 : -1.5)}>
                   {step.phone}
                 </Phone>
               </div>
@@ -404,16 +438,19 @@ const HowItWorks = ({ intensity }) => {
 // ─────────────────────────────────────────────────────
 // Quote block — navy inverse
 // ─────────────────────────────────────────────────────
-const QuoteBlock = () =>
+const QuoteBlock = () => {
+  const isMobile = useIsMobile();
+  return (
 <section style={{
-  maxWidth: 1260, margin: '0 auto', padding: '0 40px 120px',
+  maxWidth: 1260, margin: '0 auto',
+  padding: isMobile ? '0 16px 60px' : '0 40px 120px',
   position: 'relative', zIndex: 2
 }}>
     <div style={{
     position: 'relative', overflow: 'hidden',
     background: 'var(--navy)',
-    borderRadius: 32,
-    padding: '100px 80px',
+    borderRadius: isMobile ? 22 : 32,
+    padding: isMobile ? '56px 28px' : '100px 80px',
     color: 'var(--cream)'
   }}>
       {/* radial glows */}
@@ -450,17 +487,18 @@ const QuoteBlock = () =>
 
         <div style={{
         display: 'flex', alignItems: 'center', gap: 16,
-        paddingTop: 36,
-        borderTop: '1px solid rgba(245,239,227,0.14)'
+        paddingTop: isMobile ? 28 : 36,
+        borderTop: '1px solid rgba(245,239,227,0.14)',
+        flexWrap: 'wrap'
       }}>
           <div style={{
           width: 48, height: 48, borderRadius: '50%',
           background: 'var(--coral)', color: 'var(--navy)',
           display: 'grid', placeItems: 'center',
           fontFamily: 'var(--font-display)', fontStyle: 'italic',
-          fontSize: 22, letterSpacing: '-0.02em'
+          fontSize: 22, letterSpacing: '-0.02em', flexShrink: 0
         }}>M</div>
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div style={{
             fontFamily: 'var(--font-display)', fontSize: 20,
             letterSpacing: '-0.01em', color: 'var(--cream)'
@@ -479,15 +517,19 @@ const QuoteBlock = () =>
         </div>
       </div>
     </div>
-  </section>;
+  </section>);
+};
 
 
 // ─────────────────────────────────────────────────────
 // Pricing
 // ─────────────────────────────────────────────────────
-const Pricing = () =>
+const Pricing = () => {
+  const isMobile = useIsMobile();
+  return (
 <section id="prijs" style={{
-  maxWidth: 1260, margin: '0 auto', padding: '60px 40px 120px',
+  maxWidth: 1260, margin: '0 auto',
+  padding: isMobile ? '40px 20px 60px' : '60px 40px 120px',
   position: 'relative', zIndex: 2
 }}>
     <SectionLabel align="center">Abonnement</SectionLabel>
@@ -513,22 +555,23 @@ const Pricing = () =>
     maxWidth: 520, margin: '0 auto',
     background: 'var(--bg-raised)',
     border: '1px solid var(--line-soft)',
-    borderRadius: 32,
-    padding: '44px 44px 40px',
+    borderRadius: isMobile ? 22 : 32,
+    padding: isMobile ? '32px 24px 28px' : '44px 44px 40px',
     boxShadow: 'var(--shadow-lift)',
     position: 'relative', overflow: 'hidden'
   }}>
       <div style={{
       display: 'flex', alignItems: 'baseline', gap: 8,
-      margin: '12px 0 6px'
+      margin: '12px 0 6px', flexWrap: 'wrap'
     }}>
         <span style={{
-        fontFamily: 'var(--font-display)', fontSize: 92,
+        fontFamily: 'var(--font-display)',
+        fontSize: isMobile ? 68 : 92,
         letterSpacing: '-0.035em', color: 'var(--navy)', lineHeight: 1
       }}>€2</span>
         <span style={{
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
-        fontSize: 32, color: 'var(--coral)'
+        fontSize: isMobile ? 26 : 32, color: 'var(--coral)'
       }}>,75</span>
         <span style={{
         fontFamily: 'var(--font-body)', fontSize: 14,
@@ -564,7 +607,7 @@ const Pricing = () =>
       )}
       </div>
 
-      <div style={{ display: 'flex', gap: 10 }}>
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <StoreButton kind="apple" />
         <StoreButton kind="google" />
       </div>
@@ -577,21 +620,27 @@ const Pricing = () =>
   }}>
       Voor zorgorganisaties — <a href="#contact" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>neem contact op</a> voor volumetarieven.
     </p>
-  </section>;
+  </section>);
+};
 
 
 // ─────────────────────────────────────────────────────
 // Footer
 // ─────────────────────────────────────────────────────
-const Footer = ({ intensity }) =>
+const Footer = ({ intensity }) => {
+  const isMobile = useIsMobile();
+  return (
 <footer style={{
   position: 'relative', zIndex: 2,
   borderTop: '1px solid var(--line)',
   marginTop: 40
 }}>
     <div style={{
-    maxWidth: 1260, margin: '0 auto', padding: '80px 40px 60px',
-    display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 60, alignItems: 'start'
+    maxWidth: 1260, margin: '0 auto',
+    padding: isMobile ? '48px 20px 32px' : '80px 40px 60px',
+    display: 'grid',
+    gridTemplateColumns: isMobile ? '1fr 1fr' : '1fr 1fr 1fr 1fr',
+    gap: isMobile ? 32 : 60, alignItems: 'start'
   }}>
       <div>
         <Wordmark size={26} />
@@ -625,9 +674,10 @@ const Footer = ({ intensity }) =>
     {/* Seal strip */}
     <div style={{
     borderTop: '1px solid var(--line-soft)',
-    padding: '28px 40px',
+    padding: isMobile ? '20px 20px' : '28px 40px',
     maxWidth: 1260, margin: '0 auto',
-    display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    gap: 24, flexWrap: 'wrap'
   }}>
       <div style={{
       fontFamily: 'var(--font-body)', fontSize: 12,
@@ -641,7 +691,8 @@ const Footer = ({ intensity }) =>
       fontSize: 14, color: 'var(--fg-muted)'
     }}>{'\n'}</div>
     </div>
-  </footer>;
+  </footer>);
+};
 
 
 Object.assign(window, { Nav, MicroBar, Hero, HowItWorks, QuoteBlock, Pricing, Footer });
