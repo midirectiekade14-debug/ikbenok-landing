@@ -53,7 +53,7 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         boxShadow: shadow ? '0 10px 26px -8px rgba(255,107,71,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
-    {/* "ok" text — absolutely centered so it never reflows in print */}
+    {/* "ok" text — absolutely centered, with bottom-padding to lift glyphs optically */}
     <span style={{
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -62,7 +62,8 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         fontWeight: 700,
         fontSize: okFontSize,
         letterSpacing: '-0.01em',
-        lineHeight: 1
+        lineHeight: 1,
+        paddingBottom: '0.4em'
       }}>ok</span>
   </span>);
 
@@ -353,7 +354,7 @@ const HowItWorks = ({ intensity }) => {
     label: 'Bij stilte',
     title: 'Geen reactie?<br/>Dan <em>alarmeren</em> wij!',
     body: 'Reageert de ander niet binnen 10 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp.',
-    phone: <PhoneHome intensity={intensity} progress={1} />
+    phone: <PhoneHome intensity={intensity} progress={1} state="alarm" />
   },
   {
     label: 'Voor de mantelzorger',

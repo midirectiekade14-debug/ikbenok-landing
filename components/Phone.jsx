@@ -32,7 +32,8 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         color: 'var(--cream)',
         fontFamily: 'var(--font-display)', fontWeight: 700,
         fontSize: okFontSize, letterSpacing: '-0.01em',
-        lineHeight: 1
+        lineHeight: 1,
+        paddingBottom: '0.4em'
       }}>ok</span>
     </span>);
 
@@ -96,9 +97,18 @@ const Phone = ({ children, width = 300, height = 620, tilt = 0, scale = 1, lift 
 // ─────────────────────────────────────────────────────
 // Home screen — the canonical breathing Ik ben OK
 // ─────────────────────────────────────────────────────
-const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
+const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 'ok' }) => {
   const breathDur = intensity < 0.2 ? '0s' : intensity < 0.6 ? '8s' : '5s';
   const pulseDur = intensity < 0.2 ? '0s' : '2.4s';
+  // Color tokens — sage-deep for normal "ok" state, clay (#a54a3a) for alarm/missed-checkin state.
+  // Matches the Checkin app: src/theme.ts → colors.clay, used in CheckInStatus.tsx as `isOverdue ? colors.clay : colors.sage`.
+  const isAlarm = state === 'alarm';
+  const ringFg = isAlarm ? 'var(--clay)' : 'var(--sage-deep)';
+  const buttonBg = isAlarm ? 'var(--clay)' : 'var(--coral)';
+  const buttonShadow = isAlarm
+    ? '0 24px 60px -14px rgba(165,74,58,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)'
+    : '0 24px 60px -14px rgba(255,107,71,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)';
+  const pingBg = isAlarm ? 'rgba(165,74,58,0.45)' : 'rgba(255,107,71,0.45)';
   return (
     <div style={{ padding: '8px 22px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <style>{`
@@ -143,7 +153,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
         {/* progress ring */}
         <div style={{
           position: 'absolute', width: 200, height: 200, borderRadius: '50%',
-          background: `conic-gradient(var(--sage-deep) ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
+          background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
         }} />
         <div style={{
           position: 'absolute', width: 182, height: 182, borderRadius: '50%',
@@ -153,16 +163,16 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1 }) => {
         {intensity > 0.6 &&
         <div style={{
           position: 'absolute', width: 170, height: 170, borderRadius: '50%',
-          background: 'rgba(255,107,71,0.45)',
+          background: pingBg,
           animation: `phone-ring-pulse 2.6s var(--ease-out) infinite`
         }} />
         }
         {/* button */}
         <div style={{
           position: 'relative', width: 166, height: 166, borderRadius: '50%',
-          background: 'var(--coral)', color: '#fff',
+          background: buttonBg, color: '#fff',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 24px 60px -14px rgba(255,107,71,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)',
+          boxShadow: buttonShadow,
           animation: intensity > 0 ? `phone-breathe ${breathDur} ease-in-out infinite` : 'none'
         }}>
           <span style={{
