@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ik ben ok — Zorgen met minder zorgen</title>
+
+<link rel="stylesheet" href="styles/colors_and_type.css?v=2" />
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--fg-default);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: rgba(255,107,71,0.22); color: var(--navy); }
+
+  /* dawn wash — fixed radial gradient */
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.12), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.12), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.06), transparent 70%);
+    animation: ci-dawn-drift 24s ease-in-out infinite alternate;
+  }
+  /* paper grain — fixed */
+  .ci-grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background-image: url('assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.34; mix-blend-mode: multiply;
+  }
+  @keyframes ci-dawn-drift {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-2%, 2%); }
+  }
+  @keyframes ci-ping {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    100% { transform: scale(2.4); opacity: 0;   }
+  }
+  @keyframes ci-seal-spin { to { transform: rotate(360deg); } }
+  @keyframes ci-fadeup {
+    0% { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .ci-stagger > * { animation: ci-fadeup 0.8s var(--ease-out) both; }
+  .ci-stagger > *:nth-child(1) { animation-delay: 0ms; }
+  .ci-stagger > *:nth-child(2) { animation-delay: 130ms; }
+  .ci-stagger > *:nth-child(3) { animation-delay: 260ms; }
+  .ci-stagger > *:nth-child(4) { animation-delay: 390ms; }
+  .ci-stagger > *:nth-child(5) { animation-delay: 520ms; }
+  .ci-stagger > *:nth-child(6) { animation-delay: 650ms; }
+
+  /* reduce-motion toggle — applied via data attribute */
+  [data-intensity="0"] *,
+  [data-intensity="0"] *::before,
+  [data-intensity="0"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Tweaks panel */
+  .tweaks-panel {
+    position: fixed; right: 24px; bottom: 24px; z-index: 9999;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 18px 20px 16px;
+    box-shadow: var(--shadow-lift);
+    font-family: var(--font-body);
+    width: 280px;
+    display: none;
+  }
+  .tweaks-panel[data-visible="true"] { display: block; }
+  .tweaks-panel h4 {
+    margin: 0 0 4px;
+    font-family: var(--font-display); font-weight: 400;
+    font-size: 20px; letter-spacing: -0.01em; color: var(--navy);
+  }
+  .tweaks-panel .tweaks-sub {
+    font-size: 11.5px; color: var(--fg-muted); margin: 0 0 16px;
+    letter-spacing: 0.01em;
+  }
+  .tweaks-panel label {
+    display: block;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 500; margin-bottom: 10px;
+  }
+  .tweaks-panel input[type=range] {
+    width: 100%; accent-color: var(--coral);
+  }
+  .tweaks-panel .tweaks-scale {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-display); font-style: italic;
+    font-size: 12.5px; color: var(--fg-muted);
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- fixed background layers -->
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
+
+<div id="root"></div>
+
+<!-- Tweaks panel (hidden by default — toggled by host) -->
+<div class="tweaks-panel" id="tweaks">
+  <h4>Tweaks</h4>
+  <p class="tweaks-sub">Pas de rust van de pagina aan.</p>
+  <label>Animatie</label>
+  <input type="range" id="tw-intensity" min="0" max="1" step="0.1" />
+  <div class="tweaks-scale">
+    <span>stil</span>
+    <span>rustig</span>
+    <span>levendig</span>
+  </div>
+</div>
+
+<!-- Persisted tweak defaults -->
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "intensity": 1
+  }/*EDITMODE-END*/;
+
+  // ─── Tweaks protocol ──────────────────────────────────
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') {
+      document.getElementById('tweaks').setAttribute('data-visible', 'true');
+    } else if (d.type === '__deactivate_edit_mode') {
+      document.getElementById('tweaks').setAttribute('data-visible', 'false');
+    }
+  });
+  window.parent.postMessage({type: '__edit_mode_available'}, '*');
+
+  // apply + wire tweaks input
+  function applyIntensity(v) {
+    document.body.setAttribute('data-intensity', v);
+    window.__intensity = parseFloat(v);
+    // re-render React tree with new intensity
+    if (window.__rerender) window.__rerender();
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const inp = document.getElementById('tw-intensity');
+    inp.value = TWEAK_DEFAULTS.intensity;
+    applyIntensity(TWEAK_DEFAULTS.intensity);
+    inp.addEventListener('input', () => {
+      applyIntensity(inp.value);
+      window.parent.postMessage({
+        type: '__edit_mode_set_keys',
+        edits: { intensity: parseFloat(inp.value) }
+      }, '*');
+    });
+  });
+</script>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components/Phone.jsx"></script>
+<script type="text/babel" src="components/Landing.jsx"></script>
+
+<script type="text/babel">
+
+const App = () => {
+  const [intensity, setIntensity] = React.useState(
+    typeof window.__intensity === 'number' ? window.__intensity : 1
+  );
+  React.useEffect(() => {
+    window.__rerender = () => setIntensity(window.__intensity);
+    return () => {window.__rerender = null;};
+  }, []);
+
+  return (
+    <div className="ci ci-stagger" style={{ margin: "0px" }}>
+        <Nav />
+        <Hero intensity={intensity} />
+        <HowItWorks intensity={intensity} />
+        <QuoteBlock />
+        <Pricing />
+        <Footer intensity={intensity} />
+      </div>);
+
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="ik ben ok">
+  <title>ik ben ok</title>
+  
+  <circle cx="60" cy="60" r="58" fill="#FF6B47"></circle>
+  
+  <circle cx="60" cy="60" r="52" fill="#F5EFE3"></circle>
+  
+  <circle cx="60" cy="60" r="46" fill="#FF6B47"></circle>
+  
+  <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-family="Dosis, system-ui, sans-serif" font-weight="700" font-size="42" fill="#F5EFE3" letter-spacing="-0.5">ok</text>
+</svg>

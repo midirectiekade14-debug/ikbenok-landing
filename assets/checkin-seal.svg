@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none" role="img" aria-label="ik ben ok">
+  <title>ik ben ok — Zorgen zonder zorgen</title>
+  <defs>
+    <path id="sealArc" d="M 150, 150 m -118, 0 a 118,118 0 1,1 236,0 a 118,118 0 1,1 -236,0"></path>
+  </defs>
+  <circle cx="150" cy="150" r="146" stroke="#0B1B2B" stroke-width="2"></circle>
+  <circle cx="150" cy="150" r="140" stroke="#0B1B2B" stroke-width="0.6" opacity="0.4"></circle>
+  <circle cx="150" cy="150" r="104" stroke="#0B1B2B" stroke-width="0.8" opacity="0.35"></circle>
+  <circle cx="150" cy="8" r="2.4" fill="#FF6B47"></circle>
+  <circle cx="292" cy="150" r="2.4" fill="#FF6B47"></circle>
+  <circle cx="150" cy="292" r="2.4" fill="#FF6B47"></circle>
+  <circle cx="8" cy="150" r="2.4" fill="#FF6B47"></circle>
+  <text font-family="Inter, &#39;Helvetica Neue&#39;, Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="4" fill="#0B1B2B">
+    <textPath href="#sealArc" startOffset="0">IK BEN OK · ZORGEN ZONDER ZORGEN ✦ IK BEN OK · ZORGEN ZONDER ZORGEN ✦</textPath>
+  </text>
+  
+  <circle cx="150" cy="150" r="72" fill="#FF6B47"></circle>
+  <circle cx="150" cy="150" r="64" fill="#F5EFE3"></circle>
+  <circle cx="150" cy="150" r="56" fill="#FF6B47"></circle>
+  <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-family="Dosis, system-ui, sans-serif" font-weight="700" font-size="52" fill="#F5EFE3" letter-spacing="-0.5">ok</text>
+</svg>
