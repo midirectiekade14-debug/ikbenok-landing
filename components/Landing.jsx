@@ -53,7 +53,7 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         boxShadow: shadow ? '0 10px 26px -8px rgba(255,107,71,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
-    {/* "ok" text — absolutely centered, with bottom-padding to lift glyphs optically */}
+    {/* "ok" text — absolutely centered */}
     <span style={{
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -62,8 +62,7 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         fontWeight: 700,
         fontSize: okFontSize,
         letterSpacing: '-0.01em',
-        lineHeight: 1,
-        paddingBottom: '0.4em'
+        lineHeight: 1
       }}>ok</span>
   </span>);
 
