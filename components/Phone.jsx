@@ -27,13 +27,12 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
       <span style={{
-        position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        position: 'relative',
         color: 'var(--cream)',
-        fontFamily: 'var(--font-display)', fontWeight: 700,
-        fontSize: okFontSize, letterSpacing: '-0.01em',
+        fontFamily: 'var(--font-display)',
+        fontWeight: 700, fontSize: okFontSize, letterSpacing: '-0.01em',
         lineHeight: 1,
-        paddingBottom: '0.4em'
+        transform: 'translateY(-0.04em)'
       }}>ok</span>
     </span>);
 

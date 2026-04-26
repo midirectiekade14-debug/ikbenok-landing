@@ -53,16 +53,16 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
         boxShadow: shadow ? '0 10px 26px -8px rgba(255,107,71,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
-    {/* "ok" text — absolutely centered */}
+    {/* "ok" text — relative positioning + translateY optical lift, per design system */}
     <span style={{
-        position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        position: 'relative',
         color: 'var(--cream)',
         fontFamily: 'var(--font-display)',
         fontWeight: 700,
         fontSize: okFontSize,
         letterSpacing: '-0.01em',
-        lineHeight: 1
+        lineHeight: 1,
+        transform: 'translateY(-0.04em)'
       }}>ok</span>
   </span>);
 
