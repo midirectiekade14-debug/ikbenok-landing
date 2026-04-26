@@ -20,47 +20,37 @@ const useIsMobile = (bp = 768) => {
 // ─────────────────────────────────────────────────────
 // Brand mark — the ik-ben-ok ring-gap "ok" button (breathing)
 // ─────────────────────────────────────────────────────
+// Exact replica of the design-system V5 favicon variant
+// (Claude Design bundle: ui_kits/allesok/ikbenok-logo-variants.jsx, IBOK_FaviconPreview v5).
+// All ratios are em-based against the wrapper's own fontSize, so the mark
+// scales identically at any size without pixel-rounding drift.
 const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
-  // Support both numeric (px) and string (e.g. "1.5em") sizes.
   const isEm = typeof size === 'string';
-  const gap1 = isEm ? '0.09em' : Math.max(2, size * 0.09);
-  const gap2 = isEm ? '0.18em' : Math.max(4, size * 0.18);
-  const okFontSize = isEm ? '0.72em' : size * 0.48;
   return (
     <span style={{
       position: 'relative',
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: size, height: size, flexShrink: 0, lineHeight: 1,
-      verticalAlign: isEm ? '-0.28em' : 'baseline'
+      width: size, height: size,
+      fontSize: isEm ? undefined : size / 1.9,
+      flexShrink: 0, lineHeight: 1,
+      verticalAlign: isEm ? '-0.32em' : 'baseline'
     }}>
     <style>{`
       @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
     `}</style>
-    {/* outer coral ring */}
+    <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--coral)' }} />
+    <span style={{ position: 'absolute', inset: '0.09em', borderRadius: '50%', background: 'var(--cream)' }} />
     <span style={{
-        position: 'absolute', inset: 0, borderRadius: '50%',
-        background: 'var(--coral)'
-      }} />
-    {/* cream gap */}
-    <span style={{
-        position: 'absolute', inset: gap1, borderRadius: '50%',
-        background: 'var(--cream)'
-      }} />
-    {/* inner breathing disc */}
-    <span style={{
-        position: 'absolute', inset: gap2, borderRadius: '50%',
+        position: 'absolute', inset: '0.18em', borderRadius: '50%',
         background: 'var(--coral)',
-        boxShadow: shadow ? '0 10px 26px -8px rgba(255,107,71,0.5)' : 'none',
+        boxShadow: shadow ? '0 6px 14px -4px rgba(255,107,71,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
-    {/* "ok" text — relative positioning + translateY optical lift, per design system */}
     <span style={{
         position: 'relative',
         color: 'var(--cream)',
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700,
-        fontSize: okFontSize,
-        letterSpacing: '-0.01em',
+        fontFamily: 'Dosis, system-ui, sans-serif',
+        fontWeight: 700, fontSize: '1em', letterSpacing: '-0.01em',
         lineHeight: 1,
         transform: 'translateY(-0.04em)'
       }}>ok</span>
@@ -80,7 +70,7 @@ const Brand = ({ italic = false }) =>
   display: 'inline-flex', alignItems: 'center', gap: '0.12em',
   whiteSpace: 'nowrap', verticalAlign: 'baseline'
 }}>
-    ik ben <IkBenOkMark size="1.5em" breathe={false} shadow={false} />
+    ik ben <IkBenOkMark size="1.9em" breathe={false} shadow={false} />
   </span>;
 
 
@@ -91,7 +81,7 @@ const Wordmark = ({ size = 24, color = 'var(--navy)' }) =>
   display: 'inline-flex', alignItems: 'center', gap: '0.12em',
   whiteSpace: 'nowrap'
 }}>
-    ik ben <IkBenOkMark size="1.5em" breathe={false} shadow={false} />
+    ik ben <IkBenOkMark size="1.9em" breathe={false} shadow={false} />
   </span>;
 
 

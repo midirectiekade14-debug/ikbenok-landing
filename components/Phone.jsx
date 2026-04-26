@@ -2,35 +2,35 @@
 // Exports: Phone (an iPhone-ish shell), PhoneHome (the breathing Ik ben OK preview),
 // PhonePing (the morning check-in prompt), PhoneConfirmed (success toast).
 
-// Ring-gap "ok" mark — shared with Landing via window global.
+// Ring-gap "ok" mark — exact replica of design-system V5 favicon variant.
+// Source: Claude Design bundle ui_kits/allesok/ikbenok-logo-variants.jsx, IBOK_FaviconPreview v5.
 const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
   const isEm = typeof size === 'string';
-  const gap1 = isEm ? '0.09em' : Math.max(2, size * 0.09);
-  const gap2 = isEm ? '0.18em' : Math.max(4, size * 0.18);
-  const okFontSize = isEm ? '0.72em' : size * 0.48;
   return (
     <span style={{
       position: 'relative',
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: size, height: size, flexShrink: 0, lineHeight: 1,
-      verticalAlign: isEm ? '-0.28em' : 'baseline'
+      width: size, height: size,
+      fontSize: isEm ? undefined : size / 1.9,
+      flexShrink: 0, lineHeight: 1,
+      verticalAlign: isEm ? '-0.32em' : 'baseline'
     }}>
       <style>{`
         @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
       `}</style>
       <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--coral)' }} />
-      <span style={{ position: 'absolute', inset: gap1, borderRadius: '50%', background: 'var(--cream)' }} />
+      <span style={{ position: 'absolute', inset: '0.09em', borderRadius: '50%', background: 'var(--cream)' }} />
       <span style={{
-        position: 'absolute', inset: gap2, borderRadius: '50%',
+        position: 'absolute', inset: '0.18em', borderRadius: '50%',
         background: 'var(--coral)',
-        boxShadow: shadow ? '0 10px 26px -8px rgba(255,107,71,0.5)' : 'none',
+        boxShadow: shadow ? '0 6px 14px -4px rgba(255,107,71,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
       <span style={{
         position: 'relative',
         color: 'var(--cream)',
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700, fontSize: okFontSize, letterSpacing: '-0.01em',
+        fontFamily: 'Dosis, system-ui, sans-serif',
+        fontWeight: 700, fontSize: '1em', letterSpacing: '-0.01em',
         lineHeight: 1,
         transform: 'translateY(-0.04em)'
       }}>ok</span>
@@ -46,7 +46,7 @@ const PhoneWordmark = ({ size = 22, color = 'var(--navy)' }) =>
   display: 'inline-flex', alignItems: 'center', gap: '0.12em',
   whiteSpace: 'nowrap'
 }}>
-    ik ben <IkBenOkMark size="1.5em" breathe={false} shadow={false} />
+    ik ben <IkBenOkMark size="1.9em" breathe={false} shadow={false} />
   </span>;
 
 
