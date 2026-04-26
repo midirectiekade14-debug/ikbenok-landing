@@ -362,21 +362,22 @@ const PhoneCaregiver = () =>
 
 
 // ─────────────────────────────────────────────────────
-// Schedule (set your own check-in times)
+// Schedule (set your own check-in times) — mirrors the
+// IntervalForm in the Checkin app: mode tabs + clock-icon
+// time rows + tag, no day picker.
 // ─────────────────────────────────────────────────────
 const PhoneSchedule = () => {
   const times = [
-  { label: 'Morgon', value: '08:00', active: true, tag: 'Efter att du vaknat' },
-  { label: 'Eftermiddag', value: '14:00', active: true, tag: 'Daglig check' },
-  { label: 'Kväll', value: '20:00', active: true, tag: 'Före läggdags' }];
+  { value: '09:00', tag: 'MORGON' },
+  { value: '13:00', tag: 'EFTERMIDDAG' },
+  { value: '20:00', tag: 'KVÄLL' }];
 
-  const days = ['M', 'T', 'O', 'T', 'F', 'L', 'S'];
   return (
     <div style={{ padding: '10px 20px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* wordmark row */}
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 18
       }}>
         <PhoneWordmark size={20} />
         <span style={{
@@ -386,86 +387,84 @@ const PhoneSchedule = () => {
       </div>
 
       <div style={{
-        fontFamily: 'var(--font-display)', fontSize: 22, lineHeight: 1.05,
-        letterSpacing: '-0.02em', color: 'var(--navy)', marginBottom: 4
-      }}>Dina incheckningar<br /><em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>tider</em></div>
-      <p style={{
-        fontFamily: 'var(--font-body)', fontSize: 11.5, lineHeight: 1.5,
-        color: 'var(--fg-muted)', margin: '4px 0 16px'
-      }}>Välj själv när <Brand /> frågar hur du mår.</p>
+        fontFamily: 'var(--font-display)', fontSize: 20, lineHeight: 1.1,
+        letterSpacing: '-0.015em', color: 'var(--navy)', marginBottom: 12
+      }}>När checkar vi <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>in</em>?</div>
 
-      {/* day selector */}
+      {/* mode tabs — pill with 2 segments, active = navy */}
       <div style={{
-        display: 'flex', justifyContent: 'space-between', gap: 4,
+        display: 'flex', padding: 3, gap: 3,
+        background: 'var(--paper-raised)',
+        border: '1px solid var(--line)',
+        borderRadius: 999,
         marginBottom: 14
       }}>
-        {days.map((d, i) =>
-        <span key={i} style={{
-          flex: 1, textAlign: 'center',
-          padding: '8px 0',
+        <span style={{
+          flex: 1, textAlign: 'center', padding: '7px 8px',
+          borderRadius: 999,
           fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600,
-          color: 'var(--cream)',
-          background: 'var(--navy)',
-          borderRadius: 10,
-          letterSpacing: '0.02em'
-        }}>{d}</span>
-        )}
+          color: 'var(--fg-default)', letterSpacing: '0.01em'
+        }}>Var X timme</span>
+        <span style={{
+          flex: 1, textAlign: 'center', padding: '7px 8px',
+          borderRadius: 999,
+          fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600,
+          background: 'var(--navy)', color: '#e8d59c', letterSpacing: '0.01em'
+        }}>Fasta tider</span>
       </div>
 
       {/* time rows */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {times.map((t) =>
-        <div key={t.label} style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '12px 14px',
+        <div key={t.value} style={{
+          display: 'flex', alignItems: 'center', gap: 10,
+          padding: '9px 12px',
           background: 'var(--paper-raised)',
           border: '1px solid var(--line-soft)',
-          borderRadius: 14
+          borderRadius: 12
         }}>
-            <div style={{ minWidth: 0 }}>
-              <div style={{
-              fontSize: 8.5, letterSpacing: '0.22em', textTransform: 'uppercase',
-              color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 600
-            }}>{t.label}</div>
-              <div style={{
-              fontFamily: 'var(--font-display)', fontSize: 22, lineHeight: 1,
-              letterSpacing: '-0.02em', color: 'var(--navy)'
-            }}>{t.value}</div>
-            </div>
+            {/* clock icon */}
             <div style={{
-            fontFamily: 'var(--font-display)', fontStyle: 'italic',
-            fontSize: 11, color: 'var(--fg-muted)',
-            textAlign: 'right', maxWidth: 88, lineHeight: 1.2
-          }}>{t.tag}</div>
-            {/* toggle */}
-            <div style={{
-            width: 36, height: 20, borderRadius: 999,
-            background: 'var(--coral)',
-            position: 'relative', flexShrink: 0, marginLeft: 10,
-            boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.08)'
-          }}>
-              <span style={{
-              position: 'absolute', top: 2, left: 18, width: 16, height: 16,
-              borderRadius: '50%', background: '#fff',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
-            }} />
-            </div>
+              width: 26, height: 26, borderRadius: '50%',
+              background: 'var(--cream-warm)',
+              border: '1px solid var(--line-soft)',
+              display: 'grid', placeItems: 'center', flexShrink: 0,
+              fontSize: 14, color: 'var(--navy)', lineHeight: 1
+            }}>◷</div>
+            <span style={{
+              fontFamily: 'var(--font-display)', fontSize: 18, lineHeight: 1,
+              letterSpacing: '0.04em', color: 'var(--navy)', fontWeight: 500,
+              flex: 1
+            }}>{t.value}</span>
+            <span style={{
+              fontFamily: 'var(--font-body)', fontSize: 9,
+              letterSpacing: '0.18em', color: 'var(--fg-muted)',
+              fontWeight: 600
+            }}>{t.tag}</span>
+            <span style={{
+              fontSize: 16, color: 'var(--fg-muted)', lineHeight: 1,
+              padding: '0 2px'
+            }}>×</span>
           </div>
         )}
       </div>
 
-      {/* + extra moment */}
+      {/* + tid toevoegen */}
       <div style={{
-        marginTop: 10,
-        padding: '12px 14px',
+        marginTop: 8,
+        padding: '10px 12px',
         border: '1.5px dashed var(--line)',
-        borderRadius: 14,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-        fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)'
-      }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
-        Extra tillfälle
-      </div>
+        borderRadius: 12,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-default)',
+        fontWeight: 500
+      }}>+ Lägg till tid</div>
+
+      {/* hint */}
+      <p style={{
+        fontFamily: 'var(--font-body)', fontSize: 10.5, lineHeight: 1.5,
+        color: 'var(--fg-muted)', margin: '12px 0 0'
+      }}>Du får en fråga vid <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 tillfällen</span> per dag.</p>
 
       <div style={{ flex: 1 }} />
     </div>);
