@@ -414,8 +414,8 @@ const HowItWorks = ({ intensity }) => {
             }} />
               <div style={{ position: 'relative' }}>
                 <Phone
-                  width={isMobile ? 240 : 260}
-                  height={isMobile ? 500 : 540}
+                  width={isMobile ? 268 : 260}
+                  height={isMobile ? 552 : 540}
                   tilt={isMobile ? 0 : (i % 2 === 0 ? 1.5 : -1.5)}>
                   {step.phone}
                 </Phone>
