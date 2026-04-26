@@ -102,7 +102,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
   // Color tokens — sage-deep for normal "ok" state, clay (#a54a3a) for alarm/missed-checkin state.
   // Matches the Checkin app: src/theme.ts → colors.clay, used in CheckInStatus.tsx as `isOverdue ? colors.clay : colors.sage`.
   const isAlarm = state === 'alarm';
-  const ringFg = isAlarm ? 'var(--clay)' : 'var(--sage-deep)';
+  const ringFg = isAlarm ? 'var(--clay)' : 'var(--coral)';
   const buttonBg = isAlarm ? 'var(--clay)' : 'var(--coral)';
   const buttonShadow = isAlarm
     ? '0 24px 60px -14px rgba(165,74,58,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)'
