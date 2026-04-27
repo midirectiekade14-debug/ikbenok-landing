@@ -557,7 +557,7 @@ const Pricing = () => {
         fontFamily: 'var(--font-display)',
         fontSize: isMobile ? 68 : 92,
         letterSpacing: '-0.035em', color: 'var(--navy)', lineHeight: 1
-      }}>275</span>
+      }}>29</span>
         <span style={{
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
         fontSize: isMobile ? 26 : 32, color: 'var(--coral)'
