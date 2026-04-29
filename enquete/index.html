@@ -498,7 +498,7 @@
 
 <div class="edit-toolbar">
   <button type="button" id="btn-edit" style="">Tekst aanpassen</button>
-  <button type="button" id="btn-save" style="display: none;" disabled="">Opslaan op server</button>
+  <button type="button" id="btn-save" style="display: none;">Opslaan op server</button>
   <button type="button" id="btn-done" class="secondary" style="display: none;">Klaar met bewerken</button>
   <button type="button" id="btn-download" class="secondary" style="display: none;">Download (lokaal)</button>
   <span class="hint" id="edit-hint">Klik op de knop om alle teksten bewerkbaar te maken.</span>
@@ -1145,6 +1145,7 @@
     reset('#btn-download', 'none');
     reset('#save-status', 'none');
     reset('#restore-banner', 'none');
+    clone.querySelectorAll('button').forEach(b => b.removeAttribute('disabled'));
     const ht = clone.querySelector('#edit-hint');
     if (ht) ht.textContent = 'Klik op de knop om alle teksten bewerkbaar te maken.';
     return '<!DOCTYPE html>\n' + clone.outerHTML;
