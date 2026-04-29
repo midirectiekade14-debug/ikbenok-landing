@@ -235,7 +235,7 @@ const Hero = ({ intensity }) => {
       }}
       onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--coral)'; e.currentTarget.style.borderBottomColor = 'var(--coral)'; }}
       onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg-default)'; e.currentTarget.style.borderBottomColor = 'var(--line)'; }}>
-        Vul de enquête in en <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>word testgebruiker</em>
+        <span>Vul de enquête in en <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>word testgebruiker</em></span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
       </a>
 
