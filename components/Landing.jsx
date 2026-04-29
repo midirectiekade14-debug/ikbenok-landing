@@ -355,7 +355,7 @@ const HowItWorks = ({ intensity }) => {
   },
   {
     label: 'Bij stilte',
-    title: 'Geen reactie?<br/>Dan <em>alarmeren</em> wij!',
+    title: 'Dan geven wij een <em>seintje</em>!',
     body: 'Reageert de ander niet binnen 10 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp. Reageert je eerste contact niet, dan wordt de melding meteen doorgezet naar je tweede contact.',
     phone: <PhoneHome intensity={intensity} progress={1} state="alarm" />
   },
