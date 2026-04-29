@@ -220,10 +220,24 @@ const Hero = ({ intensity }) => {
       </p>
 
       {/* CTAs */}
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 28 }}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 18 }}>
         <StoreButton kind="apple" />
         <StoreButton kind="google" />
       </div>
+
+      {/* Survey research link */}
+      <a href="enquete/" style={{
+        display: 'inline-flex', alignItems: 'center', gap: 8,
+        fontFamily: 'var(--font-body)', fontSize: 14,
+        color: 'var(--fg-default)', textDecoration: 'none',
+        borderBottom: '1px solid var(--line)', paddingBottom: 4,
+        marginBottom: 28
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--coral)'; e.currentTarget.style.borderBottomColor = 'var(--coral)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg-default)'; e.currentTarget.style.borderBottomColor = 'var(--line)'; }}>
+        <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Help mee</em> — vul de enquête in voor mantelzorgers &amp; ouderen
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+      </a>
 
     </div>
 
@@ -644,6 +658,7 @@ const Footer = ({ intensity }) => {
       { label: 'Zo werkt het', href: '#zo-werkt-het' },
       { label: 'Voor wie', href: '#zo-werkt-het' },
       { label: 'Prijs', href: '#prijs' },
+      { label: 'Help mee aan onderzoek', href: 'enquete/' },
       { label: 'Veelgestelde vragen', href: null }
     ]},
     { title: 'Contact', items: [
