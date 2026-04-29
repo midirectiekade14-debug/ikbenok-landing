@@ -1193,7 +1193,12 @@
       const data = await r.json();
       if (!r.ok || !data.ok) throw new Error(data.error || ('HTTP ' + r.status));
       localStorage.removeItem(LS_KEY);
-      showStatus('Opgeslagen ✓ (' + data.bytes + ' bytes, backup: ' + data.saved_at + ')');
+      const syncMsg = data.sync && data.sync.status === 'pushed' ? ' · live ✓'
+        : data.sync && data.sync.status === 'no-changes' ? ' · live (geen verandering)'
+        : data.sync && data.sync.status === 'commit-only' ? ' · commit ok, push faalde'
+        : data.sync ? ' · sync: ' + data.sync.status
+        : '';
+      showStatus('Opgeslagen ✓ (' + data.bytes + ' bytes)' + syncMsg);
     } catch (e) {
       showStatus('Fout: ' + e.message, true);
     } finally {
