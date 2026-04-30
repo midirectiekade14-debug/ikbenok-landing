@@ -337,7 +337,7 @@ const HowItWorks = ({ intensity }) => {
   },
   {
     label: 'Vid tystnad',
-    title: 'Inget svar?<br/>Då <em>larmar</em> vi!',
+    title: 'Då ger vi en <em>signal</em>!',
     body: 'Svarar personen inte inom 10 minuter får anhörigvårdaren ett meddelande — med senaste kända plats och kontaktalternativ för direkt hjälp. Svarar din första kontakt inte, skickas larmet direkt vidare till din andra kontakt.',
     phone: <PhoneHome intensity={intensity} progress={1} state="alarm" />
   },
