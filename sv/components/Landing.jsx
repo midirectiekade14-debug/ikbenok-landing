@@ -237,7 +237,7 @@ const Hero = ({ intensity }) => {
       </Phone>
       {/* floating caregiver notification — desktop only (overflows on mobile) */}
       {!isMobile && <div style={{
-      position: 'absolute', right: -20, top: 140,
+      position: 'absolute', right: -20, top: 200,
       padding: '14px 16px 14px 14px',
       background: 'var(--bg-raised)',
       border: '1px solid var(--line-soft)',
@@ -352,7 +352,7 @@ const HowItWorks = ({ intensity }) => {
   return (
     <section id="sa-fungerar-det" style={{
       maxWidth: 1260, margin: '0 auto',
-      padding: isMobile ? '60px 20px' : '120px 40px',
+      padding: isMobile ? '40px 20px 60px' : '60px 40px 120px',
       position: 'relative', zIndex: 2
     }}>
       <SectionLabel>Så fungerar det</SectionLabel>
@@ -550,7 +550,7 @@ const Pricing = () => {
     position: 'relative', overflow: 'hidden'
   }}>
       <div style={{
-      display: 'flex', alignItems: 'baseline', gap: 8,
+      display: 'flex', alignItems: 'baseline', gap: 4,
       margin: '12px 0 6px', flexWrap: 'wrap'
     }}>
         <span style={{
@@ -560,11 +560,12 @@ const Pricing = () => {
       }}>29</span>
         <span style={{
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
-        fontSize: isMobile ? 26 : 32, color: 'var(--coral)'
+        fontSize: isMobile ? 26 : 32, color: 'var(--coral)', lineHeight: 1
       }}>kr</span>
         <span style={{
         fontFamily: 'var(--font-body)', fontSize: 14,
-        color: 'var(--fg-muted)', marginLeft: 12, letterSpacing: '0.01em'
+        color: 'var(--fg-muted)', marginLeft: 12, letterSpacing: '0.01em',
+        alignSelf: 'flex-end', paddingBottom: 4
       }}>per månad</span>
       </div>
       <div style={{
@@ -644,7 +645,6 @@ const Footer = ({ intensity }) => {
     ]},
     { title: 'Kontakt', items: [
       { label: 'hallo@ikbenok.nl', href: 'mailto:hallo@ikbenok.nl' },
-      { label: '+31 20 123 4567', href: 'tel:+31201234567' },
       { label: 'För vårdorganisationer', href: 'mailto:hallo@ikbenok.nl?subject=V%C3%A5rdorganisation' },
       { label: 'Press & partner', href: 'mailto:hallo@ikbenok.nl?subject=Press' }
     ]},
@@ -673,10 +673,10 @@ const Footer = ({ intensity }) => {
                   title={disabled ? 'Kommer snart — inte tillgänglig ännu' : undefined}
                   style={{
                     fontFamily: 'var(--font-body)', fontSize: 14,
-                    color: disabled ? 'var(--fg-muted)' : 'var(--fg-default)',
+                    color: 'var(--fg-default)',
                     textDecoration: 'none',
                     cursor: disabled ? 'default' : 'pointer',
-                    opacity: disabled ? 0.55 : 1
+                    opacity: disabled ? 0.7 : 1
                   }}>{it.label}</a>
               </li>);
             })}

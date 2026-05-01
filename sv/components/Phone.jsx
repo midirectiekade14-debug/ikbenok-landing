@@ -147,14 +147,17 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
 
       {/* the breathing button */}
       <div style={{ display: 'grid', placeItems: 'center', margin: '4px auto 16px', position: 'relative', width: 200, height: 200 }}>
-        {/* progress ring */}
+        {/* progress ring — translateY offsets the visual weight of the button's drop-shadow,
+            so the ring reads as centered around the button rather than sitting too high */}
         <div style={{
           position: 'absolute', width: 200, height: 200, borderRadius: '50%',
-          background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`
+          background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`,
+          transform: 'translateY(3px)'
         }} />
         <div style={{
           position: 'absolute', width: 182, height: 182, borderRadius: '50%',
-          background: 'var(--paper)'
+          background: 'var(--paper)',
+          transform: 'translateY(3px)'
         }} />
         {/* outward ping — only at higher intensity */}
         {intensity > 0.6 &&
