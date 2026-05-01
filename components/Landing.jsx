@@ -312,10 +312,12 @@ const StoreButton = ({ kind }) => {
     style={{
       display: 'inline-flex', alignItems: 'center', gap: 12,
       padding: '14px 22px',
-      background: 'var(--sage-deep)',
+      background: isApple ? 'var(--sage-deep)' : 'var(--coral)',
       color: '#fff',
       borderRadius: 999, textDecoration: 'none',
-      boxShadow: '0 14px 28px -10px rgba(79,106,76,0.55), 0 4px 8px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -3px 6px rgba(0,0,0,0.18)',
+      boxShadow: isApple ?
+      '0 14px 28px -10px rgba(79,106,76,0.55), 0 4px 8px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -3px 6px rgba(0,0,0,0.18)' :
+      '0 14px 28px -10px rgba(255,107,71,0.55), 0 4px 8px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -3px 6px rgba(0,0,0,0.14)',
       transition: 'all 200ms var(--ease-out)',
       transform: hover ? 'translateY(-2px)' : 'translateY(0)'
     }}>
