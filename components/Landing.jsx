@@ -149,15 +149,15 @@ const Nav = () => {
       )}
       <a href="#download" style={{
         padding: isMobile ? '9px 14px' : '11px 18px', borderRadius: 999,
-        background: 'var(--sage-deep)', color: 'var(--cream)',
+        background: 'var(--coral)', color: 'var(--cream)',
         fontFamily: 'var(--font-body)', fontSize: isMobile ? 13 : 14, fontWeight: 500,
         textDecoration: 'none', letterSpacing: '0.01em',
         display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap',
-        boxShadow: '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)',
+        boxShadow: '0 8px 18px -6px rgba(255,107,71,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)',
         transition: 'all 180ms var(--ease-out)'
       }}
-      onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--coral)';e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = '0 14px 26px -8px rgba(255,107,71,0.55), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)';}}
-      onMouseLeave={(e) => {e.currentTarget.style.background = 'var(--sage-deep)';e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)';}}>
+      onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--sage-deep)';e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = '0 14px 26px -8px rgba(79,106,76,0.55), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -2px 4px rgba(0,0,0,0.14)';}}
+      onMouseLeave={(e) => {e.currentTarget.style.background = 'var(--coral)';e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 8px 18px -6px rgba(255,107,71,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)';}}>
         {isMobile ? 'Download' : 'Download de app'}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
       </a>
@@ -312,12 +312,10 @@ const StoreButton = ({ kind }) => {
     style={{
       display: 'inline-flex', alignItems: 'center', gap: 12,
       padding: '14px 22px',
-      background: isApple ? 'var(--sage-deep)' : 'var(--coral)',
+      background: 'var(--sage-deep)',
       color: '#fff',
       borderRadius: 999, textDecoration: 'none',
-      boxShadow: isApple ?
-      '0 14px 28px -10px rgba(79,106,76,0.55), 0 4px 8px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -3px 6px rgba(0,0,0,0.18)' :
-      '0 14px 28px -10px rgba(255,107,71,0.55), 0 4px 8px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -3px 6px rgba(0,0,0,0.14)',
+      boxShadow: '0 14px 28px -10px rgba(79,106,76,0.55), 0 4px 8px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -3px 6px rgba(0,0,0,0.18)',
       transition: 'all 200ms var(--ease-out)',
       transform: hover ? 'translateY(-2px)' : 'translateY(0)'
     }}>
@@ -409,7 +407,7 @@ const HowItWorks = ({ intensity }) => {
               lineHeight: 1.05,
               letterSpacing: '-0.02em', color: 'var(--navy)',
               margin: '0 0 22px', textWrap: 'balance'
-            }} dangerouslySetInnerHTML={{ __html: step.title.replace(/<em>/g, '<em style="font-style:italic;color:var(--coral)">').replace(/ik ben ok/g, 'ik ben <em style="color:var(--coral);font-weight:600;font-style:normal">ok</em>') }} />
+            }} dangerouslySetInnerHTML={{ __html: step.title.replace(/<em>/g, '<em style="font-style:italic;color:var(--coral);padding-right:0.06em">').replace(/ik ben ok/g, 'ik ben <em style="color:var(--coral);font-weight:600;font-style:normal">ok</em>') }} />
               <p style={{
               fontFamily: 'var(--font-body)',
               fontSize: isMobile ? 16 : 17, lineHeight: 1.55,
@@ -555,7 +553,7 @@ const Pricing = () => {
     textAlign: 'center'
   }}>
       Een abonnement op <Brand /> proberen we zo betaalbaar mogelijk te houden.<br />
-      Opzegbaar per maand — zonder vragen. Je kunt 5 contacten toevoegen.
+      Opzegbaar per maand. Je kunt 5 contacten toevoegen.
     </p>
 
     <div style={{
@@ -586,17 +584,13 @@ const Pricing = () => {
       }}>per maand</span>
       </div>
       <div style={{
-      fontFamily: 'var(--font-body)', fontSize: 13,
-      color: 'var(--fg-muted)', letterSpacing: '0.01em',
-      marginBottom: 32
-    }}>Tot 5 contactpersonen toevoegen · onbeperkte check-ins</div>
-
-      <div style={{
       borderTop: '1px solid var(--line-soft)',
+      marginTop: 32,
       paddingTop: 24, marginBottom: 28
     }}>
         {[
-      'Onbeperkte check-ins per dag — ritme zelf instelbaar',
+      'Onbeperkte check-ins per dag — tijden instelbaar',
+      'Tot 5 contactpersonen koppelen',
       'Automatisch bericht bij stilte — met GPS locatie',
       'Weekoverzicht voor mantelzorgers',
       'Opzegbaar per maand · probeer het 14 dagen gratis'].
