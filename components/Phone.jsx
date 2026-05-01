@@ -18,12 +18,12 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
       <style>{`
         @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
       `}</style>
-      <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--coral)' }} />
+      <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--sage-deep)' }} />
       <span style={{ position: 'absolute', inset: '0.09em', borderRadius: '50%', background: 'var(--cream)' }} />
       <span style={{
         position: 'absolute', inset: '0.18em', borderRadius: '50%',
-        background: 'var(--coral)',
-        boxShadow: shadow ? '0 6px 14px -4px rgba(255,107,71,0.5)' : 'none',
+        background: 'var(--sage-deep)',
+        boxShadow: shadow ? '0 6px 14px -4px rgba(79,106,76,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
       <span style={{
@@ -102,12 +102,12 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
   // Color tokens — sage-deep for normal "ok" state, clay (#a54a3a) for alarm/missed-checkin state.
   // Matches the Checkin app: src/theme.ts → colors.clay, used in CheckInStatus.tsx as `isOverdue ? colors.clay : colors.sage`.
   const isAlarm = state === 'alarm';
-  const ringFg = isAlarm ? 'var(--clay)' : 'var(--coral)';
-  const buttonBg = isAlarm ? 'var(--clay)' : 'var(--coral)';
+  const ringFg = isAlarm ? 'var(--clay)' : 'var(--sage-deep)';
+  const buttonBg = isAlarm ? 'var(--clay)' : 'var(--sage-deep)';
   const buttonShadow = isAlarm
     ? '0 24px 60px -14px rgba(165,74,58,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)'
-    : '0 24px 60px -14px rgba(255,107,71,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)';
-  const pingBg = isAlarm ? 'rgba(165,74,58,0.45)' : 'rgba(255,107,71,0.45)';
+    : '0 24px 60px -14px rgba(79,106,76,0.55), inset 0 -8px 20px rgba(0,0,0,0.12)';
+  const pingBg = isAlarm ? 'rgba(165,74,58,0.45)' : 'rgba(79,106,76,0.45)';
   return (
     <div style={{ padding: '8px 22px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <style>{`

@@ -38,12 +38,12 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
     <style>{`
       @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
     `}</style>
-    <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--coral)' }} />
+    <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--sage-deep)' }} />
     <span style={{ position: 'absolute', inset: '0.09em', borderRadius: '50%', background: 'var(--cream)' }} />
     <span style={{
         position: 'absolute', inset: '0.18em', borderRadius: '50%',
-        background: 'var(--coral)',
-        boxShadow: shadow ? '0 6px 14px -4px rgba(255,107,71,0.5)' : 'none',
+        background: 'var(--sage-deep)',
+        boxShadow: shadow ? '0 6px 14px -4px rgba(79,106,76,0.5)' : 'none',
         animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
       }} />
     <span style={{
