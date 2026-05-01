@@ -142,10 +142,6 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
         Goedemiddag,<br />
         <em style={{ fontStyle: 'italic', color: 'var(--sage-deep)' }}>{name}</em>
       </div>
-      <p style={{
-        fontFamily: 'var(--font-body)', fontSize: 12.5, lineHeight: 1.5,
-        color: 'var(--fg-default)', margin: '6px 0 18px'
-      }}>Eén tik om te laten weten dat alles goed is.</p>
 
       {/* the breathing button */}
       <div style={{ display: 'grid', placeItems: 'center', margin: '4px auto 16px', position: 'relative', width: 200, height: 200 }}>
