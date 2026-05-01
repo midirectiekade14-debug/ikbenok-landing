@@ -140,7 +140,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
         letterSpacing: '-0.02em', color: 'var(--navy)', marginBottom: 4
       }}>
         Goedemiddag,<br />
-        <em style={{ fontStyle: 'italic', color: 'var(--sage-deep)' }}>{name}</em>
+        <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>{name}</em>
       </div>
 
       {/* the breathing button */}
