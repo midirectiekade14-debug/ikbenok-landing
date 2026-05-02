@@ -3,21 +3,83 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ik ben ok — Zorgen met minder zorgen</title>
-<meta name="description" content="Een alarm dat afgaat als er níet gereageerd wordt. Dagelijkse gemoedsrust voor alleenwonende ouderen en hun mantelzorgers — geen paniekknop, alleen een bevestiging dat alles goed is." />
-<meta name="theme-color" content="#0B1B2B" />
+<title>ik ben ok — check-in app voor alleenwonende ouderen en mantelzorgers</title>
+<meta name="description" content="ik ben ok is een check-in app voor alleenwonende ouderen en mantelzorgers. Een alarm dat afgaat als er níet gereageerd wordt. €2,75 per maand. iOS en Android." />
+<meta name="theme-color" content="#F5EFE3" />
+<meta name="author" content="ik ben ok" />
+<meta name="keywords" content="ik ben ok, ikbenok, check-in app, mantelzorg app, alarm alleenwonende ouderen, personenalarm zonder knop, passieve alarmering, mantelzorger, ouderen veiligheid" />
 
-<link rel="icon" type="image/svg+xml" href="assets/checkin-logo.svg" />
-<link rel="apple-touch-icon" href="assets/checkin-logo.svg" />
+<link rel="canonical" href="https://allesok.nl/" />
+<link rel="alternate" hreflang="nl" href="https://allesok.nl/" />
+<link rel="alternate" hreflang="sv" href="https://allesok.nl/sv/" />
+<link rel="alternate" hreflang="x-default" href="https://allesok.nl/" />
 
-<!-- Open Graph / share preview -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/favicon.svg" />
+
+<!-- Open Graph -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="ik ben ok — Zorgen met minder zorgen" />
-<meta property="og:description" content="Een alarm dat afgaat als er níet gereageerd wordt. Dagelijkse gemoedsrust voor alleenwonende ouderen en hun mantelzorgers." />
-<meta property="og:url" content="https://allesok.nl/" />
+<meta property="og:site_name" content="ik ben ok" />
 <meta property="og:locale" content="nl_NL" />
-<meta property="og:image" content="https://allesok.nl/assets/checkin-logo.svg" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:locale:alternate" content="sv_SE" />
+<meta property="og:title" content="ik ben ok — check-in app voor alleenwonende ouderen" />
+<meta property="og:description" content="Een alarm dat afgaat als er níet gereageerd wordt. Dagelijkse gemoedsrust voor mantelzorgers en hun naasten. €2,75 per maand." />
+<meta property="og:url" content="https://allesok.nl/" />
+<meta property="og:image" content="https://allesok.nl/assets/og-image-nl.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="ik ben ok — een alarm dat afgaat als er níet gereageerd wordt" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ik ben ok — check-in app voor alleenwonende ouderen" />
+<meta name="twitter:description" content="Een alarm dat afgaat als er níet gereageerd wordt. €2,75 per maand. iOS en Android." />
+<meta name="twitter:image" content="https://allesok.nl/assets/og-image-nl.png" />
+
+<!-- Structured data: app + organization + website -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "ik ben ok",
+      "alternateName": ["ikbenok", "ik-ben-ok"],
+      "description": "Een check-in app voor alleenwonende ouderen en mantelzorgers. Een alarm dat afgaat als er níet gereageerd wordt — geen paniekknop, alleen een bevestiging dat alles goed is.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "iOS, Android",
+      "url": "https://allesok.nl/",
+      "image": "https://allesok.nl/assets/og-image-nl.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "2.75",
+        "priceCurrency": "EUR"
+      },
+      "inLanguage": ["nl", "sv"]
+    },
+    {
+      "@type": "Organization",
+      "name": "ik ben ok",
+      "alternateName": "ikbenok",
+      "url": "https://allesok.nl/",
+      "logo": "https://allesok.nl/assets/favicon.svg",
+      "email": "hallo@ikbenok.nl",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hallo@ikbenok.nl",
+        "contactType": "customer support",
+        "availableLanguage": ["Dutch", "Swedish"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://allesok.nl/",
+      "name": "ik ben ok",
+      "inLanguage": "nl-NL"
+    }
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -124,7 +186,25 @@
 <div class="ci-dawn"></div>
 <div class="ci-grain"></div>
 
-<div id="root"></div>
+<div id="root">
+  <!-- Crawler-fallback: zichtbaar voor Googlebot voordat React rendert.
+       Verwijderd door React zodra de tree mount; voor JS-uit visitors blijft het staan. -->
+  <noscript>
+    <article style="max-width:760px;margin:60px auto;padding:0 24px;font-family:'Dosis',system-ui,sans-serif;color:#0B1B2B;line-height:1.55">
+      <h1 style="font-size:42px;line-height:1.05;margin:0 0 16px">ik ben ok — een check-in app voor alleenwonende ouderen en mantelzorgers</h1>
+      <p style="font-size:18px;color:rgba(11,27,43,0.78);margin:0 0 24px"><strong>Een alarm dat afgaat als er níet gereageerd wordt.</strong> Geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.</p>
+      <h2 style="font-size:24px;margin:32px 0 12px">Zo werkt het</h2>
+      <ol>
+        <li><strong>Op vaste tijden</strong> — een check-in wanneer je wilt; één tik bevestigt dat alles oké is.</li>
+        <li><strong>Bij stilte</strong> — reageer je niet binnen 10 minuten, dan ontvangt de mantelzorger een bericht met locatie en contactopties.</li>
+        <li><strong>Voor de mantelzorger</strong> — altijd verbonden, nooit opdringerig.</li>
+      </ol>
+      <h2 style="font-size:24px;margin:32px 0 12px">Prijs</h2>
+      <p>Eén abonnement: <strong>€2,75 per maand</strong>. Onbeperkte check-ins, tot 5 contactpersonen koppelen, opzegbaar per maand, 14 dagen gratis proberen.</p>
+      <p>Beschikbaar voor iOS en Android. Vragen? <a href="mailto:hallo@ikbenok.nl">hallo@ikbenok.nl</a> · <a href="enquete/">Vul de enquête in</a> · <a href="sv/">Svenska</a></p>
+    </article>
+  </noscript>
+</div>
 
 <!-- Tweaks panel (hidden by default — toggled by host) -->
 <div class="tweaks-panel" id="tweaks">
@@ -182,6 +262,7 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
+<script type="text/babel" src="components/shared.jsx"></script>
 <script type="text/babel" src="components/Phone.jsx"></script>
 <script type="text/babel" src="components/Landing.jsx"></script>
 

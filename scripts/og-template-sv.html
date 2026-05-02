@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<title>OG SV</title>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px;
+    background: #F5EFE3;
+    font-family: 'Dosis', system-ui, sans-serif;
+    color: #0B1B2B;
+    position: relative;
+    overflow: hidden;
+  }
+  .dawn {
+    position: absolute; inset: -10%;
+    background:
+      radial-gradient(60% 50% at 85% 10%, rgba(255,107,71,0.22), transparent 60%),
+      radial-gradient(55% 45% at 10% 95%, rgba(110,150,128,0.15), transparent 60%);
+  }
+  .wrap {
+    position: relative; z-index: 2;
+    padding: 80px 90px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .top {
+    display: flex; align-items: center; gap: 18px;
+    font-size: 38px; font-weight: 500; letter-spacing: -0.015em;
+  }
+  .mark {
+    position: relative; width: 72px; height: 72px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .mark .o, .mark .i { position: absolute; inset: 0; border-radius: 50%; background: #FF6B47; }
+  .mark .m { position: absolute; inset: 7px; border-radius: 50%; background: #F5EFE3; }
+  .mark .i { inset: 13px; }
+  .mark .ok {
+    position: relative; color: #F5EFE3; font-weight: 700;
+    font-size: 28px; letter-spacing: -0.5px; line-height: 1;
+    transform: translateY(-2px);
+  }
+  h1 {
+    font-size: 88px; font-weight: 400;
+    line-height: 0.98; letter-spacing: -0.025em;
+    margin: 0; max-width: 920px;
+  }
+  em { font-style: italic; color: #4f6a4c; }
+  .meta {
+    display: flex; align-items: baseline; gap: 24px;
+    font-size: 24px; color: rgba(11,27,43,0.62);
+    letter-spacing: 0.01em;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 18px; background: rgba(110,150,128,0.18);
+    border: 1px solid rgba(110,150,128,0.35); border-radius: 999px;
+    font-size: 20px; color: #0B1B2B;
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #6E9680; }
+  .url { font-style: italic; color: rgba(11,27,43,0.55); }
+</style>
+</head>
+<body>
+<div class="dawn"></div>
+<div class="wrap">
+  <div class="top">
+    <span class="mark"><span class="o"></span><span class="m"></span><span class="i"></span><span class="ok">ok</span></span>
+    <span>jag är <em style="font-style:italic">ok</em></span>
+  </div>
+  <h1>Ett larm som går när någon <em>inte</em> svarar.</h1>
+  <div class="meta">
+    <span class="pill"><span class="dot"></span>Incheckningsapp för anhöriga</span>
+    <span style="flex:1"></span>
+    <span class="url">allesok.nl/sv</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+name: Update sitemap lastmod
+
+# Houdt <lastmod> in sitemap.xml automatisch in sync met de meest recente
+# wijziging van de content-bestanden. Triggert alleen bij pushes die
+# deze bestanden raken; eigen commits worden uitgesloten via [skip ci].
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'sv/index.html'
+      - 'enquete/index.html'
+      - 'components/**'
+      - 'sv/components/**'
+      - 'styles/**'
+
+permissions:
+  contents: write
+
+jobs:
+  update-lastmod:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute per-URL lastmod from git
+        id: dates
+        run: |
+          ROOT=$(git log -1 --format=%cs -- index.html components/ styles/ assets/)
+          SV=$(git log -1 --format=%cs -- sv/index.html sv/components/ styles/ assets/)
+          ENQUETE=$(git log -1 --format=%cs -- enquete/index.html)
+          echo "root=${ROOT:-$(date +%F)}" >> "$GITHUB_OUTPUT"
+          echo "sv=${SV:-$(date +%F)}" >> "$GITHUB_OUTPUT"
+          echo "enquete=${ENQUETE:-$(date +%F)}" >> "$GITHUB_OUTPUT"
+
+      - name: Patch sitemap.xml
+        run: |
+          python - <<'PY'
+          import re, pathlib
+          p = pathlib.Path('sitemap.xml')
+          s = p.read_text(encoding='utf-8')
+          dates = {
+              'https://allesok.nl/':         '${{ steps.dates.outputs.root }}',
+              'https://allesok.nl/sv/':      '${{ steps.dates.outputs.sv }}',
+              'https://allesok.nl/enquete/': '${{ steps.dates.outputs.enquete }}',
+          }
+          def repl(m):
+              loc = m.group(1)
+              date = dates.get(loc)
+              if not date: return m.group(0)
+              return f'<loc>{loc}</loc>\n    <lastmod>{date}</lastmod>'
+          s = re.sub(r'<loc>([^<]+)</loc>\s*<lastmod>[^<]+</lastmod>', repl, s)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet sitemap.xml; then
+            echo "No sitemap changes."
+            exit 0
+          fi
+          git add sitemap.xml
+          git commit -m "chore(sitemap): refresh lastmod [skip ci]"
+          git push
