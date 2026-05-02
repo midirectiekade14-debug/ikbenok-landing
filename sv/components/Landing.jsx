@@ -162,28 +162,6 @@ const Nav = () => {
 };
 
 
-// Micro tripartite bar
-const MicroBar = () =>
-<div style={{
-  maxWidth: 1260, margin: '22px auto 0', padding: '0 40px',
-  position: 'relative', zIndex: 2
-}}>
-    <div style={{
-    borderTop: '1px solid var(--line)',
-    borderBottom: '1px solid var(--line)',
-    padding: '14px 0',
-    display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
-    fontFamily: 'var(--font-body)', fontSize: 11,
-    letterSpacing: '0.22em', textTransform: 'uppercase',
-    color: 'var(--fg-muted)', fontWeight: 500
-  }}>
-      <span>Dagligen<span style={{ color: 'var(--coral)', margin: '0 10px' }}>·</span>Vid tystnad</span>
-      <span style={{ textAlign: 'center' }}>Alltid uppkopplad</span>
-      <span style={{ textAlign: 'right' }}>Tillgänglig för iOS <span style={{ color: 'var(--coral)', margin: '0 10px' }}>·</span> Android</span>
-    </div>
-  </div>;
-
-
 // ─────────────────────────────────────────────────────
 // Hero
 // ─────────────────────────────────────────────────────
@@ -698,15 +676,9 @@ const Footer = ({ intensity }) => {
       color: 'var(--fg-muted)', letterSpacing: '0.01em'
     }}>© 2026 <Brand />. Nederländerna</div>
 
-      <img src="../assets/checkin-seal.svg" width="58" height="58" alt="" style={{ display: 'none' }} />
-
-      <div style={{
-      fontFamily: 'var(--font-display)', fontStyle: 'italic',
-      fontSize: 14, color: 'var(--fg-muted)'
-    }}>{'\n'}</div>
     </div>
   </footer>);
 };
 
 
-Object.assign(window, { Nav, MicroBar, Hero, HowItWorks, QuoteBlock, Pricing, Footer });
+Object.assign(window, { Nav, Hero, HowItWorks, QuoteBlock, Pricing, Footer });

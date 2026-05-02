@@ -98,7 +98,6 @@ const Phone = ({ children, width = 300, height = 620, tilt = 0, scale = 1, lift 
 // ─────────────────────────────────────────────────────
 const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 'ok' }) => {
   const breathDur = intensity < 0.2 ? '0s' : intensity < 0.6 ? '8s' : '5s';
-  const pulseDur = intensity < 0.2 ? '0s' : '2.4s';
   // Color tokens — sage-deep for normal "ok" state, clay (#a54a3a) for alarm/missed-checkin state.
   // Matches the Checkin app: src/theme.ts → colors.clay, used in CheckInStatus.tsx as `isOverdue ? colors.clay : colors.sage`.
   const isAlarm = state === 'alarm';

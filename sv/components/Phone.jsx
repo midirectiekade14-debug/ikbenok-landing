@@ -98,7 +98,6 @@ const Phone = ({ children, width = 300, height = 620, tilt = 0, scale = 1, lift 
 // ─────────────────────────────────────────────────────
 const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'ok' }) => {
   const breathDur = intensity < 0.2 ? '0s' : intensity < 0.6 ? '8s' : '5s';
-  const pulseDur = intensity < 0.2 ? '0s' : '2.4s';
   const isAlarm = state === 'alarm';
   const ringFg = isAlarm ? 'var(--clay)' : 'var(--coral)';
   const buttonBg = isAlarm ? 'var(--clay)' : 'var(--coral)';
