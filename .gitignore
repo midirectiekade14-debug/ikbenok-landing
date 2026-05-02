@@ -4,6 +4,7 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
+.claude/
 
 # Local scratch — design/logo iteration playgrounds
 # (commit deliberately under /_dev/ if you want to keep one around)
