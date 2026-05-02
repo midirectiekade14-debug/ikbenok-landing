@@ -1,85 +1,12 @@
-// Landing.jsx — jag är ok landing page sections (Swedish variant)
-// Uses: Phone, PhoneHome, PhonePing, PhoneCaregiver (from Phone.jsx)
+// Landing.jsx (sv) — Swedish landing page sections.
+// Shared atoms (useIsMobile, Wordmark, Brand) live in /components/shared.jsx;
+// SV-specific defaults (coral mark, "jag är" text) are applied via the
+// wrappers below so JSX call-sites match the NL file structurally.
 
 const { useState, useEffect } = React;
-
-// Responsive breakpoint hook — phone-portrait threshold.
-const useIsMobile = (bp = 768) => {
-  const q = `(max-width: ${bp}px)`;
-  const get = () => typeof window !== 'undefined' && window.matchMedia(q).matches;
-  const [m, setM] = useState(get);
-  useEffect(() => {
-    const mq = window.matchMedia(q);
-    const onChange = (e) => setM(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, [q]);
-  return m;
-};
-
-// ─────────────────────────────────────────────────────
-// Brand mark — the jag-är-ok ring-gap "ok" button (breathing)
-// ─────────────────────────────────────────────────────
-const IkBenOkMark = ({ size = 40, breathe = true, shadow = true }) => {
-  const isEm = typeof size === 'string';
-  return (
-    <span style={{
-      position: 'relative',
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: size, height: size,
-      fontSize: isEm ? undefined : size / 1.9,
-      flexShrink: 0, lineHeight: 1,
-      verticalAlign: isEm ? '-0.32em' : 'baseline'
-    }}>
-    <style>{`
-      @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-    `}</style>
-    <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--coral)' }} />
-    <span style={{ position: 'absolute', inset: '0.09em', borderRadius: '50%', background: 'var(--cream)' }} />
-    <span style={{
-        position: 'absolute', inset: '0.18em', borderRadius: '50%',
-        background: 'var(--coral)',
-        boxShadow: shadow ? '0 6px 14px -4px rgba(255,107,71,0.5)' : 'none',
-        animation: breathe ? 'ibok-breathe 5s ease-in-out infinite' : 'none'
-      }} />
-    <span style={{
-        position: 'relative',
-        color: 'var(--cream)',
-        fontFamily: 'Dosis, system-ui, sans-serif',
-        fontWeight: 700, fontSize: '1em', letterSpacing: '-0.01em',
-        lineHeight: 1,
-        transform: 'translateY(-0.04em)'
-      }}>ok</span>
-  </span>);
-
-};
-
-// ─────────────────────────────────────────────────────
-// Reusable atoms
-// ─────────────────────────────────────────────────────
-const Brand = ({ italic = false }) =>
-<span style={{
-  fontFamily: 'var(--font-display)',
-  fontStyle: italic ? 'italic' : undefined,
-  fontWeight: 600,
-  letterSpacing: '-0.015em',
-  display: 'inline-flex', alignItems: 'center', gap: '0.12em',
-  whiteSpace: 'nowrap', verticalAlign: 'baseline'
-}}>
-    jag är <IkBenOkMark size="1.9em" breathe={false} shadow={false} />
-  </span>;
-
-
-const Wordmark = ({ size = 24, color = 'var(--navy)' }) =>
-<span style={{
-  fontFamily: 'var(--font-display)', fontSize: size, lineHeight: 1,
-  letterSpacing: '-0.015em', color, fontWeight: 500,
-  display: 'inline-flex', alignItems: 'center', gap: '0.12em',
-  whiteSpace: 'nowrap'
-}}>
-    jag är <IkBenOkMark size="1.9em" breathe={false} shadow={false} />
-  </span>;
-
+const { useIsMobile, Wordmark: SvSharedWordmark, Brand: SvSharedBrand } = window;
+const Wordmark = (p) => <SvSharedWordmark text="jag är" markColor="var(--coral)" {...p} />;
+const Brand = (p) => <SvSharedBrand text="jag är" markColor="var(--coral)" {...p} />;
 
 const SectionLabel = ({ children, align = 'left' }) =>
 <div style={{
@@ -135,7 +62,7 @@ const Nav = () => {
     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 0 : 36 }}>
       {!isMobile && [
         { label: 'Så fungerar det', href: '#sa-fungerar-det' },
-        { label: 'För vem', href: '#sa-fungerar-det' },
+        { label: 'För vem', href: '#for-vem' },
         { label: 'Pris', href: '#pris' }
       ].map((l) =>
         <a key={l.label} href={l.href} style={{
@@ -143,7 +70,7 @@ const Nav = () => {
           textDecoration: 'none', letterSpacing: '0.01em'
         }}>{l.label}</a>
       )}
-      <a href="#download" style={{
+      <a href="#pris" style={{
         padding: isMobile ? '9px 14px' : '11px 18px', borderRadius: 999,
         background: 'var(--sage-deep)', color: 'var(--cream)',
         fontFamily: 'var(--font-body)', fontSize: isMobile ? 13 : 14, fontWeight: 500,
@@ -160,28 +87,6 @@ const Nav = () => {
     </div>
   </div>);
 };
-
-
-// Micro tripartite bar
-const MicroBar = () =>
-<div style={{
-  maxWidth: 1260, margin: '22px auto 0', padding: '0 40px',
-  position: 'relative', zIndex: 2
-}}>
-    <div style={{
-    borderTop: '1px solid var(--line)',
-    borderBottom: '1px solid var(--line)',
-    padding: '14px 0',
-    display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
-    fontFamily: 'var(--font-body)', fontSize: 11,
-    letterSpacing: '0.22em', textTransform: 'uppercase',
-    color: 'var(--fg-muted)', fontWeight: 500
-  }}>
-      <span>Dagligen<span style={{ color: 'var(--coral)', margin: '0 10px' }}>·</span>Vid tystnad</span>
-      <span style={{ textAlign: 'center' }}>Alltid uppkopplad</span>
-      <span style={{ textAlign: 'right' }}>Tillgänglig för iOS <span style={{ color: 'var(--coral)', margin: '0 10px' }}>·</span> Android</span>
-    </div>
-  </div>;
 
 
 // ─────────────────────────────────────────────────────
@@ -290,7 +195,7 @@ const StoreButton = ({ kind }) => {
   const isApple = kind === 'apple';
   const [hover, setHover] = useState(false);
   return (
-    <a href="#download" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+    <a href="#pris" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
     style={{
       display: 'inline-flex', alignItems: 'center', gap: 12,
       padding: '14px 22px',
@@ -430,7 +335,7 @@ const HowItWorks = ({ intensity }) => {
 const QuoteBlock = () => {
   const isMobile = useIsMobile();
   return (
-<section style={{
+<section id="for-vem" style={{
   maxWidth: 1260, margin: '0 auto',
   padding: isMobile ? '0 16px 60px' : '0 40px 120px',
   position: 'relative', zIndex: 2
@@ -639,7 +544,7 @@ const Footer = ({ intensity }) => {
       {[
     { title: 'Produkt', items: [
       { label: 'Så fungerar det', href: '#sa-fungerar-det' },
-      { label: 'För vem', href: '#sa-fungerar-det' },
+      { label: 'För vem', href: '#for-vem' },
       { label: 'Pris', href: '#pris' },
       { label: 'Vanliga frågor', href: null }
     ]},
@@ -698,15 +603,9 @@ const Footer = ({ intensity }) => {
       color: 'var(--fg-muted)', letterSpacing: '0.01em'
     }}>© 2026 <Brand />. Nederländerna</div>
 
-      <img src="../assets/checkin-seal.svg" width="58" height="58" alt="" style={{ display: 'none' }} />
-
-      <div style={{
-      fontFamily: 'var(--font-display)', fontStyle: 'italic',
-      fontSize: 14, color: 'var(--fg-muted)'
-    }}>{'\n'}</div>
     </div>
   </footer>);
 };
 
 
-Object.assign(window, { Nav, MicroBar, Hero, HowItWorks, QuoteBlock, Pricing, Footer });
+Object.assign(window, { Nav, Hero, HowItWorks, QuoteBlock, Pricing, Footer });

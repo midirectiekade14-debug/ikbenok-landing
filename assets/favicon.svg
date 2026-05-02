@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- ik ben ok favicon — V5 ring-gap mark (sage-deep variant) -->
+  <circle cx="50" cy="50" r="50" fill="#4f6a4c"/>
+  <circle cx="50" cy="50" r="41" fill="#F5EFE3"/>
+  <circle cx="50" cy="50" r="32" fill="#4f6a4c"/>
+  <text x="50" y="62" text-anchor="middle"
+        font-family="Dosis, system-ui, sans-serif"
+        font-weight="700" font-size="32" fill="#F5EFE3"
+        letter-spacing="-0.5">ok</text>
+</svg>

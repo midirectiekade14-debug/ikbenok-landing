@@ -3,9 +3,87 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>jag är ok — Trygghet utan oro</title>
+<title>jag är ok — incheckningsapp för ensamboende äldre och anhöriga</title>
+<meta name="description" content="jag är ok är en incheckningsapp för ensamboende äldre och anhöriga. Ett larm som går när någon inte svarar. 29 kr/månad. iOS och Android." />
+<meta name="theme-color" content="#F5EFE3" />
+<meta name="author" content="jag är ok" />
+<meta name="keywords" content="jag är ok, jagärok, incheckningsapp, anhörigapp, larm ensamboende äldre, trygghetslarm utan knapp, passiv larmning, anhörig, äldreomsorg" />
 
-<link rel="stylesheet" href="../styles/colors_and_type.css?v=2" />
+<link rel="canonical" href="https://allesok.nl/sv/" />
+<link rel="alternate" hreflang="nl" href="https://allesok.nl/" />
+<link rel="alternate" hreflang="sv" href="https://allesok.nl/sv/" />
+<link rel="alternate" hreflang="x-default" href="https://allesok.nl/" />
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon-sv.svg" />
+<link rel="apple-touch-icon" href="../assets/favicon-sv.svg" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="jag är ok" />
+<meta property="og:locale" content="sv_SE" />
+<meta property="og:locale:alternate" content="nl_NL" />
+<meta property="og:title" content="jag är ok — incheckningsapp för ensamboende äldre" />
+<meta property="og:description" content="Ett larm som går när någon inte svarar. Daglig trygghet för anhöriga och deras närstående. 29 kr/månad." />
+<meta property="og:url" content="https://allesok.nl/sv/" />
+<meta property="og:image" content="https://allesok.nl/assets/og-image-sv.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="jag är ok — ett larm som går när någon inte svarar" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="jag är ok — incheckningsapp för ensamboende äldre" />
+<meta name="twitter:description" content="Ett larm som går när någon inte svarar. 29 kr/månad. iOS och Android." />
+<meta name="twitter:image" content="https://allesok.nl/assets/og-image-sv.png" />
+
+<!-- Structured data: app + organization + website -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "jag är ok",
+      "alternateName": ["jagärok", "ik ben ok", "ikbenok"],
+      "description": "En incheckningsapp för ensamboende äldre och anhöriga. Ett larm som går när någon inte svarar — ingen panikknapp, bara en bekräftelse på att allt är bra.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "iOS, Android",
+      "url": "https://allesok.nl/sv/",
+      "image": "https://allesok.nl/assets/og-image-sv.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "29",
+        "priceCurrency": "SEK"
+      },
+      "inLanguage": ["sv", "nl"]
+    },
+    {
+      "@type": "Organization",
+      "name": "jag är ok",
+      "alternateName": ["ik ben ok", "ikbenok"],
+      "url": "https://allesok.nl/",
+      "logo": "https://allesok.nl/assets/favicon-sv.svg",
+      "email": "hallo@ikbenok.nl",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hallo@ikbenok.nl",
+        "contactType": "customer support",
+        "availableLanguage": ["Swedish", "Dutch"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://allesok.nl/sv/",
+      "name": "jag är ok",
+      "inLanguage": "sv-SE"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="../styles/colors_and_type.css?v=3" />
 
 <style>
   * { box-sizing: border-box; }
@@ -108,7 +186,25 @@
 <div class="ci-dawn"></div>
 <div class="ci-grain"></div>
 
-<div id="root"></div>
+<div id="root">
+  <!-- Crawler-fallback: synlig för Googlebot innan React renderar.
+       Ersätts av React vid mount; för JS-av besökare blir det kvar. -->
+  <noscript>
+    <article style="max-width:760px;margin:60px auto;padding:0 24px;font-family:'Dosis',system-ui,sans-serif;color:#0B1B2B;line-height:1.55">
+      <h1 style="font-size:42px;line-height:1.05;margin:0 0 16px">jag är ok — en incheckningsapp för ensamboende äldre och anhöriga</h1>
+      <p style="font-size:18px;color:rgba(11,27,43,0.78);margin:0 0 24px"><strong>Ett larm som går när någon inte svarar.</strong> Ingen panikknapp, inget halsband att glömma — bara en bekräftelse på att allt är bra.</p>
+      <h2 style="font-size:24px;margin:32px 0 12px">Så fungerar det</h2>
+      <ol>
+        <li><strong>Vid fasta tider</strong> — en incheckning när du vill; ett tryck bekräftar att allt är okej.</li>
+        <li><strong>Vid tystnad</strong> — om du inte svarar inom 10 minuter får anhöriga ett meddelande med plats och kontaktalternativ.</li>
+        <li><strong>För anhöriga</strong> — alltid uppkopplad, aldrig påträngande.</li>
+      </ol>
+      <h2 style="font-size:24px;margin:32px 0 12px">Pris</h2>
+      <p>Ett abonnemang: <strong>29 kr/månad</strong>. Obegränsade incheckningar, upp till 5 kontaktpersoner, månadsvis uppsägning, 14 dagar gratis.</p>
+      <p>Tillgänglig för iOS och Android. Frågor? <a href="mailto:hallo@ikbenok.nl">hallo@ikbenok.nl</a> · <a href="../">Nederlands</a></p>
+    </article>
+  </noscript>
+</div>
 
 <!-- Tweaks panel (hidden by default — toggled by host) -->
 <div class="tweaks-panel" id="tweaks">
@@ -161,11 +257,12 @@
   });
 </script>
 
-<!-- React + Babel -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<!-- React + Babel (production builds — Babel still client-side; pre-compile if needed) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
+<script type="text/babel" src="../components/shared.jsx"></script>
 <script type="text/babel" src="components/Phone.jsx"></script>
 <script type="text/babel" src="components/Landing.jsx"></script>
 
