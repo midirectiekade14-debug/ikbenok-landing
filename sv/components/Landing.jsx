@@ -135,7 +135,7 @@ const Nav = () => {
     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 0 : 36 }}>
       {!isMobile && [
         { label: 'Så fungerar det', href: '#sa-fungerar-det' },
-        { label: 'För vem', href: '#sa-fungerar-det' },
+        { label: 'För vem', href: '#for-vem' },
         { label: 'Pris', href: '#pris' }
       ].map((l) =>
         <a key={l.label} href={l.href} style={{
@@ -143,7 +143,7 @@ const Nav = () => {
           textDecoration: 'none', letterSpacing: '0.01em'
         }}>{l.label}</a>
       )}
-      <a href="#download" style={{
+      <a href="#pris" style={{
         padding: isMobile ? '9px 14px' : '11px 18px', borderRadius: 999,
         background: 'var(--sage-deep)', color: 'var(--cream)',
         fontFamily: 'var(--font-body)', fontSize: isMobile ? 13 : 14, fontWeight: 500,
@@ -268,7 +268,7 @@ const StoreButton = ({ kind }) => {
   const isApple = kind === 'apple';
   const [hover, setHover] = useState(false);
   return (
-    <a href="#download" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+    <a href="#pris" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
     style={{
       display: 'inline-flex', alignItems: 'center', gap: 12,
       padding: '14px 22px',
@@ -408,7 +408,7 @@ const HowItWorks = ({ intensity }) => {
 const QuoteBlock = () => {
   const isMobile = useIsMobile();
   return (
-<section style={{
+<section id="for-vem" style={{
   maxWidth: 1260, margin: '0 auto',
   padding: isMobile ? '0 16px 60px' : '0 40px 120px',
   position: 'relative', zIndex: 2
@@ -617,7 +617,7 @@ const Footer = ({ intensity }) => {
       {[
     { title: 'Produkt', items: [
       { label: 'Så fungerar det', href: '#sa-fungerar-det' },
-      { label: 'För vem', href: '#sa-fungerar-det' },
+      { label: 'För vem', href: '#for-vem' },
       { label: 'Pris', href: '#pris' },
       { label: 'Vanliga frågor', href: null }
     ]},
