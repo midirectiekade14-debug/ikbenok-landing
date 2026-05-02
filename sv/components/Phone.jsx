@@ -186,6 +186,10 @@ const PhonePing = ({ name = 'Astrid' }) =>
 
 // ─────────────────────────────────────────────────────
 // Caregiver confirmation (what the anhörigvårdare sees)
+// Mirrors the app's CaregiverDashboard + CaregiverPeerCard:
+// section-label "Vem du följer", peer-card with eyebrow + big italic-
+// coral peerName, subtitle and next-check body line, history collapsed
+// by default behind a "+ Denna vecka" toggle.
 // ─────────────────────────────────────────────────────
 const PhoneCaregiver = () =>
 <div style={{ padding: '10px 20px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -200,81 +204,54 @@ const PhoneCaregiver = () =>
     }}>MIRA</div>
     </div>
 
-    <div style={{
-    fontFamily: 'var(--font-display)', fontSize: 9, letterSpacing: '0.28em',
-    textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 10, fontWeight: 500
-  }}>Idag</div>
+    {/* section-label: bar + sentence-case display, app SectionLabel transform="none" */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+      <span style={{ width: 18, height: 1.5, background: 'var(--coral)', display: 'inline-block' }} />
+      <span style={{
+        fontFamily: 'var(--font-display)', fontSize: 13, letterSpacing: 0,
+        color: 'var(--fg-default)', fontWeight: 500
+      }}>Vem du följer</span>
+    </div>
 
-    {/* notification card */}
+    {/* peer card — sage tinted */}
     <div style={{
-    padding: '16px 16px 18px',
-    background: 'rgba(110,150,128,0.14)',
-    border: '1px solid rgba(110,150,128,0.3)',
-    borderRadius: 18,
-    marginBottom: 12
+    padding: '14px 14px 12px',
+    background: 'rgba(110,150,128,0.12)',
+    border: '1px solid rgba(110,150,128,0.28)',
+    borderRadius: 14
   }}>
+      {/* eyebrow */}
       <div style={{
-      display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10
+      display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8
     }}>
-        <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--sage)' }} />
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--sage)' }} />
         <span style={{
-        fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.2em',
+        fontFamily: 'var(--font-body)', fontSize: 9, letterSpacing: '0.22em',
         textTransform: 'uppercase', color: 'var(--sage-deep)', fontWeight: 600
       }}>Incheckad</span>
       </div>
+      {/* peer name solo, big italic coral display */}
       <div style={{
-      fontFamily: 'var(--font-display)', fontSize: 22, lineHeight: 1.1,
-      letterSpacing: '-0.015em', color: 'var(--navy)'
-    }}><em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Astrid</em> har<br />checkat in · 14:32</div>
+      fontFamily: 'var(--font-display)', fontStyle: 'italic',
+      fontSize: 19, lineHeight: 1.15, letterSpacing: '-0.015em',
+      color: 'var(--coral)', fontWeight: 400
+    }}>Astrid</div>
+      {/* subtitle in display font */}
+      <div style={{
+      fontFamily: 'var(--font-display)', fontSize: 13, lineHeight: 1.2,
+      letterSpacing: '-0.01em', color: 'var(--navy)', marginTop: 2
+    }}>checkade in · idag 2 maj · 14:32</div>
+      {/* next-check body */}
       <p style={{
-      fontFamily: 'var(--font-body)', fontSize: 11.5, lineHeight: 1.5,
-      color: 'var(--fg-default)', margin: '10px 0 0'
-    }}>Skönt. Allt är bra. Nästa incheckning ikväll kl 20:00.</p>
-    </div>
-
-    {/* history rows */}
-    <div style={{
-    padding: '14px 16px',
-    background: 'var(--paper-raised)',
-    border: '1px solid var(--line-soft)',
-    borderRadius: 18
-  }}>
+      fontFamily: 'var(--font-body)', fontSize: 11, lineHeight: 1.45,
+      color: 'var(--fg-default)', margin: '8px 0 0'
+    }}>Nästa incheckning idag 2 maj kl 16:00.</p>
+      {/* week toggle (collapsed by default — app default) */}
       <div style={{
-      fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
-      color: 'var(--fg-muted)', marginBottom: 10, fontWeight: 500
-    }}>Denna vecka</div>
-      {[
-    ['måndag', '08:14', '14:02', '20:06'],
-    ['söndag', '08:30', '14:22', '20:11'],
-    ['lördag', '08:05', '14:34', '20:02']].
-    map(([day, ...times], idx, arr) =>
-    <div key={day} style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '7px 0', gap: 8, flexWrap: 'nowrap',
-      borderBottom: idx === arr.length - 1 ? 'none' : '1px solid var(--line-soft)'
-    }}>
-          <span style={{
-            fontFamily: 'var(--font-body)', fontSize: 11, color: 'var(--fg-default)',
-            flexShrink: 0
-          }}>{day}</span>
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 4, flexShrink: 0
-          }}>
-            {times.map((t) =>
-        <span key={t} style={{
-          fontFamily: 'var(--font-body)', fontSize: 9.5, color: 'var(--sage-deep)',
-          padding: '2px 0', background: 'rgba(110,150,128,0.14)',
-          borderRadius: 999, whiteSpace: 'nowrap', lineHeight: 1.4,
-          textAlign: 'center', minWidth: 36,
-          fontVariantNumeric: 'tabular-nums'
-        }}>{t}</span>
-        )}
-          </div>
-        </div>
-    )}
+      fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.05em',
+      color: 'var(--fg-muted)', fontWeight: 500, marginTop: 10
+    }}>+ Denna vecka</div>
     </div>
-  </div>;
 
 
 // ─────────────────────────────────────────────────────
