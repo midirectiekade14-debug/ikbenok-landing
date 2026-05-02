@@ -106,7 +106,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
           border: '1px solid var(--line-soft)',
           borderRadius: 14
         }}>
-          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>vorige check-in</div>
+          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>vorige check</div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--sage-deep)', whiteSpace: 'nowrap' }}>gisteren · 14:32</div>
         </div>
         <div style={{
@@ -115,7 +115,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
           border: '1px solid var(--line-soft)',
           borderRadius: 14
         }}>
-          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>volgende check-in</div>
+          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>volgende check</div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--navy)', whiteSpace: 'nowrap' }}>vandaag · 16:00</div>
         </div>
       </div>
@@ -275,7 +275,7 @@ const PhoneCaregiver = () =>
 
 // ─────────────────────────────────────────────────────
 // Schedule (set your own check-in times) — mirrors the
-// IntervalForm in the Checkin app: mode tabs (Elke X uur /
+// IntervalForm in the ik ben ok app: mode tabs (Interval /
 // Vaste momenten) + clock-icon time rows + tag, no day picker.
 // ─────────────────────────────────────────────────────
 const PhoneSchedule = () => {
@@ -286,16 +286,12 @@ const PhoneSchedule = () => {
 
   return (
     <div style={{ padding: '10px 20px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {/* wordmark row */}
+      {/* wordmark row — matches app: only the wordmark in the topbar */}
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         marginBottom: 18
       }}>
         <PhoneWordmark size={20} />
-        <span style={{
-          fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.22em',
-          textTransform: 'uppercase', color: 'var(--fg-muted)', fontWeight: 500
-        }}>Instellen</span>
       </div>
 
       <div style={{
@@ -316,7 +312,7 @@ const PhoneSchedule = () => {
           borderRadius: 999,
           fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600,
           color: 'var(--fg-default)', letterSpacing: '0.01em'
-        }}>Elke X uur</span>
+        }}>Interval</span>
         <span style={{
           flex: 1, textAlign: 'center', padding: '7px 8px',
           borderRadius: 999,
@@ -376,7 +372,7 @@ const PhoneSchedule = () => {
       <p style={{
         fontFamily: 'var(--font-body)', fontSize: 10.5, lineHeight: 1.5,
         color: 'var(--fg-muted)', margin: '12px 0 0'
-      }}>Je krijgt op <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 momenten</span> per dag een vraag.</p>
+      }}>Je krijgt op <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 momenten</span> per dag een vraag: <span style={{ color: 'var(--navy)', fontWeight: 600 }}>09:00 · 13:00 · 20:00</span>.</p>
 
       <div style={{ flex: 1 }} />
     </div>);

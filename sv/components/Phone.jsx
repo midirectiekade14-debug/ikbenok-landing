@@ -290,16 +290,12 @@ const PhoneSchedule = () => {
 
   return (
     <div style={{ padding: '10px 20px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {/* wordmark row */}
+      {/* wordmark row — matches app: only the wordmark in the topbar */}
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         marginBottom: 18
       }}>
         <PhoneWordmark size={20} />
-        <span style={{
-          fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.22em',
-          textTransform: 'uppercase', color: 'var(--fg-muted)', fontWeight: 500
-        }}>Inställningar</span>
       </div>
 
       <div style={{
@@ -320,7 +316,7 @@ const PhoneSchedule = () => {
           borderRadius: 999,
           fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600,
           color: 'var(--fg-default)', letterSpacing: '0.01em'
-        }}>Var X timme</span>
+        }}>Intervall</span>
         <span style={{
           flex: 1, textAlign: 'center', padding: '7px 8px',
           borderRadius: 999,
@@ -380,7 +376,7 @@ const PhoneSchedule = () => {
       <p style={{
         fontFamily: 'var(--font-body)', fontSize: 10.5, lineHeight: 1.5,
         color: 'var(--fg-muted)', margin: '12px 0 0'
-      }}>Du får en fråga vid <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 tillfällen</span> per dag.</p>
+      }}>Du får en fråga vid <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 tillfällen</span> per dag: <span style={{ color: 'var(--navy)', fontWeight: 600 }}>09:00 · 13:00 · 20:00</span>.</p>
 
       <div style={{ flex: 1 }} />
     </div>);
