@@ -195,6 +195,7 @@ const PhoneCaregiver = () =>
       color: 'var(--fg-muted)', fontWeight: 500, marginTop: 10
     }}>+ Denna vecka</div>
     </div>
+  </div>;
 
 
 // ─────────────────────────────────────────────────────
