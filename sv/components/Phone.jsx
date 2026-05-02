@@ -128,63 +128,6 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
 };
 
 // ─────────────────────────────────────────────────────
-// Ping (morning prompt)
-// ─────────────────────────────────────────────────────
-const PhonePing = ({ name = 'Astrid' }) =>
-<div style={{
-  padding: '10px 22px 0', height: '100%',
-  display: 'flex', flexDirection: 'column', textAlign: 'center'
-}}>
-    {/* wordmark row */}
-    <div style={{
-    display: 'flex', justifyContent: 'center', alignItems: 'center',
-    marginBottom: 22
-  }}>
-      <PhoneWordmark size={20} />
-    </div>
-
-    <div style={{
-    fontSize: 9.5, letterSpacing: '0.25em', textTransform: 'uppercase',
-    color: 'var(--fg-muted)', marginBottom: 20, fontWeight: 500
-  }}>· Incheckningstid ·</div>
-
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <div style={{
-      fontFamily: 'var(--font-display)', fontStyle: 'italic',
-      fontSize: 12, color: 'var(--fg-muted)', marginBottom: 8
-    }}>tisdag · 14:32</div>
-      <div style={{
-      fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.0,
-      letterSpacing: '-0.025em', color: 'var(--navy)', margin: '0 0 20px'
-    }}>
-        Hur mår du,<br />
-        <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>{name}</em>?
-      </div>
-      <p style={{
-      fontFamily: 'var(--font-body)', fontSize: 12, lineHeight: 1.55,
-      color: 'var(--fg-default)', margin: '0 auto 26px', maxWidth: 210
-    }}>Tryck ja, då vet Mira och Hans att allt är bra.</p>
-
-      <button style={{
-      background: 'var(--sage)', color: '#fff', border: 'none',
-      padding: '15px 18px', borderRadius: 999,
-      fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 500,
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-      cursor: 'default',
-      boxShadow: '0 14px 26px -8px rgba(110,150,128,0.6), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -3px 6px rgba(0,0,0,0.16)'
-    }}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
-        Ja, allt är bra
-      </button>
-      <div style={{
-      marginTop: 12, color: 'var(--fg-muted)', fontSize: 11.5,
-      fontFamily: 'var(--font-body)', textDecoration: 'underline', textUnderlineOffset: 3
-    }}>Fråga mig igen om 10 minuter</div>
-    </div>
-  </div>;
-
-
-// ─────────────────────────────────────────────────────
 // Caregiver confirmation (what the anhörigvårdare sees)
 // Mirrors the app's CaregiverDashboard + CaregiverPeerCard:
 // section-label "Vem du följer", peer-card with eyebrow + big italic-
@@ -360,4 +303,4 @@ const PhoneSchedule = () => {
 
 };
 
-Object.assign(window, { Phone, PhoneHome, PhonePing, PhoneCaregiver, PhoneSchedule });
+Object.assign(window, { Phone, PhoneHome, PhoneCaregiver, PhoneSchedule });
