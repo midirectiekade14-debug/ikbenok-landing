@@ -52,17 +52,17 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
 
       {/* the breathing button */}
       <div style={{ display: 'grid', placeItems: 'center', margin: '104px auto 16px', position: 'relative', width: 200, height: 200, flexShrink: 0 }}>
-        {/* progress ring — translateY offsets the visual weight of the button's drop-shadow,
-            so the ring reads as centered around the button rather than sitting too high */}
+        {/* progress ring + paper disc — translateY(-2) lifts both 5px above the previous
+            translateY(3) baseline so the ring reads as embracing the button. */}
         <div style={{
           position: 'absolute', width: 200, height: 200, borderRadius: '50%',
           background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`,
-          transform: 'translateY(3px)'
+          transform: 'translateY(-2px)'
         }} />
         <div style={{
           position: 'absolute', width: 182, height: 182, borderRadius: '50%',
           background: 'var(--paper)',
-          transform: 'translateY(3px)'
+          transform: 'translateY(-2px)'
         }} />
         {/* outward ping — only at higher intensity. top/left = (200-170)/2 to center inside the
             grid wrapper; absolute children don't honour `placeItems: center` reliably. */}

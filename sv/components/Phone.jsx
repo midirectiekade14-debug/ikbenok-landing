@@ -61,12 +61,12 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
         <div style={{
           position: 'absolute', width: 200, height: 200, borderRadius: '50%',
           background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`,
-          transform: 'translateY(3px)'
+          transform: 'translateY(-2px)'
         }} />
         <div style={{
           position: 'absolute', width: 182, height: 182, borderRadius: '50%',
           background: 'var(--paper)',
-          transform: 'translateY(3px)'
+          transform: 'translateY(-2px)'
         }} />
         {/* outward ping — only at higher intensity. top/left = (200-170)/2 to center inside the
             grid wrapper; absolute children don't honour `placeItems: center` reliably. */}
