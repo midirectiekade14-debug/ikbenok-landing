@@ -54,32 +54,34 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
         color: 'var(--fg-default)', margin: '6px 0 18px'
       }}>Ett tryck för att visa att allt är bra.</p>
 
-      {/* the breathing button */}
-      <div style={{ display: 'grid', placeItems: 'center', margin: '104px auto 16px', position: 'relative', width: 200, height: 200, flexShrink: 0 }}>
-        {/* progress ring — translateY offsets the visual weight of the button's drop-shadow,
-            so the ring reads as centered around the button rather than sitting too high */}
+      {/* the breathing button — sized 170px (was 200) so meta-cards stay inside the
+          phone frame on mobile (552px tall). Margin reduced to 50px so the ring still
+          drops below the greeting without pushing the meta-cards off-screen. */}
+      <div style={{ display: 'grid', placeItems: 'center', margin: '50px auto 16px', position: 'relative', width: 170, height: 170, flexShrink: 0 }}>
+        {/* progress ring + paper disc — translateY(-2) lifts both 5px above the previous
+            translateY(3) baseline so the ring reads as embracing the button. */}
         <div style={{
-          position: 'absolute', width: 200, height: 200, borderRadius: '50%',
+          position: 'absolute', width: 170, height: 170, borderRadius: '50%',
           background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`,
-          transform: 'translateY(-2px)'
+          transform: 'translateY(0)'
         }} />
         <div style={{
-          position: 'absolute', width: 182, height: 182, borderRadius: '50%',
+          position: 'absolute', width: 155, height: 155, borderRadius: '50%',
           background: 'var(--paper)',
-          transform: 'translateY(-2px)'
+          transform: 'translateY(0)'
         }} />
-        {/* outward ping — only at higher intensity. top/left = (200-170)/2 to center inside the
-            grid wrapper; absolute children don't honour `placeItems: center` reliably. */}
+        {/* outward ping — only at higher intensity. top/left = (170-145)/2 = 12.5,
+            rounded to 13 to keep it centered within the wrapper. */}
         {intensity > 0.6 &&
         <div style={{
-          position: 'absolute', top: 15, left: 15, width: 170, height: 170, borderRadius: '50%',
+          position: 'absolute', top: 13, left: 13, width: 145, height: 145, borderRadius: '50%',
           background: pingBg,
           animation: `phone-ring-pulse 2.6s var(--ease-out) infinite`
         }} />
         }
         {/* button */}
         <div style={{
-          position: 'relative', width: 166, height: 166, borderRadius: '50%',
+          position: 'relative', width: 141, height: 141, borderRadius: '50%',
           background: buttonBg, color: '#fff',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           boxShadow: buttonShadow,
@@ -87,12 +89,12 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
         }}>
           <span style={{
             fontFamily: 'var(--font-display)', fontStyle: 'italic',
-            fontSize: 10.5, opacity: 0.82, marginBottom: 8, letterSpacing: '0.02em'
+            fontSize: 9, opacity: 0.82, marginBottom: 6, letterSpacing: '0.02em'
           }}>tryck för att bekräfta</span>
           <span style={{
             fontFamily: 'var(--font-display)', lineHeight: 1,
             letterSpacing: '-0.015em', fontWeight: 500,
-            whiteSpace: 'nowrap', color: 'var(--cream)', fontSize: "41px", margin: "2px 0px 20px"
+            whiteSpace: 'nowrap', color: 'var(--cream)', fontSize: '35px', margin: '2px 0 16px'
           }}>
             jag är ok
           </span>
