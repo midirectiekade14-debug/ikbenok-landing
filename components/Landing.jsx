@@ -563,10 +563,10 @@ const Footer = ({ intensity }) => {
       { label: 'Pers & partners', href: 'mailto:hallo@ikbenok.nl?subject=Pers' }
     ]},
     { title: 'Juridisch', items: [
-      { label: 'Privacybeleid', href: null },
+      { label: 'Privacybeleid', href: 'privacy/' },
+      { label: 'Cookies', href: 'cookies/' },
       { label: 'Algemene voorwaarden', href: null },
-      { label: 'Verwerkingsovereenkomst', href: null },
-      { label: 'Cookies', href: null }
+      { label: 'DPA voor zorgorganisaties', href: 'mailto:hallo@ikbenok.nl?subject=DPA%20-%20zorgorganisatie' }
     ]}].
     map((col) =>
     <div key={col.title}>
