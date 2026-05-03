@@ -21,10 +21,6 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
   const pingBg = isAlarm ? 'rgba(165,74,58,0.45)' : 'rgba(255,107,71,0.45)';
   return (
     <div style={{ padding: '8px 22px 0', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <style>{`
-        @keyframes phone-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-        @keyframes phone-ring-pulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.18); } }
-      `}</style>
       {/* wordmark row */}
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -59,7 +55,7 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
       }}>Ett tryck för att visa att allt är bra.</p>
 
       {/* the breathing button */}
-      <div style={{ display: 'grid', placeItems: 'center', margin: '4px auto 16px', position: 'relative', width: 200, height: 200 }}>
+      <div style={{ display: 'grid', placeItems: 'center', margin: '104px auto 16px', position: 'relative', width: 200, height: 200, flexShrink: 0 }}>
         {/* progress ring — translateY offsets the visual weight of the button's drop-shadow,
             so the ring reads as centered around the button rather than sitting too high */}
         <div style={{
@@ -72,10 +68,11 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
           background: 'var(--paper)',
           transform: 'translateY(3px)'
         }} />
-        {/* outward ping — only at higher intensity */}
+        {/* outward ping — only at higher intensity. top/left = (200-170)/2 to center inside the
+            grid wrapper; absolute children don't honour `placeItems: center` reliably. */}
         {intensity > 0.6 &&
         <div style={{
-          position: 'absolute', width: 170, height: 170, borderRadius: '50%',
+          position: 'absolute', top: 15, left: 15, width: 170, height: 170, borderRadius: '50%',
           background: pingBg,
           animation: `phone-ring-pulse 2.6s var(--ease-out) infinite`
         }} />

@@ -181,6 +181,10 @@
     0% { opacity: 0; transform: translateY(18px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+  /* component animations — declared globally so JSX components don't have to inline <style> */
+  @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+  @keyframes phone-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+  @keyframes phone-ring-pulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.18); } }
   .ci-stagger > * { animation: ci-fadeup 0.8s var(--ease-out) both; }
   .ci-stagger > *:nth-child(1) { animation-delay: 0ms; }
   .ci-stagger > *:nth-child(2) { animation-delay: 130ms; }
@@ -251,7 +255,7 @@
       <h2 style="font-size:24px;margin:32px 0 12px">Zo werkt het</h2>
       <ol>
         <li><strong>Op vaste tijden</strong> — een check-in wanneer je wilt; één tik bevestigt dat alles oké is.</li>
-        <li><strong>Bij stilte</strong> — reageer je niet binnen 10 minuten, dan ontvangt de mantelzorger een bericht met locatie en contactopties.</li>
+        <li><strong>Bij stilte</strong> — reageer je niet binnen 30 minuten, dan ontvangt de mantelzorger een bericht met locatie en contactopties.</li>
         <li><strong>Voor de mantelzorger</strong> — altijd verbonden, nooit opdringerig.</li>
       </ol>
       <h2 style="font-size:24px;margin:32px 0 12px">Prijs</h2>
@@ -328,9 +332,9 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<script type="text/babel" src="components/shared.jsx"></script>
-<script type="text/babel" src="components/Phone.jsx"></script>
-<script type="text/babel" src="components/Landing.jsx"></script>
+<script type="text/babel" src="components/shared.jsx?v=5"></script>
+<script type="text/babel" src="components/Phone.jsx?v=5"></script>
+<script type="text/babel" src="components/Landing.jsx?v=5"></script>
 
 <script type="text/babel">
 

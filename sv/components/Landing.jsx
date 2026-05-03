@@ -184,7 +184,7 @@ const Hero = ({ intensity }) => {
         fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase',
         color: 'var(--coral)', fontWeight: 600, marginBottom: 4
       }}>Larm till kontaktperson</div>
-        Efter 10 minuter utan svar<br />— när knappen inte trycks —
+        Efter 30 minuter utan svar<br />— när knappen inte trycks —
       </div>}
     </div>
   </section>);
@@ -243,7 +243,7 @@ const HowItWorks = ({ intensity }) => {
   {
     label: 'Vid tystnad',
     title: 'Då ger vi en <em>signal</em>!',
-    body: 'Svarar personen inte inom 10 minuter får anhörigvårdaren ett meddelande — med senaste kända plats och kontaktalternativ för direkt hjälp. Svarar din första kontakt inte, skickas larmet direkt vidare till din andra kontakt.',
+    body: 'Svarar personen inte inom 30 minuter får anhörigvårdaren ett meddelande — med senaste kända plats och kontaktalternativ för direkt hjälp. Svarar din första kontakt inte, skickas larmet direkt vidare till din andra kontakt.',
     phone: <PhoneHome intensity={intensity} progress={1} state="alarm" />
   },
   {

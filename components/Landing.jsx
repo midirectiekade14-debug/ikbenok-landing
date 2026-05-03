@@ -196,7 +196,7 @@ const Hero = ({ intensity }) => {
         fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase',
         color: 'var(--coral)', fontWeight: 600, marginBottom: 4
       }}>Alarmering contactpersoon</div>
-        Na 10 minuten zonder reactie<br />— wanneer de knop niet wordt ingedrukt —
+        Na 30 minuten zonder reactie<br />— wanneer de knop niet wordt ingedrukt —
       </div>}
     </div>
   </section>);
@@ -255,7 +255,7 @@ const HowItWorks = ({ intensity }) => {
   {
     label: 'Bij stilte',
     title: 'Dan geven wij een <em>seintje</em>!',
-    body: 'Reageert de ander niet binnen 10 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp. Reageert je eerste contact niet, dan wordt de melding meteen doorgezet naar je tweede contact.',
+    body: 'Reageert de ander niet binnen 30 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp. Reageert je eerste contact niet, dan wordt de melding meteen doorgezet naar je tweede contact.',
     phone: <PhoneHome intensity={intensity} progress={1} state="alarm" />
   },
   {

@@ -181,6 +181,10 @@
     0% { opacity: 0; transform: translateY(18px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+  /* component animations — declared globally so JSX components don't have to inline <style> */
+  @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+  @keyframes phone-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+  @keyframes phone-ring-pulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.18); } }
   .ci-stagger > * { animation: ci-fadeup 0.8s var(--ease-out) both; }
   .ci-stagger > *:nth-child(1) { animation-delay: 0ms; }
   .ci-stagger > *:nth-child(2) { animation-delay: 130ms; }
@@ -251,7 +255,7 @@
       <h2 style="font-size:24px;margin:32px 0 12px">Så fungerar det</h2>
       <ol>
         <li><strong>Vid fasta tider</strong> — en incheckning när du vill; ett tryck bekräftar att allt är okej.</li>
-        <li><strong>Vid tystnad</strong> — om du inte svarar inom 10 minuter får anhöriga ett meddelande med plats och kontaktalternativ.</li>
+        <li><strong>Vid tystnad</strong> — om du inte svarar inom 30 minuter får anhöriga ett meddelande med plats och kontaktalternativ.</li>
         <li><strong>För anhöriga</strong> — alltid uppkopplad, aldrig påträngande.</li>
       </ol>
       <h2 style="font-size:24px;margin:32px 0 12px">Pris</h2>
@@ -329,8 +333,8 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="../components/shared.jsx"></script>
-<script type="text/babel" src="components/Phone.jsx"></script>
-<script type="text/babel" src="components/Landing.jsx"></script>
+<script type="text/babel" src="components/Phone.jsx?v=5"></script>
+<script type="text/babel" src="components/Landing.jsx?v=5"></script>
 
 <script type="text/babel">
 

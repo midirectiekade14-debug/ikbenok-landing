@@ -46,9 +46,6 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true, color = 'var(--
       flexShrink: 0, lineHeight: 1,
       verticalAlign: isEm ? '-0.32em' : 'baseline'
     }}>
-      <style>{`
-        @keyframes ibok-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-      `}</style>
       <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: color }} />
       <span style={{ position: 'absolute', inset: '0.09em', borderRadius: '50%', background: 'var(--cream)' }} />
       <span style={{
