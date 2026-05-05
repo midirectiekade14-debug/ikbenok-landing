@@ -953,6 +953,14 @@
     else if (name === 'thankyou') progressBar.style.width = '100%';
   }
 
+  // Postcode-input: strip alles wat geen cijfer is, hard cap op 4 (defence-in-depth
+  // bovenop maxlength="4" / pattern="\d{4}" / inputmode="numeric").
+  form.addEventListener('input', (e) => {
+    if (e.target && e.target.name === 'postcode4') {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
+    }
+  });
+
   function validateStep(name) {
     const e2 = getStepEl(name);
     if (!e2) return true;
@@ -962,6 +970,10 @@
     });
     for (const ok of Object.values(groups)) {
       if (!ok) { alert('Maak een keuze om verder te gaan.'); return false; }
+    }
+    if (name === 'postcode') {
+      const v = e2.querySelector('input[name="postcode4"]').value.trim();
+      if (v.length > 0 && v.length !== 4) { alert('Vul 4 cijfers in, of laat het veld leeg.'); return false; }
     }
     if (name === 'm10') {
       const ja = e2.querySelector('input[name="m10_beta_optin"][value="ja"]:checked');
