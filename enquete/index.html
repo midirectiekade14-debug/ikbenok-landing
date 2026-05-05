@@ -31,7 +31,7 @@
 
 <!--
   Tekst aanpassen?  Zoek de tekst hieronder in de HTML, wijzig 'm en save.
-  Vraagnummers ("Vraag 3") staan in <div class="qmeta">.
+  Vraagnummers ("Vraag 4") staan in <div class="qmeta">.
   Vraagtitels staan in <h2>.
   Antwoord-opties staan in <span> binnen <label class="option">.
 -->
@@ -599,9 +599,23 @@
   </section>
 
   <!-- ========== VRAAG 2 — Rol ========== -->
+  <!-- ========== VRAAG 2 — Postcode (optioneel, eerste 4 cijfers) ========== -->
+  <section class="step" data-step="postcode">
+    <h2>Waar woon je <em>(globaal)</em>?</h2>
+    <div class="qmeta">Vraag 2 · optioneel</div>
+    <p>De eerste <strong>4 cijfers</strong> van je postcode — daarmee zien we de regio-spreiding zonder dat we je adres weten.</p>
+    <input type="text" name="postcode4" inputmode="numeric" pattern="\d{4}" maxlength="4" autocomplete="postal-code" placeholder="bijv. 1234" />
+    <div class="helper">Alleen cijfers, geen letters. Laat leeg als je liever niets invult.</div>
+    <div class="nav">
+      <button type="button" class="btn-prev">← Terug</button>
+      <button type="button" class="btn-next">Verder →</button>
+    </div>
+  </section>
+
+  <!-- ========== VRAAG 3 — Rol ========== -->
   <section class="step" data-step="role">
     <h2>Wie ben je?</h2>
-    <div class="qmeta">Vraag 2</div>
+    <div class="qmeta">Vraag 3</div>
     <div class="options">
       <label class="option"><input type="radio" name="role" value="mantelzorger" required=""><span>Ik ben mantelzorger</span></label>
       <label class="option"><input type="radio" name="role" value="oudere" required=""><span>Ik ben een familielid, vriend, buur die mantelzorg nodig heeft</span></label>
@@ -616,7 +630,7 @@
 
   <section class="step" data-step="m1" data-branch="A">
     <h2>Wat is je leeftijd?</h2>
-    <div class="qmeta">Vraag 3</div>
+    <div class="qmeta">Vraag 4</div>
     <div class="options">
       <label class="option"><input type="radio" name="m1_age" value="25-39" required=""><span>20 – 39 jaar</span></label>
       <label class="option"><input type="radio" name="m1_age" value="40-54"><span>40 – 54 jaar</span></label>
@@ -629,7 +643,7 @@
 
   <section class="step" data-step="m2" data-branch="A">
     <h2>Hoe vaak heb je op dit moment contact met diegene die mantelzorg nodig heeft?</h2>
-    <div class="qmeta">Vraag 4</div>
+    <div class="qmeta">Vraag 5</div>
     <div class="options">
       <label class="option"><input type="radio" name="m2_contact_freq" value="dagelijks" required=""><span>Dagelijks</span></label>
       <label class="option"><input type="radio" name="m2_contact_freq" value="paar-week"><span>Een paar keer per week</span></label>
@@ -641,7 +655,7 @@
 
   <section class="step" data-step="m3" data-branch="A" style="">
     <h2>Hoe vaak maak je je zorgen of het goed gaat met de ander, zonder dat je dat meteen kunt of wilt checken?</h2>
-    <div class="qmeta">Vraag 5</div>
+    <div class="qmeta">Vraag 6</div>
     <div class="options">
       <label class="option"><input type="radio" name="m3_worry_freq" value="meermaals-dag" required=""><span>Meermaals per dag</span></label>
       <label class="option"><input type="radio" name="m3_worry_freq" value="meermaals-week"><span>Meermaals per week</span></label>
@@ -654,7 +668,7 @@
 
   <section class="step" data-step="m4" data-branch="A">
     <h2>Wat zijn je grootste zorgen?</h2>
-    <div class="qmeta">Vraag 6 ·&nbsp;<span style="letter-spacing: 2.42px;">meerdere antwoorden mogelijk</span></div>
+    <div class="qmeta">Vraag 7 ·&nbsp;<span style="letter-spacing: 2.42px;">meerdere antwoorden mogelijk</span></div>
     <div class="options" data-max="3">
       <label class="option"><input type="checkbox" name="m4_worries" value="vallen"><span>Vallen / lichamelijk ongeluk</span></label>
       <label class="option"><input type="checkbox" name="m4_worries" value="eenzaam"><span>Eenzaamheid</span></label>
@@ -673,7 +687,7 @@
 
   <section class="step" data-step="m5" data-branch="A">
     <h2 data-vibe-id="vibe-annotation-1777490524056-cgxekmm7f" style="">Wat gebruik je nu al om te weten of het goed gaat?</h2>
-    <div class="qmeta">Vraag 7 · meerdere antwoorden mogelijk</div>
+    <div class="qmeta">Vraag 8 · meerdere antwoorden mogelijk</div>
     <div class="options">
       <label class="option"><input type="checkbox" name="m5_current_aids" value="bel-zelf"><span>We bellen/appen</span></label>
       <label class="option"><input type="checkbox" name="m5_current_aids" value="halsknop"><span>Personenalarm/halsketting met alarmknop/horloge</span></label>
@@ -695,7 +709,7 @@
 
   <section class="step" data-step="m6" data-branch="A">
     <h2>Kun je overweg ben je met een mobiele telefoon en apps?</h2>
-    <div class="qmeta">Vraag 8</div>
+    <div class="qmeta">Vraag 9</div>
     <div class="likert">
       <label><input type="radio" name="m6_tech_comfort" value="1" required=""><span class="num">1</span></label>
       <label><input type="radio" name="m6_tech_comfort" value="2"><span class="num">2</span></label>
@@ -709,7 +723,7 @@
 
   <section class="step" data-step="m7" data-branch="A">
     <h2>Welke functies zou jij het belangrijkst vinden?</h2>
-    <div class="qmeta">Vraag 9 · sleep om jouw top-3 bovenaan te zetten</div>
+    <div class="qmeta">Vraag 10 · sleep om jouw top-3 bovenaan te zetten</div>
     <ol class="ranking-list" id="rankingList">
       <li draggable="true"><span class="rank-num">1</span><span>Snel zien dat het goed gaat zonder te bellen</span></li>
       <li draggable="true"><span class="rank-num">2</span><span>Melding bij afwijkend patroon</span></li>
@@ -724,7 +738,7 @@
 
   <section class="step" data-step="m8" data-branch="A">
     <h2>Stel dat een app waarmee je kunt inchecken 2 tot 3 Euro per maand kost voor jou als gebruiker. Hoe waarschijnlijk is het dat je dit zou gebruiken?</h2>
-    <div class="qmeta">Vraag 10</div>
+    <div class="qmeta">Vraag 11</div>
     <div class="likert">
       <label><input type="radio" name="m8_willingness_to_pay" value="1" required=""><span class="num">1</span></label>
       <label><input type="radio" name="m8_willingness_to_pay" value="2"><span class="num">2</span></label>
@@ -738,7 +752,7 @@
 
   <section class="step" data-step="m9" data-branch="A">
     <h2>Wat zou je absoluut <em>niet</em> willen in zo'n app?</h2>
-    <div class="qmeta">Vraag 11 · optioneel</div>
+    <div class="qmeta">Vraag 12 · optioneel</div>
     <textarea name="m9_avoid" maxlength="200" placeholder="Optioneel — vertel ons gerust waar jij allergisch voor bent…"></textarea>
     <p class="helper"><span id="m9_count">0</span> / 200 tekens</p>
     <div class="nav"><button type="button" class="btn-prev">← Terug</button><button type="button" class="btn-next">Verder →</button></div>
@@ -746,7 +760,7 @@
 
   <section class="step" data-step="m10" data-branch="A">
     <h2>Mogen we je in de toekomst uitnodigen als testgebruiker?&nbsp;<div>Je krijgt dan gratis toegang tot de app, ook na de testfase.</div></h2>
-    <div class="qmeta">Vraag 12</div>
+    <div class="qmeta">Vraag 13</div>
     <div class="options">
       <label class="option"><input type="radio" name="m10_beta_optin" value="ja" required=""><span>Ja, graag!</span></label>
       <label class="option"><input type="radio" name="m10_beta_optin" value="nee"><span>Nee, liever niet</span></label>
@@ -763,7 +777,7 @@
 
   <section class="step" data-step="o0" data-branch="B">
     <h2>Wie vult deze vragen in?</h2>
-    <div class="qmeta">Vraag 3</div>
+    <div class="qmeta">Vraag 4</div>
     <div class="options">
       <label class="option"><input type="radio" name="o0_filler" value="zelf" required=""><span>Ik zelf</span></label>
       <label class="option"><input type="radio" name="o0_filler" value="samen"><span>Ik en mijn mantelzorger samen</span></label>
@@ -774,7 +788,7 @@
 
   <section class="step" data-step="o1" data-branch="B" style="">
     <h2>Wat is je leeftijd?</h2>
-    <div class="qmeta">Vraag 4</div>
+    <div class="qmeta">Vraag 5</div>
     <div class="options">
       <label class="option"><input type="radio" name="o1_age" value="under-30" required=""><span>Jonger dan 30 jaar</span></label>
       <label class="option"><input type="radio" name="o1_age" value="30-44"><span>30 – 44 jaar</span></label>
@@ -789,7 +803,7 @@
 
   <section class="step" data-step="o2" data-branch="B">
     <h2>Woon je alleen?</h2>
-    <div class="qmeta">Vraag 5</div>
+    <div class="qmeta">Vraag 6</div>
     <div class="options">
       <label class="option"><input type="radio" name="o2_living" value="alleen" required=""><span>Ja</span></label>
       <label class="option"><input type="radio" name="o2_living" value="partner"><span>Nee, met mijn partner</span></label>
@@ -800,7 +814,7 @@
 
   <section class="step" data-step="o3" data-branch="B">
     <h2>Hoe vaak heb je contact met een familielid, vriend of kennis?</h2>
-    <div class="qmeta">Vraag 6</div>
+    <div class="qmeta">Vraag 7</div>
     <div class="options">
       <label class="option"><input type="radio" name="o3_contact_freq" value="elke-dag" required=""><span>Elke dag</span></label>
       <label class="option"><input type="radio" name="o3_contact_freq" value="paar-week"><span>Een paar keer per week</span></label>
@@ -812,7 +826,7 @@
 
   <section class="step" data-step="o4" data-branch="B">
     <h2>Vind je het prettig om vaker wat van je familie, vrienden of bekenden te horen?</h2>
-    <div class="qmeta">Vraag 7</div>
+    <div class="qmeta">Vraag 8</div>
     <div class="options">
       <label class="option"><input type="radio" name="o4_want_more_contact" value="ja" required=""><span>Ja</span></label>
       <label class="option"><input type="radio" name="o4_want_more_contact" value="beetje"><span>Een beetje</span></label>
@@ -824,7 +838,7 @@
 
   <section class="step" data-step="o5" data-branch="B">
     <h2>Waar maak je je wel eens zorgen over?</h2>
-    <div class="qmeta">Vraag 8 · max 2 selecties</div>
+    <div class="qmeta">Vraag 9 · max 2 selecties</div>
     <div class="options" data-max="2">
       <label class="option"><input type="checkbox" name="o5_worries" value="vallen"><span>Vallen</span></label>
       <label class="option"><input type="checkbox" name="o5_worries" value="ziek"><span>Ziek worden</span></label>
@@ -838,7 +852,7 @@
 
   <section class="step" data-step="o6" data-branch="B">
     <h2>Heb je een smartphone?</h2>
-    <div class="qmeta">Vraag 9</div>
+    <div class="qmeta">Vraag 10</div>
     <div class="options">
       <label class="option"><input type="radio" name="o6_smartphone" value="ja-zelf" required=""><span>Ja, ik gebruik hem zelf</span></label>
       <label class="option"><input type="radio" name="o6_smartphone" value="ja-lastig"><span>Ja, maar ik vind het lastig</span></label>
@@ -849,7 +863,7 @@
 
   <section class="step" data-step="o7" data-branch="B">
     <h2>Kun je zelf een app openen op je telefoon?</h2>
-    <div class="qmeta">Vraag 10</div>
+    <div class="qmeta">Vraag 11</div>
     <div class="options">
       <label class="option"><input type="radio" name="o7_app_open" value="makkelijk" required=""><span>Ja, makkelijk</span></label>
       <label class="option"><input type="radio" name="o7_app_open" value="soms"><span>Soms</span></label>
@@ -860,7 +874,7 @@
 
   <section class="step" data-step="o8" data-branch="B">
     <h2>Zou je een app willen gebruiken waarmee je met één knop kunt laten weten dat het goed met je gaat?</h2>
-    <div class="qmeta">Vraag 11</div>
+    <div class="qmeta">Vraag 12</div>
     <div class="options">
       <label class="option"><input type="radio" name="o8_one_button_ok" value="ja" required=""><span>Ja, dat lijkt mij fijn</span></label>
       <label class="option"><input type="radio" name="o8_one_button_ok" value="misschien"><span>Misschien</span></label>
@@ -871,7 +885,7 @@
 
   <section class="step" data-step="o9" data-branch="B">
     <h2>Wil je je aanmelden als testgebruiker (juni-juli 2026)?</h2>
-    <div class="qmeta">Vraag 12</div>
+    <div class="qmeta">Vraag 13</div>
     <div class="options">
       <label class="option"><input type="radio" name="o9_beta_optin" value="ja" required=""><span>Ja, mijn mantelzorger mag mij aanmelden</span></label>
       <label class="option"><input type="radio" name="o9_beta_optin" value="nee"><span>Nee, liever niet</span></label>
@@ -915,7 +929,7 @@
     });
   }
 
-  const flowCommon = ['consent', 'role'];
+  const flowCommon = ['consent', 'postcode', 'role'];
   const flowA = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10'];
   const flowB_full = ['o0','o1','o2','o3','o4','o5','o6','o7','o8','o9'];
   const flowB_skip = ['o0','o1','o2','o3','o4','o5','o6','o9'];
