@@ -554,8 +554,8 @@ const Footer = ({ intensity }) => {
       { label: 'Press & partner', href: 'mailto:hallo@ikbenok.nl?subject=Press' }
     ]},
     { title: 'Juridik', items: [
-      { label: 'Integritetspolicy', href: '../privacy/' },
-      { label: 'Cookies', href: '../cookies/' },
+      { label: 'Integritetspolicy', href: 'integritetspolicy/' },
+      { label: 'Kakor', href: 'cookies/' },
       { label: 'Allmänna villkor', href: null },
       { label: 'DPA för vårdorganisationer', href: 'mailto:hallo@ikbenok.nl?subject=DPA%20-%20v%C3%A5rdorganisation' }
     ]}].
