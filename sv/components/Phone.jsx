@@ -4,7 +4,7 @@
 // PhoneWordmark wrapper below so JSX call-sites stay terse.
 
 const { Phone, Wordmark: SvSharedWordmark } = window;
-const PhoneWordmark = (p) => <SvSharedWordmark text="jag är" markColor="var(--coral)" {...p} />;
+const PhoneWordmark = (p) => <SvSharedWordmark text="jag är" markColor="var(--sage-deep)" {...p} />;
 
 
 // ─────────────────────────────────────────────────────

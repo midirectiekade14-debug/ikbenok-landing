@@ -5,8 +5,8 @@
 
 const { useState, useEffect } = React;
 const { useIsMobile, Wordmark: SvSharedWordmark, Brand: SvSharedBrand } = window;
-const Wordmark = (p) => <SvSharedWordmark text="jag är" markColor="var(--coral)" {...p} />;
-const Brand = (p) => <SvSharedBrand text="jag är" markColor="var(--coral)" {...p} />;
+const Wordmark = (p) => <SvSharedWordmark text="jag är" markColor="var(--sage-deep)" {...p} />;
+const Brand = (p) => <SvSharedBrand text="jag är" markColor="var(--sage-deep)" {...p} />;
 
 const SectionLabel = ({ children, align = 'left' }) =>
 <div style={{
