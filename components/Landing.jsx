@@ -610,7 +610,7 @@ const Footer = ({ intensity }) => {
       <div style={{
       fontFamily: 'var(--font-body)', fontSize: 12,
       color: 'var(--fg-muted)', letterSpacing: '0.01em'
-    }}>© 2026 <Brand />. Nederland</div>
+    }}>© 2026 ik ben ok. Nederland</div>
 
     </div>
   </footer>);
