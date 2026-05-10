@@ -136,12 +136,18 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true, color = 'var(--
 // beschikbaar, dus dan vallen we terug op de oude span+IkBenOkMark
 // rendering.
 // ─────────────────────────────────────────────────────
-const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor }) => {
+// `inline=true` rendert de wordmark in em-gebaseerde dimensies, zodat hij
+// meeschaalt met de surrounding font-size en visueel matcht met de letters
+// in dezelfde paragraaf. Gebruik deze mode binnen body-copy; voor standalone
+// (Nav, Footer, Phone-mockups) blijft size-in-px de juiste keuze.
+const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor, inline = false }) => {
   if (text !== 'ik ben') {
     // Fallback voor talen zonder path-data (bv. 'jag är').
     return (
       <span style={{
-        fontFamily: 'var(--font-display)', fontSize: size, lineHeight: 1,
+        fontFamily: 'var(--font-display)',
+        fontSize: inline ? 'inherit' : size,
+        lineHeight: 1,
         letterSpacing: '-0.015em', color, fontWeight: 500,
         display: 'inline-flex', alignItems: 'center', gap: '0.12em',
         whiteSpace: 'nowrap'
@@ -176,8 +182,8 @@ const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor
   return (
     <span style={{ display: 'inline-block', verticalAlign: 'middle', lineHeight: 0 }}>
       <svg
-        width={size * (totalWidth / 100)}
-        height={size * (totalHeight / 100)}
+        width={inline ? `${totalWidth / 100}em` : size * (totalWidth / 100)}
+        height={inline ? `${totalHeight / 100}em` : size * (totalHeight / 100)}
         viewBox={`0 0 ${totalWidth} ${totalHeight}`}
         style={{ overflow: 'visible', display: 'block' }}
       >
@@ -222,7 +228,7 @@ const Brand = ({ italic = false, text = 'ik ben', markColor }) => {
       </span>
     );
   }
-  return <Wordmark size={24} text={text} markColor={markColor} />;
+  return <Wordmark inline text={text} markColor={markColor} />;
 };
 
 // Pure iPhone frame — identical between NL and SV.

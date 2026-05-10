@@ -115,7 +115,7 @@ const Hero = ({ intensity }) => {
       fontFamily: 'var(--font-body)', fontSize: isMobile ? 17 : 19, lineHeight: 1.55,
       color: 'var(--fg-default)', maxWidth: 520, margin: '0 0 36px'
     }}>
-        <Wordmark size={isMobile ? 19 : 22} /> brengt dagelijkse gemoedsrust aan alleenwonende ouderen en hun mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.
+        <Wordmark inline /> brengt dagelijkse gemoedsrust aan alleenwonende ouderen en hun mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.
       </p>
 
       {/* CTAs */}
