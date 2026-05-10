@@ -187,7 +187,7 @@
       <li><a href="#installeren-android">Installeren op Android (APK of Play Store)</a></li>
       <li><a href="#eerste-keer">De eerste keer openen</a></li>
       <li><a href="#koppelen">Koppelen met een tweede toestel</a></li>
-      <li><a href="#smoketest">Smoketest — vijf minuten</a></li>
+      <li><a href="#smoketest">Testen of het werkt — 5 minuten</a></li>
       <li><a href="#wat-te-testen">Wat we je vragen te testen</a></li>
       <li><a href="#bekend">Wat we al weten — geen bug melden</a></li>
       <li><a href="#feedback">Feedback geven</a></li>
@@ -286,16 +286,15 @@
 
   <h2 id="eerste-keer">4. De eerste keer openen</h2>
   <ol>
-    <li>Splash met de wordmark <em>ik ben ok</em> die zacht infaadt.</li>
-    <li>Kies een rol: <strong>"Ik wil de 'ik ben ok' knop"</strong> (je gebruikt de app zelf) of <strong>"Ik kijk mee met iemand"</strong> (mantelzorger).</li>
+    <li>Kies een rol: <strong>"Ik wil de 'ik ben ok' knop"</strong> (je gebruikt de app zelf) of <strong>"Ik hou iemand in de gaten"</strong> (mantelzorger).</li>
     <li>Vul je naam, e-mailadres en telefoonnummer in.</li>
     <li>Sta meldingen toe — anders krijg je geen herinneringen of alarmen.</li>
-    <li>Sta locatie toe op <strong>"Altijd"</strong>. De app gebruikt locatie alléén als je een check-in mist; niet daarvoor. Maar de toestemming moet er staan.</li>
+    <li>Sta locatie toe op <strong>"Altijd"</strong>. De app gebruikt locatie alléén op het moment dat je een check-in mist; niet daarvoor of daarna. Maar de toestemming moet er staan.</li>
   </ol>
 
   <div class="callout">
     <strong>Anoniem starten kan ook</strong>
-    Wil je eerst rondkijken zonder account? Dat kan. Je kunt later in de instellingen alsnog inloggen — alles wat je hebt ingesteld blijft bewaard.
+    Wil je eerst rondkijken zonder account? Dat kan. Je kunt later in de instellingen alsnog inloggen — alles wat je hebt ingesteld blijft bewaard. Let op: zonder account kun je niet koppelen met een contactpersoon.
   </div>
 
   <h2 id="koppelen">5. Koppelen met een tweede toestel</h2>
@@ -325,17 +324,16 @@
     </div>
   </div>
 
-  <h2 id="smoketest">6. Smoketest — vijf minuten</h2>
+  <h2 id="smoketest">6. Testen of het werkt — 5 minuten</h2>
   <p>Loop deze stappen één keer door om te checken of de basis werkt.</p>
 
   <ul class="checklist">
-    <li>App opent met een zachte fade-in van de wordmark — geen flits, geen tweede logo.</li>
-    <li>Achtergrond is uniform <em>cream</em> met één coral-cirkel rechtsboven. Geen kleurige wolken.</li>
-    <li>Beginscherm toont de grote knop in het midden, ademend (rustig groter–kleiner).</li>
+    <li>App opent met logo.</li>
+    <li>Beginscherm toont de grote knop in het midden, ademend (wordt groter–kleiner).</li>
     <li>Onder de knop: twee kaartjes "vorige Check" en "volgende Check" — labels op één regel.</li>
-    <li>Tik op de knop <strong>"ik ben ok"</strong>. Knop reageert direct (klik, klaar) en je ziet "Fijn dat je er bent."</li>
-    <li>Bottom-tabs (Home / Contacten / Instellingen) wisselen vlot, geen vertraging.</li>
-    <li>In <strong>Instellingen</strong> zijn alle teksten leesbaar — geen afgekapte staartjes onder letters als <em>g, j, p, y</em>.</li>
+    <li>Tik op de knop <strong>"ik ben ok"</strong>. Knop reageert direct (klik, klaar) en je ziet "Fijn dat je er bent." Je contactpersoon ziet dit meteen in de app.</li>
+    <li>Home / Contacten / Instellingen wisselen vlot, geen vertraging.</li>
+    <li>In <strong>Instellingen</strong> zijn de teksten goed leesbaar.</li>
   </ul>
 
   <h2 id="wat-te-testen">7. Wat we je vragen te testen</h2>
@@ -356,7 +354,7 @@
   <ul>
     <li>Wissel een keer tussen <strong>"Interval"</strong> en <strong>"Vaste momenten"</strong>. Beide moeten werken.</li>
     <li>Stel <strong>Stille uren</strong> in — bv. 22:00 tot 07:00. Geen meldingen in die periode.</li>
-    <li>Pas je naam, e-mail of telefoon aan via "aanpassen". Het bewerkscherm moet een <em>cream</em> achtergrond hebben (niet wit).</li>
+    <li>Pas je naam, e-mail of telefoon aan via "aanpassen".</li>
   </ul>
 
   <h3>Caregiver-kaart</h3>
@@ -374,24 +372,12 @@
 
   <div class="bug-grid">
     <div class="bug-card">
-      <h4>Abonneer-knop doet niets</h4>
-      <p>De knop staat er voor later. Je hoeft niets te betalen — de app is in deze fase volledig gratis.</p>
-    </div>
-    <div class="bug-card">
-      <h4>Proefperiode "verlopen"</h4>
-      <p>Krijg je een banner over 14 dagen proef? Negeer 'm. De paywall is nog niet actief.</p>
-    </div>
-    <div class="bug-card">
       <h4>iPhone — geen kaartje in alarm</h4>
       <p>Op iPhone-mantelzorgers ontbreekt nog het kaart-thumbnail en de directe Bel-knop in de alarm-melding. Volgt later.</p>
     </div>
     <div class="bug-card">
       <h4>Engelstalige e-mails</h4>
       <p>Verifieer-e-mail en wachtwoord-reset zijn nog Engels. Wordt vertaald.</p>
-    </div>
-    <div class="bug-card">
-      <h4>WearOS / smartwatch</h4>
-      <p>Geen ondersteuning in deze versie. Apart spoor, later.</p>
     </div>
     <div class="bug-card">
       <h4>iPhone — geen geluid bij alarm-mute</h4>
