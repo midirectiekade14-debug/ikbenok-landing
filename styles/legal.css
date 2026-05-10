@@ -80,6 +80,12 @@ body {
   transform: translateY(-0.04em);
 }
 
+/* Inline-modifier: schaalt mee met surrounding font-size in body-copy. */
+.legal-wordmark.is-inline {
+  font-size: inherit;
+  vertical-align: baseline;
+}
+
 .legal-nav .back-link {
   font-family: var(--font-body);
   font-size: 14px;
