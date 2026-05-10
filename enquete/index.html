@@ -766,6 +766,12 @@
       <label class="option"><input type="radio" name="m10_beta_optin" value="nee"><span>Nee, liever niet</span></label>
     </div>
     <div class="conditional" id="m10_email_block">
+      <label><strong>Welke telefoon gebruik je?</strong></label>
+      <div class="options" style="margin-bottom: 14px;">
+        <label class="option"><input type="radio" name="m10_phone" value="iphone"><span>iPhone (iOS)</span></label>
+        <label class="option"><input type="radio" name="m10_phone" value="android"><span>Android (bv. Samsung, Google Pixel)</span></label>
+        <label class="option"><input type="radio" name="m10_phone" value="unknown"><span>Weet ik niet</span></label>
+      </div>
       <label for="m10_email"><strong>E-mailadres (alleen voor de beta-uitnodiging)</strong></label>
       <input type="email" name="m10_email" id="m10_email" placeholder="naam@voorbeeld.nl">
       <p class="helper">We gebruiken dit alléén om je uit te nodigen voor de beta-test. Je kunt je op elk moment uitschrijven.</p>
@@ -891,6 +897,12 @@
       <label class="option"><input type="radio" name="o9_beta_optin" value="nee"><span>Nee, liever niet</span></label>
     </div>
     <div class="conditional" id="o9_email_block">
+      <label><strong>Welke telefoon heb je?</strong></label>
+      <div class="options" style="margin-bottom: 14px;">
+        <label class="option"><input type="radio" name="o9_phone" value="iphone"><span>iPhone (iOS)</span></label>
+        <label class="option"><input type="radio" name="o9_phone" value="android"><span>Android (bv. Samsung, Google Pixel)</span></label>
+        <label class="option"><input type="radio" name="o9_phone" value="unknown"><span>Weet ik niet</span></label>
+      </div>
       <label for="o9_caregiver_email"><strong>E-mailadres van je mantelzorger</strong></label>
       <input type="email" name="o9_caregiver_email" id="o9_caregiver_email" placeholder="mantelzorger@voorbeeld.nl">
       <p class="helper">We sturen de uitnodiging naar je mantelzorger.</p>
@@ -978,6 +990,8 @@
     if (name === 'm10') {
       const ja = e2.querySelector('input[name="m10_beta_optin"][value="ja"]:checked');
       if (ja) {
+        const phone = e2.querySelector('input[name="m10_phone"]:checked');
+        if (!phone) { alert('Geef even aan welke telefoon je gebruikt.'); return false; }
         const email = e2.querySelector('input[name="m10_email"]').value.trim();
         if (!email || !email.includes('@')) { alert('Vul een geldig e-mailadres in.'); return false; }
       }
@@ -985,6 +999,8 @@
     if (name === 'o9') {
       const ja = e2.querySelector('input[name="o9_beta_optin"][value="ja"]:checked');
       if (ja) {
+        const phone = e2.querySelector('input[name="o9_phone"]:checked');
+        if (!phone) { alert('Geef even aan welke telefoon je hebt.'); return false; }
         const email = e2.querySelector('input[name="o9_caregiver_email"]').value.trim();
         if (!email || !email.includes('@')) { alert('Vul een geldig e-mailadres in.'); return false; }
       }
