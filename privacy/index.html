@@ -88,8 +88,10 @@
     <li><strong>Locatie (GPS):</strong> alleen bij een gemiste check-in en alleen tussen het moment van escalatie en het moment dat je weer bevestigt dat het goed is. Niet doorlopend, niet in de achtergrond. Op het moment dat de melding wordt verzonden, wordt je laatst bekende locatie eenmalig meegegeven aan je gekoppelde contactpersoon.</li>
     <li><strong>Pairing:</strong> het feit dat jouw account is gekoppeld aan dat van een mantelzorger of een verzorgde, plus de pairing-status</li>
     <li><strong>Push-tokens:</strong> een door Firebase Cloud Messaging (FCM) toegekende identificator om notificaties naar het juiste toestel te sturen</li>
+    <li><strong>Telefoonnummer (optioneel):</strong> alleen als je dit aan je profiel toevoegt. Het wordt in de melding naar je gekoppelde contactpersoon meegestuurd zodat hij of zij je snel kan terugbellen. Je kunt dit veld leeg laten.</li>
+    <li><strong>Contactenkiezer (optioneel):</strong> wanneer je in de app op "kies uit je adresboek" tikt om een mantelzorger toe te voegen, vraagt de app éénmalig toestemming om je telefoon-adresboek te lezen. De namen en nummers blijven op je toestel — we slaan ze niet op, sturen ze niet naar onze servers en delen ze met niemand. Je kunt deze stap overslaan en het nummer handmatig intypen.</li>
   </ul>
-  <p>We verzamelen <strong>geen</strong> gezondheidsgegevens, geen contactenlijst, geen call-logs en geen continu locatie-spoor.</p>
+  <p>We verzamelen <strong>geen</strong> gezondheidsgegevens, geen call-logs en geen continu locatie-spoor. De contactenlijst lezen we, zoals hierboven beschreven, alleen lokaal in een eenmalige picker en uitsluitend op jouw initiatief.</p>
 
   <h3>E-mailcontact</h3>
   <p>Als je ons mailt, bewaren we het bericht en je e-mailadres om je vraag te beantwoorden en eventuele vervolgvragen af te handelen.</p>
@@ -133,7 +135,9 @@
     <dt>GitHub, Inc.</dt>
     <dd>Hosting van de statische website allesok.nl via GitHub Pages.</dd>
     <dt>Yourhosting B.V.</dt>
-    <dd>Domeinregistratie en DNS voor allesok.nl. Geen toegang tot inhoudelijke persoonsgegevens.</dd>
+    <dd>Domeinregistratie, DNS en (mail-hosting) voor allesok.nl. Geen toegang tot inhoudelijke persoonsgegevens van app-gebruikers.</dd>
+    <dt>Resend, Inc.</dt>
+    <dd>Verzenden van transactionele e-mail vanuit de app (welkomstmail, wachtwoord-herstel, eventuele bevestigingen). Resend ontvangt uitsluitend het e-mailadres van de ontvanger en de inhoud van de betreffende mail; geen overige profielgegevens.</dd>
     <dt>Apple Distribution International</dt>
     <dd>Distributie via App Store, na app-launch. Apple ontvangt aankoop- en abonnementsgegevens conform haar eigen voorwaarden.</dd>
     <dt>Google Commerce Limited</dt>
@@ -145,7 +149,7 @@
   <h2 id="doorgifte">6. Doorgifte buiten de EU</h2>
   <p>Onze verwerkers zijn deels gevestigd buiten de Europese Economische Ruimte (EER), waaronder de Verenigde Staten. Voor doorgifte daarheen vertrouwen we op:</p>
   <ul>
-    <li>Het <strong>EU-VS Data Privacy Framework</strong> (adequaatheidsbesluit van de Europese Commissie van 10 juli 2023), waaraan onder meer Google LLC en Supabase, Inc. zijn aangesloten;</li>
+    <li>Het <strong>EU-VS Data Privacy Framework</strong> (adequaatheidsbesluit van de Europese Commissie van 10 juli 2023), waaraan onder meer Google LLC, Supabase, Inc. en Resend, Inc. zijn aangesloten;</li>
     <li><strong>Standard Contractual Clauses (SCC's)</strong> als achtervang, vastgelegd in de DPA's met onze verwerkers;</li>
     <li>Aanvullende technische maatregelen zoals encryptie tijdens transport (TLS) en in rust waar de leverancier dat ondersteunt.</li>
   </ul>
