@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Testershandleiding — ik ben ok</title>
+<meta name="description" content="Stap-voor-stap handleiding voor testers van de app ik ben ok — installeren, koppelen, testen, feedback geven." />
+<meta name="theme-color" content="#F5EFE3" />
+<link rel="canonical" href="https://allesok.nl/testers/" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="apple-touch-icon" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../styles/legal.css?v=1" />
+<style>
+  /* ── Tester-specifieke aanvullingen op legal.css ───── */
+  .platform-pills {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 28px;
+    flex-wrap: wrap;
+  }
+  .platform-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--fg-default);
+    text-decoration: none;
+  }
+  .platform-pill.is-ios { border-color: rgba(11,27,43,0.18); }
+  .platform-pill.is-android { border-color: rgba(110,150,128,0.45); }
+
+  .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    margin: 0 0 18px;
+    padding: 18px 22px 18px 18px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--coral);
+    color: var(--cream);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .step h3 {
+    margin: 4px 0 6px !important;
+    font-size: 19px !important;
+  }
+  .step p { margin: 0 0 8px; }
+  .step p:last-child { margin-bottom: 0; }
+
+  .platform-tag {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    background: var(--cream-warm);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .platform-tag.ios { background: rgba(11,27,43,0.06); color: var(--navy); }
+  .platform-tag.android { background: rgba(110,150,128,0.16); color: var(--sage-deep); }
+
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 24px;
+  }
+  .checklist li {
+    position: relative;
+    padding: 8px 0 8px 30px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--coral);
+    border-radius: 4px;
+    background: transparent;
+  }
+  .checklist li:last-child { border-bottom: none; }
+
+  .callout {
+    background: rgba(110,150,128,0.10);
+    border: 1px solid rgba(110,150,128,0.35);
+    border-left: 4px solid var(--sage);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 0 0 24px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .callout.warn {
+    background: rgba(201,169,97,0.12);
+    border-color: rgba(201,169,97,0.45);
+    border-left-color: var(--gold);
+  }
+  .callout.danger {
+    background: rgba(165,74,58,0.10);
+    border-color: rgba(165,74,58,0.35);
+    border-left-color: var(--clay);
+  }
+  .callout strong { display: block; margin-bottom: 4px; }
+
+  .bug-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 0 0 24px;
+  }
+  .bug-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line-soft);
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow-hair);
+  }
+  .bug-card h4 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--coral);
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+  .bug-card p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: var(--fg-default);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<nav class="legal-nav">
+  <a class="legal-wordmark" href="../">
+    ik ben <span class="mark"><span>ok</span></span>
+  </a>
+  <a class="back-link" href="../">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Terug naar home
+  </a>
+</nav>
+
+<article class="legal-article">
+  <p class="eyebrow">Voor testers</p>
+  <h1>Tester<em>shandleiding</em></h1>
+  <p class="lead">Bedankt dat je <strong>ik ben ok</strong> wilt testen. Hieronder staat alles wat je nodig hebt — installeren, koppelen, één week meelopen en feedback geven.</p>
+  <p class="meta">Versie 0.6.74 — build 76 — bijgewerkt op 9 mei 2026</p>
+
+  <div class="legal-banner">
+    <strong>Dit is een testversie</strong>
+    De app kan rare dingen doen — vastlopen, een verkeerd kleurtje, een melding die niet klopt. Dat is precies wat we willen weten. Niets wat jij doet kan iets stuk maken. Vragen of een bug doorgeven? <a href="mailto:vandeveloping010@gmail.com">vandeveloping010@gmail.com</a> of een berichtje naar Harm.
+  </div>
+
+  <nav class="legal-toc" aria-label="Inhoudsopgave">
+    <h2>Inhoud</h2>
+    <ol>
+      <li><a href="#voor-je-begint">Voor je begint</a></li>
+      <li><a href="#installeren-ios">Installeren op iPhone (TestFlight)</a></li>
+      <li><a href="#installeren-android">Installeren op Android (APK of Play Store)</a></li>
+      <li><a href="#eerste-keer">De eerste keer openen</a></li>
+      <li><a href="#koppelen">Koppelen met een tweede toestel</a></li>
+      <li><a href="#smoketest">Smoketest — vijf minuten</a></li>
+      <li><a href="#wat-te-testen">Wat we je vragen te testen</a></li>
+      <li><a href="#bekend">Wat we al weten — geen bug melden</a></li>
+      <li><a href="#feedback">Feedback geven</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="voor-je-begint">1. Voor je begint</h2>
+  <ul>
+    <li><strong>iPhone</strong> met iOS 16 of nieuwer, óf <strong>Android-toestel</strong> met Android 8 of nieuwer.</li>
+    <li>Een werkende internetverbinding — wifi of mobiel.</li>
+    <li>Het e-mailadres waarmee je nu al op je toestel werkt (Apple ID op iPhone, Google-account op Android). Je hoeft niets nieuws aan te maken.</li>
+    <li><strong>Optioneel:</strong> een tweede toestel of een tweede e-mailadres als je het koppelen tussen twee accounts wilt testen.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Wat doet de app eigenlijk?</strong>
+    <em>ik ben ok</em> is een check-in app voor mensen die alleen wonen, en hun mantelzorgers. Op vaste momenten tik je één knop om te bevestigen dat alles goed is. Reageer je niet, dan krijgt de gekoppelde mantelzorger automatisch een melding.
+  </div>
+
+  <h2 id="installeren-ios">2. Installeren op iPhone</h2>
+  <p>De iOS-versie loopt via <strong>TestFlight</strong> — de officiële test-app van Apple zelf. Veilig, gratis, en volledig los van de echte App Store.</p>
+
+  <div class="step">
+    <span class="step-num">1</span>
+    <div>
+      <h3>Ontvang de uitnodig-link</h3>
+      <p>Je krijgt van Harm een TestFlight-link via WhatsApp of e-mail. Open die link <strong>op je iPhone</strong>, niet op je Mac.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span>
+    <div>
+      <h3>Installeer TestFlight (als je 'm nog niet hebt)</h3>
+      <p>Heb je TestFlight nog niet? Je iPhone vraagt of je 'm wilt installeren. Kies "Installeer". TestFlight is gratis en van Apple zelf.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span>
+    <div>
+      <h3>Accepteer en installeer</h3>
+      <p>TestFlight opent en toont "ik ben ok". Tik op <strong>Accept</strong>, daarna op <strong>Install</strong>. Even wachten tot het downloaden klaar is.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">4</span>
+    <div>
+      <h3>Open de app</h3>
+      <p>De app verschijnt op je beginscherm met een gele streep ernaast — zo zie je dat het de testversie is. Die streep is normaal.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Goed om te weten</strong>
+    TestFlight verwijdert de testversie automatisch na 90 dagen. Je hoeft niets bij te houden.
+  </div>
+
+  <h2 id="installeren-android">3. Installeren op Android</h2>
+  <p>Op Android heb je twee mogelijkheden: een directe APK (snelste) of via Play Store internal testing (officieel).</p>
+
+  <h3>Optie A — Directe APK (Discord-link)</h3>
+
+  <div class="step">
+    <span class="step-num">1</span>
+    <div>
+      <h3>Download de APK</h3>
+      <p>Tik op de Drive-link die je van Harm hebt gekregen. Je telefoon downloadt een bestand <code>ikbenok-v0.6.74-build76-arm64.apk</code>.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span>
+    <div>
+      <h3>Sta installatie toe</h3>
+      <p>Tik op het gedownloade bestand. De eerste keer vraagt Android: "Mag deze app onbekende apps installeren?" — kies <strong>Toestaan</strong>. Daarna keer je terug en tik je nogmaals op het bestand om te installeren.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span>
+    <div>
+      <h3>Open de app</h3>
+      <p>Na installatie verschijnt het icoon op je startscherm. Tik om te openen.</p>
+    </div>
+  </div>
+
+  <h3>Optie B — Play Store internal testing</h3>
+  <p>Krijg je van Harm een speciale Play Store-link? Dan word je toegevoegd aan de internal testing track. Volg de link, accepteer de uitnodiging, en de app verschijnt in de Play Store als gewone download.</p>
+
+  <div class="callout warn">
+    <strong>Update over een vorige versie?</strong>
+    Een update over een eerdere build hoort gewoon te werken. Krijg je "App niet geïnstalleerd"? Verwijder dan de oude versie eerst, en installeer build 76 daarna opnieuw.
+  </div>
+
+  <h2 id="eerste-keer">4. De eerste keer openen</h2>
+  <ol>
+    <li>Splash met de wordmark <em>ik ben ok</em> die zacht infaadt.</li>
+    <li>Kies een rol: <strong>"Ik wil de 'ik ben ok' knop"</strong> (je gebruikt de app zelf) of <strong>"Ik kijk mee met iemand"</strong> (mantelzorger).</li>
+    <li>Vul je naam, e-mailadres en telefoonnummer in.</li>
+    <li>Sta meldingen toe — anders krijg je geen herinneringen of alarmen.</li>
+    <li>Sta locatie toe op <strong>"Altijd"</strong>. De app gebruikt locatie alléén als je een check-in mist; niet daarvoor. Maar de toestemming moet er staan.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Anoniem starten kan ook</strong>
+    Wil je eerst rondkijken zonder account? Dat kan. Je kunt later in de instellingen alsnog inloggen — alles wat je hebt ingesteld blijft bewaard.
+  </div>
+
+  <h2 id="koppelen">5. Koppelen met een tweede toestel</h2>
+  <p>Om de échte werking te testen, moet één persoon de "ik ben ok"-rol hebben en een tweede persoon de mantelzorg-rol. Dat doe je met een koppelcode.</p>
+
+  <div class="step">
+    <span class="step-num">1</span>
+    <div>
+      <h3>Toestel A genereert een code</h3>
+      <p>Ga naar <strong>Contacten → Iemand koppelen → "Koppelcode genereren"</strong>. Je krijgt een 6-letterige code.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span>
+    <div>
+      <h3>Toestel B vult de code in</h3>
+      <p>Op het tweede toestel: <strong>Contacten → Iemand koppelen → "Koppelcode invoeren"</strong>. Plak de code, bevestig.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span>
+    <div>
+      <h3>Klaar — beide toestellen zien elkaar</h3>
+      <p>In Contacten staat aan beide kanten een kaart met "GEKOPPELD". De mantelzorger ziet voortaan op het beginscherm de status van de ander.</p>
+    </div>
+  </div>
+
+  <h2 id="smoketest">6. Smoketest — vijf minuten</h2>
+  <p>Loop deze stappen één keer door om te checken of de basis werkt.</p>
+
+  <ul class="checklist">
+    <li>App opent met een zachte fade-in van de wordmark — geen flits, geen tweede logo.</li>
+    <li>Achtergrond is uniform <em>cream</em> met één coral-cirkel rechtsboven. Geen kleurige wolken.</li>
+    <li>Beginscherm toont de grote knop in het midden, ademend (rustig groter–kleiner).</li>
+    <li>Onder de knop: twee kaartjes "vorige Check" en "volgende Check" — labels op één regel.</li>
+    <li>Tik op de knop <strong>"ik ben ok"</strong>. Knop reageert direct (klik, klaar) en je ziet "Fijn dat je er bent."</li>
+    <li>Bottom-tabs (Home / Contacten / Instellingen) wisselen vlot, geen vertraging.</li>
+    <li>In <strong>Instellingen</strong> zijn alle teksten leesbaar — geen afgekapte staartjes onder letters als <em>g, j, p, y</em>.</li>
+  </ul>
+
+  <h2 id="wat-te-testen">7. Wat we je vragen te testen</h2>
+
+  <h3>Een week lang dagelijks de knop indrukken</h3>
+  <p>Eén keer per dag op de grote knop tikken. Maakt niet uit wanneer. Let op of de knop <strong>direct</strong> reageert — hij hoort niet te wachten op het netwerk.</p>
+
+  <h3>Eén afgesproken dag overslaan (alarm-test)</h3>
+  <p>Op een afgesproken dag druk je bewust niet. Het gekoppelde toestel krijgt dan een alarm-melding met de laatste locatie. We testen of:</p>
+  <ul>
+    <li>De melding daadwerkelijk binnenkomt (en ongeveer wanneer).</li>
+    <li>Je 'm aan kunt tikken om de app te openen.</li>
+    <li><span class="platform-tag android">Android</span> Het kaartje en de "Bel"-knop in de melding zichtbaar zijn.</li>
+    <li><span class="platform-tag ios">iOS</span> De melding doorbreekt eventuele Focus-modus.</li>
+  </ul>
+
+  <h3>Instellingen verkennen</h3>
+  <ul>
+    <li>Wissel een keer tussen <strong>"Interval"</strong> en <strong>"Vaste momenten"</strong>. Beide moeten werken.</li>
+    <li>Stel <strong>Stille uren</strong> in — bv. 22:00 tot 07:00. Geen meldingen in die periode.</li>
+    <li>Pas je naam, e-mail of telefoon aan via "aanpassen". Het bewerkscherm moet een <em>cream</em> achtergrond hebben (niet wit).</li>
+  </ul>
+
+  <h3>Caregiver-kaart</h3>
+  <p>Als mantelzorger zie je een kaart van de gekoppelde persoon. Check:</p>
+  <ul>
+    <li>De naam staat groot in <em>coral italic</em> op één regel.</li>
+    <li>Onder de naam: <em>heeft ingecheckt · {datum} · {tijd}</em>.</li>
+    <li>Daaronder: <em>Volgende check-in {datum} om {tijd}</em>.</li>
+    <li>Tik op <strong>"+ Deze week"</strong> — historie klapt open met dagen + tijden.</li>
+    <li>Bij overdue: status verandert naar <strong>"GEMIST"</strong> in coral.</li>
+  </ul>
+
+  <h2 id="bekend">8. Wat we al weten — niet melden</h2>
+  <p>Deze dingen zijn bekend en geen bug. Geen werk om ze te melden:</p>
+
+  <div class="bug-grid">
+    <div class="bug-card">
+      <h4>Abonneer-knop doet niets</h4>
+      <p>De knop staat er voor later. Je hoeft niets te betalen — de app is in deze fase volledig gratis.</p>
+    </div>
+    <div class="bug-card">
+      <h4>Proefperiode "verlopen"</h4>
+      <p>Krijg je een banner over 14 dagen proef? Negeer 'm. De paywall is nog niet actief.</p>
+    </div>
+    <div class="bug-card">
+      <h4>iPhone — geen kaartje in alarm</h4>
+      <p>Op iPhone-mantelzorgers ontbreekt nog het kaart-thumbnail en de directe Bel-knop in de alarm-melding. Volgt later.</p>
+    </div>
+    <div class="bug-card">
+      <h4>Engelstalige e-mails</h4>
+      <p>Verifieer-e-mail en wachtwoord-reset zijn nog Engels. Wordt vertaald.</p>
+    </div>
+    <div class="bug-card">
+      <h4>WearOS / smartwatch</h4>
+      <p>Geen ondersteuning in deze versie. Apart spoor, later.</p>
+    </div>
+    <div class="bug-card">
+      <h4>iPhone — geen geluid bij alarm-mute</h4>
+      <p>Als je iPhone op stil staat (hardware-switch), maakt de alarm-melding geen geluid. Een speciale Apple-toestemming hiervoor is aangevraagd.</p>
+    </div>
+  </div>
+
+  <h2 id="feedback">9. Feedback geven</h2>
+  <p>Per bug graag deze info:</p>
+  <ol>
+    <li><strong>Wat ging fout</strong> — korte omschrijving.</li>
+    <li><strong>Waar</strong> — welk scherm, welke stappen.</li>
+    <li><strong>Wat zag je</strong> — screenshot of foto helpt enorm.</li>
+    <li><strong>Wat verwachtte je</strong>.</li>
+    <li><strong>Toestel + versie</strong> — bv. "iPhone 13, iOS 17.4, build 76" of "Samsung A52, Android 13, build 76".</li>
+  </ol>
+
+  <h3>Hoe sturen?</h3>
+  <ul>
+    <li><span class="platform-tag ios">iOS</span> In TestFlight zit een knop <strong>"Send Beta Feedback"</strong> — schermafbeelding en tekst gaan rechtstreeks naar Harm.</li>
+    <li><span class="platform-tag android">Android</span> Via WhatsApp of Discord-#chat, hetzelfde kanaal als waar je de APK kreeg.</li>
+    <li>E-mail naar <a href="mailto:vandeveloping010@gmail.com">vandeveloping010@gmail.com</a> mag altijd.</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>Crasht de app?</strong>
+    Op iPhone via <strong>Instellingen → Privacy & beveiliging → Analyse en verbeteringen → Analysegegevens</strong> zoek je naar bestanden die met "ikbenok" beginnen — stuur die door. Op Android volstaat een omschrijving van wat je deed vlak voor de crash.
+  </div>
+
+  <h2>Tot slot</h2>
+  <p>Élke bug die je vindt voorkomt dat een 70+'er straks vastloopt op een avond dat het ertoe doet. Bedankt dat je dit voor mij doet.</p>
+  <p class="meta">— Harm</p>
+
+</article>
+
+<footer class="legal-footer">
+  <div>© 2026 ik ben ok — testfase</div>
+  <div class="footer-links">
+    <a href="../">Home</a>
+    <a href="../privacy/">Privacy</a>
+    <a href="../cookies/">Cookies</a>
+  </div>
+</footer>
+
+</body>
+</html>
