@@ -143,10 +143,9 @@ const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor
       fontSize: inline ? 'inherit' : size,
       lineHeight: 1,
       letterSpacing: '-0.015em', color, fontWeight: 500,
-      display: 'inline-flex', alignItems: 'center', gap: '0.12em',
       whiteSpace: 'nowrap'
     }}>
-      {text} <IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
+      {text}{' '}<IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
     </span>
   );
 };
