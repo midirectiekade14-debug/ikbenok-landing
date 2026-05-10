@@ -126,84 +126,27 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true, color = 'var(--
 };
 
 // ─────────────────────────────────────────────────────
-// Wordmark — used in Nav and inside phone mockups.
-// `text` is the prefix before the mark ('ik ben' or 'jag är').
-// `markColor` controls the IkBenOkMark color (defaults to sage-deep).
+// Wordmark — used in Nav, body-copy en Phone-mockups.
+// `text` is de prefix vóór de mark ('ik ben' of 'jag är').
+// `markColor` overschrijft de IkBenOkMark cirkelkleur (default sage-deep).
+// `inline=true` laat de wordmark meeschalen met de surrounding font-size.
 //
-// Voor text === 'ik ben' renderen we één inline SVG met "ik ben"-path
-// (Dosis-Medium) + 3 cirkels + "ok"-path (Dosis-Bold). Pixel-identiek
-// met de Expo-app. Voor andere talen (bv. SV "jag är") is geen path
-// beschikbaar, dus dan vallen we terug op de oude span+IkBenOkMark
-// rendering.
+// Eén rendering-pad voor alle talen: Dosis-Medium tekst + IkBenOkMark
+// (1.9em mark, flex-aligned op tekst-midden). Match SV-positionering die
+// Harm op 2026-05-10 als referentie aanwees ("NL klopt geen reet van"
+// vs. SV als ankerpunt).
 // ─────────────────────────────────────────────────────
-// `inline=true` rendert de wordmark in em-gebaseerde dimensies, zodat hij
-// meeschaalt met de surrounding font-size en visueel matcht met de letters
-// in dezelfde paragraaf. Gebruik deze mode binnen body-copy; voor standalone
-// (Nav, Footer, Phone-mockups) blijft size-in-px de juiste keuze.
 const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor, inline = false }) => {
-  if (text !== 'ik ben') {
-    // Fallback voor talen zonder path-data (bv. 'jag är').
-    return (
-      <span style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: inline ? 'inherit' : size,
-        lineHeight: 1,
-        letterSpacing: '-0.015em', color, fontWeight: 500,
-        display: 'inline-flex', alignItems: 'center', gap: '0.12em',
-        whiteSpace: 'nowrap'
-      }}>
-        {text} <IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
-      </span>
-    );
-  }
-
-  // Layout op fontSize=100 referentie-frame, 1:1 uit Wordmark.tsx van Expo-app.
-  const fill = color;
-  const fillMark = markColor || 'var(--sage-deep)';
-  const markPx = 190;
-  const ikBenWidth = IK_BEN_METRICS.bbox.x2; // 227.3
-  const gap = 12;
-  const totalWidth = ikBenWidth + gap + markPx; // 429.3
-  const totalHeight = markPx; // 190
-  const markCenterX = ikBenWidth + gap + markPx / 2; // 334.3
-  const markCenterY = totalHeight / 2; // 95
-  const markYOffset = 10;
-  const okYLift = 0;
-  const textBaselineY = markCenterY + TEXT_VISUAL_OFFSET_FROM_BASELINE; // 132.5
-  const okScale = 1 / 1.9;
-  const okBboxCenterX = (OK_METRICS.bbox.x1 + OK_METRICS.bbox.x2) / 2; // 50.6
-  const markTranslateY = markCenterY - markPx / 2; // 0
-  const okBaselineYInMark = (textBaselineY - markTranslateY) / (markPx / 100); // ≈ 69.7368
-  const okTranslateXInMark = 50 - okBboxCenterX * okScale; // ≈ 23.3684
-
-  // BELANGRIJK: cirkel-bottom valt op y=200 (markCenterY + markYOffset + r*scale
-  // = 95 + 10 + 50*1.9 = 200), maar viewBox-height = 190 — voeg overflow:visible
-  // toe op svg om Android-style afsnijding op web te voorkomen.
   return (
-    <span style={{ display: 'inline-block', verticalAlign: 'middle', lineHeight: 0 }}>
-      <svg
-        width={inline ? `${totalWidth / 100}em` : size * (totalWidth / 100)}
-        height={inline ? `${totalHeight / 100}em` : size * (totalHeight / 100)}
-        viewBox={`0 0 ${totalWidth} ${totalHeight}`}
-        style={{ overflow: 'visible', display: 'block' }}
-      >
-        {/* "ik ben" — Dosis-Medium, op gemeenschappelijke baseline. */}
-        <g transform={`translate(0, ${textBaselineY})`}>
-          <path d={IK_BEN_PATH} fill={fill} />
-        </g>
-        {/* Mark cirkels + ring — geshift met markYOffset (zakken). */}
-        <g transform={`translate(${markCenterX - markPx / 2}, ${markCenterY - markPx / 2 + markYOffset}) scale(${markPx / 100})`}>
-          <circle cx={50} cy={50} r={50} fill={fillMark} />
-          <circle cx={50} cy={50} r={45.26} fill="var(--cream)" />
-          <circle cx={50} cy={50} r={40.53} fill={fillMark} />
-        </g>
-        {/* "ok" — onafhankelijk van de cirkel-shift. */}
-        <g transform={`translate(${markCenterX - markPx / 2}, ${markCenterY - markPx / 2 + okYLift}) scale(${markPx / 100})`}>
-          <g transform={`translate(${okTranslateXInMark}, ${okBaselineYInMark}) scale(${okScale})`}>
-            <path d={OK_PATH} fill="var(--cream)" />
-          </g>
-        </g>
-      </svg>
+    <span style={{
+      fontFamily: 'var(--font-display)',
+      fontSize: inline ? 'inherit' : size,
+      lineHeight: 1,
+      letterSpacing: '-0.015em', color, fontWeight: 500,
+      display: 'inline-flex', alignItems: 'center', gap: '0.12em',
+      whiteSpace: 'nowrap'
+    }}>
+      {text} <IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
     </span>
   );
 };
