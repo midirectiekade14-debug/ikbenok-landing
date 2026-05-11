@@ -565,6 +565,7 @@ const Footer = ({ intensity }) => {
     { title: 'Juridisch', items: [
       { label: 'Privacybeleid', href: 'privacy/' },
       { label: 'Cookies', href: 'cookies/' },
+      { label: 'Algemene voorwaarden', href: 'voorwaarden/' },
       { label: 'DPA voor zorgorganisaties', href: 'mailto:hallo@allesok.nl?subject=DPA%20-%20zorgorganisatie' }
     ]}].
     map((col) =>
