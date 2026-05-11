@@ -494,7 +494,7 @@ const Pricing = () => {
       'Onbeperkte check-ins per dag — tijden instelbaar',
       'Tot 5 contactpersonen koppelen',
       'Automatisch bericht bij stilte — met GPS locatie',
-      'Weekoverzicht voor mantelzorgers',
+      'Weekoverzicht voor contactpersonen',
       'Opzegbaar per maand · probeer het 14 dagen gratis'].
       map((f, i) =>
       <div key={i} style={{
@@ -521,7 +521,7 @@ const Pricing = () => {
     fontSize: 15, color: 'var(--fg-muted)',
     textAlign: 'center', marginTop: 28
   }}>
-      Voor zorgorganisaties — <a href="mailto:hallo@ikbenok.nl?subject=Zorgorganisatie%20-%20volumetarieven" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>neem contact op</a> voor volumetarieven.
+      Voor zorgorganisaties — <a href="mailto:hallo@allesok.nl?subject=Zorgorganisatie%20-%20volumetarieven" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>neem contact op</a> voor volumetarieven.
     </p>
   </section>);
 };
@@ -558,15 +558,14 @@ const Footer = ({ intensity }) => {
       { label: 'Veelgestelde vragen', href: null }
     ]},
     { title: 'Contact', items: [
-      { label: 'hallo@ikbenok.nl', href: 'mailto:hallo@ikbenok.nl' },
-      { label: 'Voor zorgorganisaties', href: 'mailto:hallo@ikbenok.nl?subject=Zorgorganisatie' },
-      { label: 'Pers & partners', href: 'mailto:hallo@ikbenok.nl?subject=Pers' }
+      { label: 'hallo@allesok.nl', href: 'mailto:hallo@allesok.nl' },
+      { label: 'Voor zorgorganisaties', href: 'mailto:hallo@allesok.nl?subject=Zorgorganisatie' },
+      { label: 'Pers & partners', href: 'mailto:hallo@allesok.nl?subject=Pers' }
     ]},
     { title: 'Juridisch', items: [
       { label: 'Privacybeleid', href: 'privacy/' },
       { label: 'Cookies', href: 'cookies/' },
-      { label: 'Algemene voorwaarden', href: null },
-      { label: 'DPA voor zorgorganisaties', href: 'mailto:hallo@ikbenok.nl?subject=DPA%20-%20zorgorganisatie' }
+      { label: 'DPA voor zorgorganisaties', href: 'mailto:hallo@allesok.nl?subject=DPA%20-%20zorgorganisatie' }
     ]}].
     map((col) =>
     <div key={col.title}>

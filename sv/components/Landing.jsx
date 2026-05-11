@@ -513,7 +513,7 @@ const Pricing = () => {
     fontSize: 15, color: 'var(--fg-muted)',
     textAlign: 'center', marginTop: 28
   }}>
-      För vårdorganisationer — <a href="mailto:hallo@ikbenok.nl?subject=V%C3%A5rdorganisation%20-%20volympriser" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>kontakta oss</a> för volympriser.
+      För vårdorganisationer — <a href="mailto:hallo@allesok.nl?subject=V%C3%A5rdorganisation%20-%20volympriser" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>kontakta oss</a> för volympriser.
     </p>
   </section>);
 };
@@ -549,15 +549,14 @@ const Footer = ({ intensity }) => {
       { label: 'Vanliga frågor', href: null }
     ]},
     { title: 'Kontakt', items: [
-      { label: 'hallo@ikbenok.nl', href: 'mailto:hallo@ikbenok.nl' },
-      { label: 'För vårdorganisationer', href: 'mailto:hallo@ikbenok.nl?subject=V%C3%A5rdorganisation' },
-      { label: 'Press & partner', href: 'mailto:hallo@ikbenok.nl?subject=Press' }
+      { label: 'hallo@allesok.nl', href: 'mailto:hallo@allesok.nl' },
+      { label: 'För vårdorganisationer', href: 'mailto:hallo@allesok.nl?subject=V%C3%A5rdorganisation' },
+      { label: 'Press & partner', href: 'mailto:hallo@allesok.nl?subject=Press' }
     ]},
     { title: 'Juridik', items: [
       { label: 'Integritetspolicy', href: 'integritetspolicy/' },
       { label: 'Kakor', href: 'cookies/' },
-      { label: 'Allmänna villkor', href: null },
-      { label: 'DPA för vårdorganisationer', href: 'mailto:hallo@ikbenok.nl?subject=DPA%20-%20v%C3%A5rdorganisation' }
+      { label: 'DPA för vårdorganisationer', href: 'mailto:hallo@allesok.nl?subject=DPA%20-%20v%C3%A5rdorganisation' }
     ]}].
     map((col) =>
     <div key={col.title}>
