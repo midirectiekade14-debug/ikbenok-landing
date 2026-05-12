@@ -556,6 +556,7 @@ const Footer = ({ intensity }) => {
     { title: 'Juridik', items: [
       { label: 'Integritetspolicy', href: 'integritetspolicy/' },
       { label: 'Kakor', href: 'cookies/' },
+      { label: 'Allmänna villkor', href: 'villkor/' },
       { label: 'DPA för vårdorganisationer', href: 'mailto:hallo@allesok.nl?subject=DPA%20-%20v%C3%A5rdorganisation' }
     ]}].
     map((col) =>
