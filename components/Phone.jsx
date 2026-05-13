@@ -50,34 +50,30 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
         <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>{name}</em>
       </div>
 
-      {/* the breathing button — sized 170px (was 200) so meta-cards stay inside the
-          phone frame on mobile (552px tall). Margin reduced to 50px so the ring still
-          drops below the greeting without pushing the meta-cards off-screen. */}
-      <div style={{ display: 'grid', placeItems: 'center', margin: '50px auto 16px', position: 'relative', width: 170, height: 170, flexShrink: 0 }}>
-        {/* progress ring + paper disc — translateY(-2) lifts both 5px above the previous
-            translateY(3) baseline so the ring reads as embracing the button. */}
+      {/* the breathing button — verhoudingen 1:1 uit app (CheckInStatus.tsx):
+          ring 260 → paper 242 → button 220, fontSize text 48 / kicker 16.
+          Hier geschaald naar ring 195 (factor 0.75) zodat het in de phone-frame
+          past op mobile (552px tall) én meta-cards binnen blijven. */}
+      <div style={{ display: 'grid', placeItems: 'center', margin: '68px auto 16px', position: 'relative', width: 195, height: 195, flexShrink: 0 }}>
         <div style={{
-          position: 'absolute', width: 170, height: 170, borderRadius: '50%',
+          position: 'absolute', width: 195, height: 195, borderRadius: '50%',
           background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`,
-          transform: 'translateY(0)'
         }} />
         <div style={{
-          position: 'absolute', width: 155, height: 155, borderRadius: '50%',
+          position: 'absolute', width: 182, height: 182, borderRadius: '50%',
           background: 'var(--paper)',
-          transform: 'translateY(0)'
         }} />
-        {/* outward ping — only at higher intensity. top/left = (170-145)/2 = 12.5,
-            rounded to 13 to keep it centered within the wrapper. */}
+        {/* outward ping — start vanaf buttongrootte, top/left = (195-165)/2 = 15 */}
         {intensity > 0.6 &&
         <div style={{
-          position: 'absolute', top: 13, left: 13, width: 145, height: 145, borderRadius: '50%',
+          position: 'absolute', top: 15, left: 15, width: 165, height: 165, borderRadius: '50%',
           background: pingBg,
           animation: `phone-ring-pulse 2.6s var(--ease-out) infinite`
         }} />
         }
-        {/* button */}
+        {/* button — 220/260 × 195 = 165 (app-ratio) */}
         <div style={{
-          position: 'relative', width: 141, height: 141, borderRadius: '50%',
+          position: 'relative', width: 165, height: 165, borderRadius: '50%',
           background: buttonBg, color: '#fff',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           boxShadow: buttonShadow,
@@ -85,12 +81,12 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
         }}>
           <span style={{
             fontFamily: 'var(--font-display)', fontStyle: 'italic',
-            fontSize: 9, opacity: 0.82, marginBottom: 6, letterSpacing: '0.02em'
+            fontSize: 12, opacity: 0.82, marginBottom: 5, letterSpacing: '0.02em'
           }}>tik om te bevestigen</span>
           <span style={{
             fontFamily: 'var(--font-display)', lineHeight: 1,
             letterSpacing: '-0.015em', fontWeight: 500,
-            whiteSpace: 'nowrap', color: 'var(--cream)', fontSize: '35px', margin: '2px 0 16px'
+            whiteSpace: 'nowrap', color: 'var(--cream)', fontSize: '36px', margin: '2px 0 16px'
           }}>
             ik ben ok
           </span>
