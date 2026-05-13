@@ -8,7 +8,7 @@ const { Phone, Wordmark: PhoneWordmark } = window;
 // ─────────────────────────────────────────────────────
 // Home screen — the canonical breathing Ik ben OK
 // ─────────────────────────────────────────────────────
-const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 'ok' }) => {
+const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 'ok', scale = 1 }) => {
   const breathDur = intensity < 0.2 ? '0s' : intensity < 0.6 ? '8s' : '5s';
   // Color tokens — sage-deep for normal "ok" state, clay (#a54a3a) for alarm/missed-checkin state.
   // Matches the Checkin app: src/theme.ts → colors.clay, used in CheckInStatus.tsx as `isOverdue ? colors.clay : colors.sage`.
@@ -54,7 +54,7 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
           ring 260 → paper 242 → button 220, fontSize text 48 / kicker 16.
           Hier geschaald naar ring 195 (factor 0.75) zodat het in de phone-frame
           past op mobile (552px tall) én meta-cards binnen blijven. */}
-      <div style={{ display: 'grid', placeItems: 'center', margin: '68px auto 16px', position: 'relative', width: 195, height: 195, flexShrink: 0 }}>
+      <div style={{ display: 'grid', placeItems: 'center', margin: '68px auto 16px', position: 'relative', width: 195, height: 195, flexShrink: 0, transform: scale !== 1 ? `scale(${scale})` : undefined, transformOrigin: 'center' }}>
         <div style={{
           position: 'absolute', width: 195, height: 195, borderRadius: '50%',
           background: `conic-gradient(${ringFg} ${progress * 360}deg, var(--cream-warm) ${progress * 360}deg)`,

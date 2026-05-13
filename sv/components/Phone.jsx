@@ -10,7 +10,7 @@ const PhoneWordmark = (p) => <SvSharedWordmark text="jag är" markColor="var(--s
 // ─────────────────────────────────────────────────────
 // Home screen — the canonical breathing Jag är OK
 // ─────────────────────────────────────────────────────
-const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'ok' }) => {
+const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'ok', scale = 1 }) => {
   const breathDur = intensity < 0.2 ? '0s' : intensity < 0.6 ? '8s' : '5s';
   const isAlarm = state === 'alarm';
   const ringFg = isAlarm ? 'var(--clay)' : 'var(--coral)';
@@ -57,7 +57,7 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
       {/* the breathing button — sized 170px (was 200) so meta-cards stay inside the
           phone frame on mobile (552px tall). Margin reduced to 50px so the ring still
           drops below the greeting without pushing the meta-cards off-screen. */}
-      <div style={{ display: 'grid', placeItems: 'center', margin: '50px auto 16px', position: 'relative', width: 170, height: 170, flexShrink: 0 }}>
+      <div style={{ display: 'grid', placeItems: 'center', margin: '50px auto 16px', position: 'relative', width: 170, height: 170, flexShrink: 0, transform: scale !== 1 ? `scale(${scale})` : undefined, transformOrigin: 'center' }}>
         {/* progress ring + paper disc — translateY(-2) lifts both 5px above the previous
             translateY(3) baseline so the ring reads as embracing the button. */}
         <div style={{

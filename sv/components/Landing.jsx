@@ -111,7 +111,7 @@ const Hero = ({ intensity }) => {
       letterSpacing: '-0.025em', color: 'var(--navy)',
       margin: '0 0 26px', textWrap: 'balance'
     }}>
-        Ett larm som ljuder när <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>ingen</em> svarar.
+        Ett larm som ljuder när <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>ingen</em> svarar
       </h1>
       <p style={{
       fontFamily: 'var(--font-body)', fontSize: isMobile ? 17 : 19, lineHeight: 1.55,
@@ -236,7 +236,7 @@ const HowItWorks = ({ intensity }) => {
   const steps = [
   {
     label: 'Vid fasta tider',
-    title: 'Incheckning när <em>du vill</em>.',
+    title: 'Incheckning när <em>du vill</em>',
     body: <>Så ofta du vill skickar <Brand /> ett meddelande. Du trycker en gång för att visa att allt är bra.</>,
     phone: <PhoneSchedule />
   },
@@ -244,11 +244,11 @@ const HowItWorks = ({ intensity }) => {
     label: 'Vid tystnad',
     title: 'Då ger vi en <em>signal</em>!',
     body: 'Svarar personen inte inom 30 minuter får anhörigvårdaren ett meddelande — med senaste kända plats och kontaktalternativ för direkt hjälp. Svarar din första kontakt inte, skickas larmet direkt vidare till din andra kontakt.',
-    phone: <PhoneHome intensity={intensity} progress={1} state="alarm" />
+    phone: <PhoneHome intensity={intensity} progress={1} state="alarm" scale={isMobile ? 1 : 260 / 304} />
   },
   {
     label: 'För anhörigvårdaren',
-    title: 'Alltid <em>uppkopplad</em>,<br/>aldrig påträngande.',
+    title: 'Alltid <em>uppkopplad</em>,<br/>aldrig påträngande',
     body: 'Anhörigvårdare ser direkt när någon har checkat in.',
     phone: <PhoneCaregiver />
   }];
@@ -269,7 +269,7 @@ const HowItWorks = ({ intensity }) => {
         margin: isMobile ? '0 0 48px' : '0 0 80px',
         maxWidth: 780, textWrap: 'balance'
       }}>
-        Du väljer själv tillfället, lägger till en <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>kontaktperson</em> och <Brand /> gör resten.
+        Du väljer själv tillfället, lägger till en <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>kontaktperson</em> och <Brand /> gör resten
       </h2>
 
       <div style={{ display: 'grid', gap: isMobile ? 56 : 80 }}>
@@ -434,7 +434,7 @@ const Pricing = () => {
     margin: '0 auto 20px', maxWidth: 780, textWrap: 'balance',
     textAlign: 'center'
   }}>
-      Ett pris. <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Inga bekymmer.</em>
+      Ett pris <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Inga bekymmer</em>
     </h2>
     <p style={{
     fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.55,
