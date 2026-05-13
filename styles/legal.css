@@ -34,67 +34,34 @@ body {
   gap: 16px;
 }
 
+/* Canonical "ik ben ok" wordmark — enkel SVG met IK_BEN_PATH + mark + OK_PATH
+   in één viewBox (zie /assets/ikbenok-wordmark.svg en de app-canonical
+   ikbenok/src/components/ui/Wordmark.tsx). Geen flex+text+mark patroon meer;
+   alle alignment zit ingebakken in de SVG-paths, geen browser-baseline-drift. */
 .legal-wordmark {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--navy);
+  display: inline-block;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.34em;
-  white-space: nowrap;
+  line-height: 0;
+  color: var(--navy);
 }
-@media (max-width: 768px) {
-  .legal-wordmark { font-size: 22px; }
-}
-/* Inline IkBenOkMark SVG (ronde mark) — match SV homepage / enquete-pagina.
-   Tekst "ik ben" gerendered via Dosis-Medium font; alleen de mark is SVG. */
 .legal-wordmark > svg {
-  width: 1.9em;
-  height: 1.9em;
-  flex-shrink: 0;
+  height: 50px;
+  width: auto;
   display: block;
 }
-.legal-wordmark .mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.65em;
-  height: 1.65em;
-  border-radius: 50%;
-  background: var(--sage-deep);
-  position: relative;
-  flex-shrink: 0;
-}
-.legal-wordmark .mark::before {
-  content: '';
-  position: absolute;
-  inset: 0.09em;
-  border-radius: 50%;
-  background: var(--cream);
-}
-.legal-wordmark .mark::after {
-  content: '';
-  position: absolute;
-  inset: 0.18em;
-  border-radius: 50%;
-  background: var(--sage-deep);
-}
-.legal-wordmark .mark span {
-  position: relative;
-  color: var(--cream);
-  font-weight: 700;
-  font-size: 0.55em;
-  z-index: 2;
-  transform: translateY(-0.04em);
+@media (max-width: 768px) {
+  .legal-wordmark > svg { height: 42px; }
 }
 
-/* Inline-modifier: schaalt mee met surrounding font-size in body-copy. */
-.legal-wordmark.is-inline {
-  font-size: inherit;
-  vertical-align: baseline;
+/* Inline-modifier: gebruik direct op <svg> in body-copy. Hoogte 1.8em zodat
+   de "ik ben"-cap visueel matcht met body-cap. vertical-align afgestemd
+   zodat wordmark-baseline (142.5/210 ≈ 67.86% van height) precies op text-
+   baseline valt. */
+svg.legal-wordmark.is-inline {
+  display: inline-block;
+  height: 1.8em;
+  width: auto;
+  vertical-align: -0.58em;
 }
 
 .legal-nav .back-link {
