@@ -111,13 +111,20 @@ const IkBenOkMark = ({ size = 40, breathe = true, shadow = true, color = 'var(--
     </svg>
   );
 
+  // Vertical-align tunen zodat de "ok" baseline binnen de mark samenvalt met
+  // de baseline van het omringende "ik ben". Ratio okBaselineY/viewBoxHeight
+  // = 69.7368/105 ≈ 0.6642, dus de "ok" baseline zit 0.3358 × markHoogte
+  // boven de markbodem. Met vertical-align = -0.638em (= -0.3358 × 1.9em)
+  // landt die "ok" baseline op de parent text-baseline.
+  const okBaselineFromBottom = (1 - okBaselineY / viewBoxHeight); // ≈ 0.336
+  const emVerticalAlign = `-${(okBaselineFromBottom * (typeof size === 'string' ? parseFloat(size) : 1.9)).toFixed(3)}em`;
   return (
     <span style={{
       position: 'relative',
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      display: 'inline-block',
       width: wrapperWidth, height: wrapperHeight,
       flexShrink: 0, lineHeight: 1,
-      verticalAlign: isEm ? '-0.32em' : 'baseline',
+      verticalAlign: isEm ? emVerticalAlign : 'baseline',
     }}>
       {shadowLayer}
       {svgEl}
@@ -143,10 +150,10 @@ const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor
       fontSize: inline ? 'inherit' : size,
       lineHeight: 1,
       letterSpacing: '-0.015em', color, fontWeight: 500,
-      display: 'inline-flex', alignItems: 'center', gap: '0.12em',
+      display: 'inline-block',
       whiteSpace: 'nowrap'
     }}>
-      {text} <IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
+      {text}<span style={{ display: 'inline-block', width: '0.12em' }} /><IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
     </span>
   );
 };
@@ -164,10 +171,10 @@ const Brand = ({ italic = false, text = 'ik ben', markColor }) => {
         fontStyle: italic ? 'italic' : undefined,
         fontWeight: 600,
         letterSpacing: '-0.015em',
-        display: 'inline-flex', alignItems: 'center', gap: '0.12em',
+        display: 'inline-block',
         whiteSpace: 'nowrap', verticalAlign: 'baseline'
       }}>
-        {text} <IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
+        {text}<span style={{ display: 'inline-block', width: '0.12em' }} /><IkBenOkMark size="1.9em" breathe={false} shadow={false} color={markColor} />
       </span>
     );
   }
