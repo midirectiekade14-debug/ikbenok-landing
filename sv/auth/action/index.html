@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Konto — jag är ok</title>
+<meta name="theme-color" content="#F5EFE3" />
+<link rel="canonical" href="https://allesok.nl/sv/auth/action/" />
+<link rel="alternate" hreflang="nl" href="https://allesok.nl/auth/action/" />
+<link rel="alternate" hreflang="sv" href="https://allesok.nl/sv/auth/action/" />
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon-sv.svg" />
+<link rel="apple-touch-icon" href="../../../assets/favicon-sv.svg" />
+<link rel="stylesheet" href="../../../styles/colors_and_type.css?v=1" />
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--fg-default);
+    font-family: var(--font-body, 'Dosis', system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.08), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.08), transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  .nav {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 24px 0;
+  }
+  .wordmark {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.34em;
+  }
+  .wordmark > svg {
+    width: 1.9em;
+    height: 1.9em;
+    flex-shrink: 0;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .wordmark { font-size: 22px; }
+    .nav { padding: 22px 20px 0; }
+  }
+
+  main {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  .card {
+    background: var(--bg-raised, #ffffff);
+    border-radius: 22px;
+    padding: 44px 36px;
+    box-shadow: 0 12px 48px rgba(11, 27, 43, 0.08), 0 1px 0 rgba(11, 27, 43, 0.04);
+    text-align: center;
+  }
+  @media (max-width: 540px) {
+    main { padding: 36px 16px 60px; }
+    .card { padding: 36px 24px; border-radius: 18px; }
+  }
+
+  .icon-circle {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-circle.success { background: rgba(110, 150, 128, 0.16); }
+  .icon-circle.error   { background: rgba(165, 74, 58, 0.14); }
+  .icon-circle.loading { background: rgba(11, 27, 43, 0.06); }
+  .icon-circle svg { width: 44px; height: 44px; }
+  .icon-circle.success svg { color: var(--sage-deep); stroke: var(--sage-deep); }
+  .icon-circle.error svg   { color: var(--clay); stroke: var(--clay); }
+
+  .spinner {
+    width: 44px;
+    height: 44px;
+    border: 3px solid rgba(11, 27, 43, 0.12);
+    border-top-color: var(--sage-deep);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  h1 {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-weight: 500;
+    color: var(--navy);
+    font-size: 30px;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+  }
+  h1 em {
+    color: var(--coral);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .lead {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--fg-default);
+    margin: 0 0 8px;
+  }
+  .meta {
+    font-size: 14px;
+    color: var(--fg-muted);
+    margin: 14px 0 0;
+  }
+  .email-pill {
+    display: inline-block;
+    background: var(--cream-warm);
+    color: var(--navy);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 10px;
+    word-break: break-all;
+  }
+
+  .actions {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn-primary {
+    background: var(--coral);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(255, 107, 71, 0.28);
+  }
+  .btn-primary:hover { background: var(--coral-soft); }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--fg-default);
+    border: 1px solid rgba(11, 27, 43, 0.16);
+  }
+  .btn-ghost:hover { background: rgba(11, 27, 43, 0.04); }
+
+  form { text-align: left; margin-top: 20px; }
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg-default);
+    margin: 14px 0 6px;
+  }
+  input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(11, 27, 43, 0.14);
+    background: var(--cream);
+    font-family: inherit;
+    font-size: 17px;
+    color: var(--navy);
+    transition: border-color 0.16s ease, box-shadow 0.16s ease;
+  }
+  input[type="password"]:focus {
+    outline: none;
+    border-color: var(--sage-deep);
+    box-shadow: 0 0 0 4px rgba(110, 150, 128, 0.16);
+  }
+  .field-hint {
+    font-size: 13px;
+    color: var(--fg-muted);
+    margin: 6px 0 0;
+  }
+  .field-error {
+    font-size: 14px;
+    color: var(--clay);
+    margin: 8px 0 0;
+    min-height: 1.2em;
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+  footer a { color: var(--fg-default); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="ikbenok-mark" viewBox="0 0 100 105">
+    <circle cx="50" cy="55" r="50" fill="var(--sage-deep)"/>
+    <circle cx="50" cy="55" r="45.26" fill="var(--cream)"/>
+    <circle cx="50" cy="55" r="40.53" fill="var(--sage-deep)"/>
+    <g transform="translate(23.3684, 69.7368) scale(0.526316)"><path d="M24.800 0.900Q19 0.900 14.100-1.950Q9.200-4.800 6.200-9.500Q3.200-14.200 3.200-19.600L3.200-27.800Q3.200-33.200 6.100-37.850Q9-42.500 13.950-45.300Q18.900-48.100 24.800-48.100Q30.700-48.100 35.650-45.350Q40.600-42.600 43.550-38Q46.500-33.400 46.500-27.800L46.500-19.600Q46.500-14.300 43.500-9.600Q40.500-4.900 35.550-2Q30.600 0.900 24.800 0.900M24.800-10.400Q27.200-10.400 29.200-11.700Q31.200-13 32.400-15.150Q33.600-17.300 33.600-19.600L33.600-27.800Q33.600-30.100 32.400-32.100Q31.200-34.100 29.250-35.450Q27.300-36.800 24.800-36.800Q22.400-36.800 20.400-35.500Q18.400-34.200 17.250-32.150Q16.100-30.100 16.100-27.800L16.100-19.600Q16.100-17.300 17.250-15.150Q18.400-13 20.400-11.700Q22.400-10.400 24.800-10.400M61.100 0Q58.400 0 56.600-1.300Q54.800-2.600 54.800-4.100L54.800-71.200Q54.800-73 56.600-74.100Q58.400-75.200 61.100-75.200Q63.900-75.200 65.800-74.100Q67.700-73 67.700-71.200L67.700-29.300L86.600-47Q87.600-48 89.100-48Q90.600-48 92.050-47.050Q93.500-46.100 94.450-44.700Q95.400-43.300 95.400-41.800Q95.400-41.200 95.150-40.550Q94.900-39.900 94.300-39.400L82.500-28.700L97.300-7.700Q98-6.600 98-5.600Q98-4.100 96.800-2.600Q95.600-1.100 93.900-0.150Q92.200 0.800 90.600 0.800Q88.600 0.800 87.400-0.900L74-20.800L67.700-15.100L67.700-4.100Q67.700-2.600 65.800-1.300Q63.900 0 61.100 0" fill="var(--cream)"/></g>
+  </symbol>
+</svg>
+
+<nav class="nav">
+  <a class="wordmark" href="../../">
+    jag är <svg viewBox="0 0 100 105" role="img" aria-label="ok"><use href="#ikbenok-mark"/></svg>
+  </a>
+</nav>
+
+<main>
+  <!-- Loading state -->
+  <section id="state-loading" class="card">
+    <div class="icon-circle loading"><div class="spinner" role="status" aria-label="Laddar"></div></div>
+    <h1>Ett <em>ögonblick</em></h1>
+    <p class="lead">Vi behandlar din begäran…</p>
+  </section>
+
+  <!-- Verify email — success -->
+  <section id="state-verify-success" class="card" hidden>
+    <div class="icon-circle success">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h1>Din e-post är <em>bekräftad</em></h1>
+    <p class="lead">Välkommen till <strong>jag är ok</strong>. Du kan nu öppna appen och fortsätta installationen.</p>
+    <p class="meta">Du kan stänga det här fönstret.</p>
+  </section>
+
+  <!-- Recover email — success -->
+  <section id="state-recover-success" class="card" hidden>
+    <div class="icon-circle success">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+    </div>
+    <h1>Din e-post är <em>återställd</em></h1>
+    <p class="lead">Ditt konto har återställts till:</p>
+    <span class="email-pill" id="recover-email-pill"></span>
+    <p class="meta">För säkerhets skull skickar vi ett e-postmeddelande så att du kan välja ett nytt lösenord.</p>
+  </section>
+
+  <!-- Verify-and-change email — success -->
+  <section id="state-change-success" class="card" hidden>
+    <div class="icon-circle success">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h1>E-postadress <em>ändrad</em></h1>
+    <p class="lead">Från och med nu loggar du in med:</p>
+    <span class="email-pill" id="change-email-pill"></span>
+    <p class="meta">Du kan stänga det här fönstret och öppna appen.</p>
+  </section>
+
+  <!-- Reset password — form -->
+  <section id="state-reset-form" class="card" hidden>
+    <h1>Nytt <em>lösenord</em></h1>
+    <p class="lead">Välj ett nytt lösenord för:</p>
+    <span class="email-pill" id="reset-email-pill"></span>
+    <form id="reset-form" novalidate>
+      <label for="reset-pw1">Nytt lösenord</label>
+      <input type="password" id="reset-pw1" name="pw1" autocomplete="new-password" minlength="8" required />
+      <p class="field-hint">Minst 8 tecken.</p>
+
+      <label for="reset-pw2">Upprepa lösenord</label>
+      <input type="password" id="reset-pw2" name="pw2" autocomplete="new-password" minlength="8" required />
+      <p class="field-error" id="reset-error" role="alert"></p>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" id="reset-submit">Spara lösenord</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Reset password — success -->
+  <section id="state-reset-success" class="card" hidden>
+    <div class="icon-circle success">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h1>Lösenord <em>sparat</em></h1>
+    <p class="lead">Du kan nu logga in i appen med ditt nya lösenord.</p>
+    <p class="meta">Du kan stänga det här fönstret.</p>
+  </section>
+
+  <!-- Sign-in — info (email-link auth, normalt hanterad av appen) -->
+  <section id="state-signin-info" class="card" hidden>
+    <div class="icon-circle loading">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    </div>
+    <h1>Öppna <em>appen</em></h1>
+    <p class="lead">Öppna den här länken på enheten där <strong>jag är ok</strong>-appen är installerad för att logga in.</p>
+  </section>
+
+  <!-- Generic error -->
+  <section id="state-error" class="card" hidden>
+    <div class="icon-circle error">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <h1 id="error-title">Länken fungerar <em>inte</em></h1>
+    <p class="lead" id="error-message">Länken har gått ut eller har redan använts. Begär ett nytt e-postmeddelande i appen.</p>
+    <p class="meta" id="error-detail" hidden></p>
+  </section>
+</main>
+
+<footer>
+  <a href="../../">allesok.nl/sv</a> · <a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a>
+</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import {
+    getAuth,
+    applyActionCode,
+    checkActionCode,
+    verifyPasswordResetCode,
+    confirmPasswordReset,
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+  // Firebase web config — apiKey is public-by-design (security via Auth/Firestore rules).
+  // Source of truth: ~/projects/ikbenok/src/lib/firebase.web.ts
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2VJDiadxwHWFjTRV_CIueONIyAG4Zu-A",
+    authDomain: "ikbenok-prod.firebaseapp.com",
+    projectId: "ikbenok-prod",
+    storageBucket: "ikbenok-prod.firebasestorage.app",
+    messagingSenderId: "149184356516",
+    appId: "1:149184356516:web:3789d84b621075a88b4631",
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const params = new URLSearchParams(window.location.search);
+  const mode    = params.get("mode");
+  const oobCode = params.get("oobCode");
+
+  function show(id) {
+    document.querySelectorAll("main > section").forEach((el) => { el.hidden = true; });
+    const target = document.getElementById(id);
+    if (target) target.hidden = false;
+  }
+
+  function showError(title, message, detail) {
+    document.getElementById("error-title").innerHTML = title;
+    document.getElementById("error-message").textContent = message;
+    const detailEl = document.getElementById("error-detail");
+    if (detail) {
+      detailEl.textContent = detail;
+      detailEl.hidden = false;
+    }
+    show("state-error");
+  }
+
+  function friendlyError(err) {
+    const code = err && err.code ? err.code : "";
+    switch (code) {
+      case "auth/expired-action-code":
+        return "Länken har gått ut. Begär ett nytt e-postmeddelande i appen.";
+      case "auth/invalid-action-code":
+        return "Länken är ogiltig eller redan använd. Begär ett nytt e-postmeddelande i appen.";
+      case "auth/user-disabled":
+        return "Det här kontot är inaktiverat. Kontakta oss via hallo@allesok.nl.";
+      case "auth/user-not-found":
+        return "Det tillhörande kontot finns inte längre.";
+      case "auth/weak-password":
+        return "Lösenordet är för kort. Välj ett med minst 8 tecken.";
+      case "auth/network-request-failed":
+        return "Ingen internetuppkoppling. Försök igen.";
+      default:
+        return "Något gick fel när länken skulle behandlas.";
+    }
+  }
+
+  async function handleVerifyEmail() {
+    await applyActionCode(auth, oobCode);
+    show("state-verify-success");
+  }
+
+  async function handleRecoverEmail() {
+    const info = await checkActionCode(auth, oobCode);
+    const restoredEmail = info?.data?.email ?? "";
+    await applyActionCode(auth, oobCode);
+    document.getElementById("recover-email-pill").textContent = restoredEmail;
+    show("state-recover-success");
+  }
+
+  async function handleVerifyAndChangeEmail() {
+    const info = await checkActionCode(auth, oobCode);
+    const newEmail = info?.data?.email ?? "";
+    await applyActionCode(auth, oobCode);
+    document.getElementById("change-email-pill").textContent = newEmail;
+    show("state-change-success");
+  }
+
+  async function handleResetPassword() {
+    const email = await verifyPasswordResetCode(auth, oobCode);
+    document.getElementById("reset-email-pill").textContent = email;
+    show("state-reset-form");
+
+    const form    = document.getElementById("reset-form");
+    const pw1     = document.getElementById("reset-pw1");
+    const pw2     = document.getElementById("reset-pw2");
+    const errEl   = document.getElementById("reset-error");
+    const submit  = document.getElementById("reset-submit");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errEl.textContent = "";
+      if (pw1.value.length < 8) {
+        errEl.textContent = "Lösenordet måste vara minst 8 tecken.";
+        return;
+      }
+      if (pw1.value !== pw2.value) {
+        errEl.textContent = "Lösenorden matchar inte.";
+        return;
+      }
+      submit.disabled = true;
+      submit.textContent = "Sparar…";
+      try {
+        await confirmPasswordReset(auth, oobCode, pw1.value);
+        show("state-reset-success");
+      } catch (err) {
+        errEl.textContent = friendlyError(err);
+        submit.disabled = false;
+        submit.textContent = "Spara lösenord";
+      }
+    });
+  }
+
+  async function run() {
+    if (!mode) {
+      showError(
+        "Ogiltig <em>länk</em>",
+        "Den här sidan öppnas normalt bara via en länk i ett e-postmeddelande från jag är ok.",
+      );
+      return;
+    }
+    if (mode === "signIn") {
+      show("state-signin-info");
+      return;
+    }
+    if (!oobCode) {
+      showError(
+        "Ogiltig <em>länk</em>",
+        "Det saknas en verifieringskod i länken. Begär ett nytt e-postmeddelande i appen.",
+      );
+      return;
+    }
+    try {
+      switch (mode) {
+        case "verifyEmail":          await handleVerifyEmail(); break;
+        case "recoverEmail":         await handleRecoverEmail(); break;
+        case "verifyAndChangeEmail": await handleVerifyAndChangeEmail(); break;
+        case "resetPassword":        await handleResetPassword(); break;
+        default:
+          showError(
+            "Okänd <em>åtgärd</em>",
+            "Den här länken innehåller en åtgärd vi inte känner igen.",
+            `mode=${mode}`,
+          );
+      }
+    } catch (err) {
+      console.error("[auth/action]", err);
+      showError("Länken fungerar <em>inte</em>", friendlyError(err));
+    }
+  }
+
+  run();
+</script>
+
+</body>
+</html>
