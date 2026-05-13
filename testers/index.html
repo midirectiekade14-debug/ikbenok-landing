@@ -12,7 +12,46 @@
 <link rel="apple-touch-icon" href="../assets/favicon.svg" />
 <link rel="stylesheet" href="../styles/legal.css?v=5" />
 <style>
-  /* ── Tester-specifieke aanvullingen op legal.css ───── */
+  /* ── Overrides op legal.css — pagina-specifiek dichter naar homepage-schaal ── */
+
+  /* Achtergrond — homepage parity (dawn-wash + grain, geen animatie) */
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.10), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.10), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.05), transparent 70%);
+  }
+  .ci-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url('../assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.28; mix-blend-mode: multiply;
+  }
+
+  /* Wordmark in nav: terug naar homepage-schaal (was 50/42px, nu 28/22px) */
+  .legal-wordmark > svg { height: 28px !important; }
+  @media (max-width: 768px) {
+    .legal-wordmark > svg { height: 22px !important; }
+  }
+
+  /* Nav back-link kleiner (was 22px) */
+  .legal-nav .back-link { font-size: 14px; }
+
+  /* Article typografie — dempen van uitschieters */
+  .legal-article .eyebrow { font-size: 11.5px; letter-spacing: 0.22em; }
+  .legal-article h1 { font-size: clamp(40px, 5.5vw, 72px); }
+  .legal-article h2 { font-size: clamp(28px, 3.6vw, 44px); margin: 48px 0 12px; }
+  .legal-article h3 { font-size: clamp(20px, 2.6vw, 28px); margin: 22px 0 6px; }
+  .legal-article .lead { font-size: 19px; line-height: 1.55; }
+  .legal-article .meta { font-size: 14px; margin: 0 0 36px; }
+  .legal-article p,
+  .legal-article ul,
+  .legal-article ol { font-size: 17px; line-height: 1.6; }
+  .legal-banner { font-size: 15px; }
+  .legal-toc ol { font-size: 15px; }
+
+  /* ── Tester-specifieke componenten ───────────────────── */
   .platform-pills {
     display: flex;
     gap: 8px;
@@ -28,7 +67,7 @@
     background: var(--bg-raised);
     border: 1px solid var(--line);
     font-family: var(--font-body);
-    font-size: 22px;
+    font-size: 14px;
     color: var(--fg-default);
     text-decoration: none;
   }
@@ -37,18 +76,18 @@
 
   .step {
     display: grid;
-    grid-template-columns: 52px 1fr;
-    gap: 18px;
-    margin: 0 0 22px;
-    padding: 22px 24px 22px 22px;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    margin: 0 0 18px;
+    padding: 18px 22px 18px 20px;
     background: var(--bg-raised);
     border: 1px solid var(--line-soft);
     border-radius: 14px;
     box-shadow: var(--shadow-soft);
   }
   .step-num {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: var(--coral);
     color: var(--cream);
@@ -56,29 +95,54 @@
     align-items: center;
     justify-content: center;
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 500;
     flex-shrink: 0;
   }
   .step h3 {
-    margin: 4px 0 6px !important;
-    font-size: 24px !important;
+    margin: 2px 0 6px !important;
+    font-size: 19px !important;
   }
-  .step p { margin: 0 0 8px; }
+  .step p { margin: 0 0 6px; font-size: 16px !important; }
   .step p:last-child { margin-bottom: 0; }
+
+  /* TestFlight knop in step 1 — homepage-style coral CTA */
+  .tf-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--coral);
+    color: var(--cream) !important;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none !important;
+    box-shadow: 0 8px 18px -6px rgba(255,107,71,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14);
+    transition: all 180ms var(--ease-out);
+  }
+  .tf-cta:hover {
+    background: var(--sage-deep);
+    transform: translateY(-2px);
+  }
+  .tf-cta svg { width: 14px; height: 14px; }
 
   .platform-tag {
     display: inline-block;
     font-family: var(--font-body);
-    font-size: 22px;
-    letter-spacing: 0.12em;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--fg-muted);
     background: var(--cream-warm);
-    padding: 4px 14px;
+    padding: 3px 10px;
     border-radius: 999px;
     margin-right: 6px;
     vertical-align: middle;
+    font-weight: 500;
   }
   .platform-tag.ios { background: rgba(11,27,43,0.06); color: var(--navy); }
   .platform-tag.android { background: rgba(110,150,128,0.16); color: var(--sage-deep); }
@@ -92,6 +156,7 @@
     position: relative;
     padding: 8px 0 8px 30px;
     border-bottom: 1px solid var(--line-soft);
+    font-size: 17px;
   }
   .checklist li::before {
     content: '';
@@ -111,10 +176,10 @@
     border: 1px solid rgba(110,150,128,0.35);
     border-left: 4px solid var(--sage);
     border-radius: 12px;
-    padding: 18px 22px;
-    margin: 0 0 24px;
-    font-size: 22px;
-    line-height: 1.55;
+    padding: 16px 20px;
+    margin: 0 0 22px;
+    font-size: 16px;
+    line-height: 1.6;
   }
   .callout.warn {
     background: rgba(201,169,97,0.12);
@@ -130,26 +195,26 @@
 
   .bug-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
     margin: 0 0 24px;
   }
   .bug-card {
     background: var(--bg-raised);
     border: 1px solid var(--line-soft);
     border-radius: 12px;
-    padding: 22px 24px;
+    padding: 18px 20px;
     box-shadow: var(--shadow-hair);
   }
   .bug-card h4 {
     font-family: var(--font-display);
-    font-size: 24px;
+    font-size: 19px;
     color: var(--coral);
-    margin: 0 0 6px;
+    margin: 0 0 4px;
     font-weight: 500;
   }
   .bug-card p {
-    font-size: 22px !important;
+    font-size: 15px !important;
     line-height: 1.55 !important;
     color: var(--fg-default);
     margin: 0;
@@ -157,6 +222,9 @@
 </style>
 </head>
 <body>
+
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
 
 <nav class="legal-nav">
   <a class="legal-wordmark" href="../">
@@ -176,7 +244,7 @@
 
   <div class="legal-banner">
     <strong>Dit is een testversie</strong>
-    De app kan rare dingen doen — vastlopen, een verkeerd kleurtje, een melding die niet klopt. Dat is precies wat we willen weten. Niets wat jij doet kan iets stuk maken. Vragen of een bug doorgeven? <a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a> of een berichtje naar Harm.
+    De app kan rare dingen doen — vastlopen, een verkeerd kleurtje, een melding die niet klopt. Dat is precies wat we willen weten. Niets wat jij doet kan iets stuk maken. Vragen of een bug doorgeven? <a href="mailto:testers@allesok.nl">testers@allesok.nl</a> of een berichtje naar Harm.
   </div>
 
   <nav class="legal-toc" aria-label="Inhoudsopgave">
@@ -213,8 +281,12 @@
   <div class="step">
     <span class="step-num">1</span>
     <div>
-      <h3>Ontvang de uitnodig-link</h3>
-      <p>Je krijgt van Harm een TestFlight-link via WhatsApp of e-mail. Open die link <strong>op je iPhone</strong>, niet op je Mac.</p>
+      <h3>Open de TestFlight-uitnodiging</h3>
+      <p>Tik op de knop hieronder <strong>op je iPhone</strong> (niet op je Mac). Werkt ook als je 'm doorstuurt naar jezelf via WhatsApp of e-mail.</p>
+      <a class="tf-cta" href="https://testflight.apple.com/join/uP8a51ZK" target="_blank" rel="noopener">
+        Word tester via TestFlight
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 
@@ -248,40 +320,26 @@
   </div>
 
   <h2 id="installeren-android">3. Installeren op Android</h2>
-  <p>Op Android heb je twee mogelijkheden: een directe APK (snelste) of via Play Store internal testing (officieel).</p>
-
-  <h3>Optie A — Directe APK (Discord-link)</h3>
+  <p>Op Android loopt het via <strong>Play Store internal testing</strong> — officieel, met automatische updates.</p>
 
   <div class="step">
     <span class="step-num">1</span>
     <div>
-      <h3>Download de APK</h3>
-      <p>Tik op de Drive-link die je van Harm hebt gekregen. Je telefoon downloadt een bestand <code>ikbenok-v0.6.84-build87-arm64.apk</code>.</p>
+      <h3>Word tester via de Play Store-link</h3>
+      <p>Tik op de knop hieronder <strong>op je Android-toestel</strong>, accepteer de uitnodiging. Daarna verschijnt de app in de Play Store als gewone download.</p>
+      <a class="tf-cta" href="https://play.google.com/apps/internaltest/4700760500046687737" target="_blank" rel="noopener">
+        Word tester via Play Store
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 
   <div class="step">
     <span class="step-num">2</span>
     <div>
-      <h3>Sta installatie toe</h3>
-      <p>Tik op het gedownloade bestand. De eerste keer vraagt Android: "Mag deze app onbekende apps installeren?" — kies <strong>Toestaan</strong>. Daarna keer je terug en tik je nogmaals op het bestand om te installeren.</p>
+      <h3>Installeer en open</h3>
+      <p>Tik op <strong>Installeren</strong> in de Play Store. Na installatie verschijnt het icoon op je startscherm. Updates komen daarna vanzelf binnen.</p>
     </div>
-  </div>
-
-  <div class="step">
-    <span class="step-num">3</span>
-    <div>
-      <h3>Open de app</h3>
-      <p>Na installatie verschijnt het icoon op je startscherm. Tik om te openen.</p>
-    </div>
-  </div>
-
-  <h3>Optie B — Play Store internal testing</h3>
-  <p>Word tester via deze Play Store-link: <a href="https://play.google.com/apps/internaltest/4700760500046687737">play.google.com/apps/internaltest/4700760500046687737</a>. Tik erop, accepteer de uitnodiging, en de app verschijnt in de Play Store als gewone download — updates komen daarna vanzelf.</p>
-
-  <div class="callout warn">
-    <strong>Update over een vorige versie?</strong>
-    Een update over een eerdere build hoort gewoon te werken. Krijg je "App niet geïnstalleerd"? Verwijder dan de oude versie eerst, en installeer build 87 daarna opnieuw.
   </div>
 
   <h2 id="eerste-keer">4. De eerste keer openen</h2>
@@ -398,8 +456,8 @@
   <h3>Hoe sturen?</h3>
   <ul>
     <li><span class="platform-tag ios">iOS</span> In TestFlight zit een knop <strong>"Send Beta Feedback"</strong> — schermafbeelding en tekst gaan rechtstreeks naar Harm.</li>
-    <li><span class="platform-tag android">Android</span> Via WhatsApp of Discord-#chat, hetzelfde kanaal als waar je de APK kreeg.</li>
-    <li>E-mail naar <a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a> mag altijd.</li>
+    <li><span class="platform-tag android">Android</span> Via WhatsApp een bericht naar Harm — screenshot of beschrijving.</li>
+    <li>E-mail naar <a href="mailto:testers@allesok.nl">testers@allesok.nl</a> mag altijd.</li>
   </ul>
 
   <div class="callout danger">
