@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://allesok.nl/privacy/" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
 <link rel="apple-touch-icon" href="../assets/favicon.svg" />
-<link rel="stylesheet" href="../styles/legal.css?v=7" />
+<link rel="stylesheet" href="../styles/legal.css?v=8" />
 </head>
 <body>
 
@@ -30,12 +30,12 @@
 <article class="legal-article">
   <p class="eyebrow">Juridisch</p>
   <h1>Privacy<em>beleid</em></h1>
-  <p class="lead">Hoe ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 105" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg> omgaat met je persoonsgegevens — bij gebruik van deze website, de enquête en de app.</p>
+  <p class="lead">Hoe ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 100" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg> omgaat met je persoonsgegevens — bij gebruik van deze website, de enquête en de app.</p>
   <p class="meta">Versie 1.0 — laatst bijgewerkt op 3 mei 2026</p>
 
   <div class="legal-banner">
-    <strong>Concept — pre-launch fase</strong>
-    Achter ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 105" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg> zit op dit moment een natuurlijke persoon. De officiële inschrijving bij de Kamer van Koophandel wordt afgerond vóór de app-lancering in de App Store en Google Play. Tot die tijd zijn de bedrijfsgegevens hieronder niet definitief en is dit beleid een werkversie. Voor vragen of verzoeken kun je nu al terecht via <a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a>.
+    <strong>Pre-launch fase</strong>
+    Achter ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 100" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg> zit op dit moment een natuurlijke persoon. De officiële inschrijving bij de Kamer van Koophandel wordt afgerond vóór de app-lancering in de App Store en Google Play. Tot die tijd zijn de bedrijfsgegevens hieronder niet definitief en is dit beleid een werkversie. Voor vragen of verzoeken kun je nu al terecht via <a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a>.
   </div>
 
   <nav class="legal-toc" aria-label="Inhoudsopgave">
@@ -60,7 +60,7 @@
     <dt>Naam</dt>
     <dd>ik ben ok (project in oprichting)</dd>
     <dt>E-mail</dt>
-    <dd><a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a></dd>
+    <dd><a href="mailto:privacy@allesok.nl">privacy@allesok.nl</a></dd>
     <dt>Website</dt>
     <dd><a href="https://allesok.nl/">allesok.nl</a></dd>
     <dt>KvK-nummer</dt>
@@ -70,10 +70,10 @@
 
   <h2 id="welke-gegevens">2. Welke gegevens we verwerken</h2>
 
-  <h3>Bezoek aan de website (allesok.nl)</h3>
+  <h3>Bezoek aan de website (<a href="https://allesok.nl/">allesok.nl</a>)</h3>
   <p>De website draait op <strong>GitHub Pages</strong>. Bij elk bezoek registreert GitHub technische serverlogs (IP-adres, user-agent, opgevraagde URL, tijdstip). Deze logs worden door GitHub kortdurend bewaard voor beveiliging en abuse-detectie. Wij hebben geen analytics, geen tracking-cookies en geen marketing-pixels op deze site.</p>
 
-  <h3>Enquête (allesok.nl/enquete/)</h3>
+  <h3>Enquête (<a href="https://allesok.nl/enquete/">allesok.nl/enquete/</a>)</h3>
   <p>Als je de enquête invult, slaan we het volgende op:</p>
   <ul>
     <li>Je antwoorden op de vragen (rol, leeftijd, contactfrequentie, zorgen, technisch comfort, betalingsbereidheid en eventuele toelichting)</li>
@@ -85,16 +85,15 @@
   <h3>App-account en check-ins (zodra de app gebruikt wordt)</h3>
   <p>Bij gebruik van de app verwerken we:</p>
   <ul>
-    <li><strong>Account:</strong> e-mailadres en wachtwoord (gehasht door Firebase Authentication), of een anoniem account-ID</li>
+    <li><strong>Account:</strong> e-mailadres en wachtwoord (versleuteld bewaard door Firebase Authentication, dus voor niemand leesbaar — ook niet voor ons), of een anoniem account-ID</li>
     <li><strong>Profiel:</strong> de naam die je invult en optionele instellingen (bijvoorbeeld check-in-tijden en herinneringsgeluiden)</li>
     <li><strong>Check-ins:</strong> tijdstip waarop je hebt bevestigd dat het goed gaat — en het feit dát een check-in is gemist</li>
-    <li><strong>Locatie (GPS):</strong> alleen bij een gemiste check-in en alleen tussen het moment van escalatie en het moment dat je weer bevestigt dat het goed is. Niet doorlopend, niet in de achtergrond. Op het moment dat de melding wordt verzonden, wordt je laatst bekende locatie eenmalig meegegeven aan je gekoppelde contactpersoon.</li>
+    <li><strong>Locatie (GPS):</strong> alleen bij een gemiste check-in en alleen tussen het moment van escalatie en het moment dat je weer bevestigt dat het goed is. Hoewel je in je telefooninstellingen locatietoegang moet activeren om dit mogelijk te maken, draait er bij ons niets doorlopend op de achtergrond. Op het moment dat de melding wordt verzonden, wordt je laatst bekende locatie eenmalig meegegeven aan je gekoppelde contactpersoon.</li>
     <li><strong>Pairing:</strong> het feit dat jouw account is gekoppeld aan dat van een mantelzorger of een verzorgde, plus de pairing-status</li>
     <li><strong>Push-tokens:</strong> een door Firebase Cloud Messaging (FCM) toegekende identificator om notificaties naar het juiste toestel te sturen</li>
-    <li><strong>Telefoonnummer (optioneel):</strong> alleen als je dit aan je profiel toevoegt. Het wordt in de melding naar je gekoppelde contactpersoon meegestuurd zodat hij of zij je snel kan terugbellen. Je kunt dit veld leeg laten.</li>
-    <li><strong>Contactenkiezer (optioneel):</strong> wanneer je in de app op "kies uit je adresboek" tikt om een mantelzorger toe te voegen, vraagt de app éénmalig toestemming om je telefoon-adresboek te lezen. De namen en nummers blijven op je toestel — we slaan ze niet op, sturen ze niet naar onze servers en delen ze met niemand. Je kunt deze stap overslaan en het nummer handmatig intypen.</li>
+    <li><strong>Telefoonnummer:</strong> we vragen dit bij het aanmaken van je profiel. Het wordt in de melding naar je gekoppelde contactpersoon meegestuurd zodat hij of zij je snel kan terugbellen.</li>
   </ul>
-  <p>We verzamelen <strong>geen</strong> gezondheidsgegevens, geen call-logs en geen continu locatie-spoor. De contactenlijst lezen we, zoals hierboven beschreven, alleen lokaal in een eenmalige picker en uitsluitend op jouw initiatief.</p>
+  <p>We verzamelen <strong>geen</strong> gezondheidsgegevens, geen call-logs, geen contactenlijst en geen continu locatie-spoor.</p>
 
   <h3>E-mailcontact</h3>
   <p>Als je ons mailt, bewaren we het bericht en je e-mailadres om je vraag te beantwoorden en eventuele vervolgvragen af te handelen.</p>
@@ -180,9 +179,9 @@
   <p>Stuur een verzoek naar <a href="mailto:privacy@allesok.nl?subject=Privacyverzoek">privacy@allesok.nl</a>. We reageren binnen vier weken. Voor verificatie kunnen we je vragen je verzoek te bevestigen vanaf het bij ons bekende e-mailadres of via de app.</p>
 
   <h3 id="account-verwijderen">Hoe verwijder ik mijn account?</h3>
-  <p>Je kunt je ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 105" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg>-account zelf verwijderen vanuit de app:</p>
+  <p>Je kunt je ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 100" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg>-account zelf verwijderen vanuit de app:</p>
   <ol>
-    <li>Open de app ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 105" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg>.</li>
+    <li>Open de app ik ben <svg class="legal-wordmark is-inline" viewBox="0 0 100 100" role="img" aria-label="ok"><use href="/assets/ok-mark.svg#ok-mark"/></svg>.</li>
     <li>Tik onderaan op het tabblad <strong>Instellingen</strong>.</li>
     <li>Scroll naar beneden en tik op <strong>Account verwijderen</strong>.</li>
     <li>Bevestig in het dialoogvenster dat verschijnt.</li>
