@@ -67,15 +67,16 @@ body {
   .legal-wordmark > svg { height: 42px; }
 }
 
-/* Inline-modifier: gebruik direct op <svg> in body-copy. Hoogte 1.8em zodat
-   de "ik ben"-cap visueel matcht met body-cap. vertical-align afgestemd
-   zodat wordmark-baseline (142.5/210 ≈ 67.86% van height) precies op text-
-   baseline valt. */
+/* Inline-modifier: gebruik op <svg viewBox="0 0 100 105"> mark-only naast
+   body-text "ik ben". Hoogte 1.93em geeft mark/cap-verhouding 2.5× = identiek
+   aan canonical wordmark in nav (mark-diameter / "ik ben"-cap = 190/76 in
+   viewBox 437.3×210). vertical-align -0.65em plaatst "ok"-baseline (y=69.7368
+   in mark-viewBox = 66.4% from top) op text-baseline. */
 svg.legal-wordmark.is-inline {
   display: inline-block;
-  height: 1.8em;
+  height: 1.93em;
   width: auto;
-  vertical-align: -0.58em;
+  vertical-align: -0.65em;
 }
 
 .legal-nav .back-link {
