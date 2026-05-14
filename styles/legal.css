@@ -68,16 +68,17 @@ body {
 }
 
 /* Inline-modifier: gebruik op <svg viewBox="0 0 100 100"> mark-only naast
-   body-text "ik ben". Hoogte 1.84em geeft mark/cap-verhouding 2.5× = identiek
-   aan canonical wordmark in nav (mark-diameter / "ik ben"-cap = 190/76 in
-   viewBox 437.3×210). vertical-align -0.65em plaatst "ok"-baseline op
-   text-baseline. ViewBox 100×100 (was 100×105) — symmetrisch, geen anti-alias
-   clipping op onderkant. */
+   body-text "ik ben". Hoogte 1.5em past binnen body line-height (1.55–1.6em)
+   — geen visuele spill boven/onder body-line. Mark/body-cap-verhouding wordt
+   ~2.04× ipv canonical 2.5×; bewuste afwijking voor inline-context (Harm
+   2026-05-14 "logo niet in verhouding tot tekst" bij 1.84em). vertical-align
+   -0.53em plaatst "ok"-baseline (y=64.7368/100 = 64.7% from top) op
+   body-baseline. */
 svg.legal-wordmark.is-inline {
   display: inline-block;
-  height: 1.84em;
+  height: 1.5em;
   width: auto;
-  vertical-align: -0.65em;
+  vertical-align: -0.53em;
   overflow: visible;
 }
 
