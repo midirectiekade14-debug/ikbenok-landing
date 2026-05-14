@@ -92,7 +92,7 @@ Sitemap: https://allesok.nl/sitemap.xml
   "alternateName": "ikbenok",
   "operatingSystem": "iOS, Android",
   "applicationCategory": "HealthApplication",
-  "offers": { "@type": "Offer", "price": "2.75", "priceCurrency": "EUR" },
+  "offers": { "@type": "Offer", "price": "2.79", "priceCurrency": "EUR" },
   "url": "https://allesok.nl",
   "publisher": { "@type": "Organization", "name": "ik ben ok", "url": "https://allesok.nl" }
 }
@@ -109,7 +109,7 @@ Omdat React client-side rendert, kan Paperclip **statische SEO-content in `<nosc
 ```html
 <noscript>
   <h1>ik ben ok — een check-in app voor alleenwonende ouderen en mantelzorgers</h1>
-  <p>Een alarm dat afgaat als er níet gereageerd wordt. €2,75 per maand. iOS en Android.</p>
+  <p>Een alarm dat afgaat als er níet gereageerd wordt. €2,79 per maand. iOS en Android.</p>
   <p><a href="/enquete/">Vul de enquête in</a></p>
 </noscript>
 ```
