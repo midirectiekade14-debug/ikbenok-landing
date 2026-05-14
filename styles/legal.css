@@ -67,16 +67,20 @@ body {
   .legal-wordmark > svg { height: 42px; }
 }
 
-/* Inline-modifier: canonical wordmark-SVG inline (zelfde SVG als nav, kleiner
-   geschaald). Hoogte 1.5em past binnen body line-height (1.55–1.6em) — geen
-   spill. Verhoudingen "ik ben" + "ok" + mark zijn IDENTIEK aan nav (Harm
-   2026-05-14: "verhoudingen bovenaan kloppen, hanteer die"). vertical-align
-   -0.48em plaatst SVG-baseline (y=142.5/210 = 67.86% from top) op body-baseline. */
+/* Inline-modifier: canonical wordmark-SVG inline. Hoogte 2em geeft "ik ben"
+   SVG-cap (76/210 × 2em ≈ 0.724em) matchend met body cap-height (Dosis-stack
+   cap ≈ 0.72-0.74em) — Harm 2026-05-14: "tekstgrootte in wordmark kloppend
+   met tekstgrootte van de tekst naast het wordmark". Mark = 190/210 × 2em
+   ≈ 1.81em (canonical 2.5× cap-verhouding). vertical-align -0.64em plaatst
+   SVG-baseline (y=142.5/210 = 67.9% van top) op text-baseline; "ik ben" SVG-
+   cap valt dan exact op body cap-line. Mark steekt 0.64em onder baseline —
+   line-box expandeert 8-10px op de wordmark-regel (inherent omdat mark > body
+   line-height; trade-off voor cap-matching). */
 svg.legal-wordmark.is-inline {
   display: inline-block;
-  height: 1.5em;
+  height: 2em;
   width: auto;
-  vertical-align: -0.48em;
+  vertical-align: -0.64em;
   overflow: visible;
 }
 
