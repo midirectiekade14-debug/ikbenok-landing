@@ -20,11 +20,22 @@
     color: var(--fg-default);
     font-family: var(--font-body, 'Dosis', system-ui, sans-serif);
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.08), transparent 60%),
-      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.08), transparent 60%);
-    background-attachment: fixed;
     min-height: 100vh;
+  }
+
+  /* Atmospheric background — homepage/testers parity */
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.10), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.10), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.05), transparent 70%);
+  }
+  .ci-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url('../../assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.28; mix-blend-mode: multiply;
   }
 
   .nav {
@@ -230,6 +241,9 @@
 </style>
 </head>
 <body>
+
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
 
 <!-- Canonical "ik ben ok" wordmark — gespiegeld op de app-Wordmark
      (src/components/ui/Wordmark.tsx in ikbenok-app). Eén SVG met

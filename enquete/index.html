@@ -73,10 +73,21 @@
     margin: 0; padding: 40px 16px 80px; line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     font-synthesis: style;
-    background-image:
-      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.08), transparent 60%),
-      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.08), transparent 60%);
-    background-attachment: fixed;
+  }
+
+  /* Atmospheric background — homepage/testers parity */
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.10), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.10), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.05), transparent 70%);
+  }
+  .ci-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url('../assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.28; mix-blend-mode: multiply;
   }
   em, i {
     font-family: var(--font-italic) !important;
@@ -509,6 +520,8 @@
       }
     </style></head>
 <body class="">
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
 <div class="wrap">
 
 <div class="edit-toolbar">
