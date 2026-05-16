@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "nl.ikbenok.app",
+      "sha256_cert_fingerprints":
+        ["0F:B3:63:C5:69:36:D4:92:6F:6D:77:88:05:06:BD:17:CE:10:09:A9:02:F3:30:76:26:7B:8F:EB:37:CD:4B:E8"]
+    }
+  }
+]
