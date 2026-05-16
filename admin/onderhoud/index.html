@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Onderhoud — ik ben ok</title>
+<meta name="theme-color" content="#F5EFE3" />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="stylesheet" href="../../styles/colors_and_type.css?v=1" />
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream, #F5EFE3);
+    color: var(--fg-default, #0B1B2B);
+    font-family: var(--font-body, 'Dosis', system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.10), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.10), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.05), transparent 70%);
+  }
+  .ci-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url('../../assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.20; mix-blend-mode: multiply;
+  }
+
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .topbar h1 {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-weight: 500;
+    color: var(--navy, #0B1B2B);
+    font-size: 28px;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .topbar h1 em {
+    font-style: italic;
+    color: var(--coral, #FF6B47);
+    font-weight: 400;
+  }
+  .meta {
+    font-size: 13px;
+    color: var(--fg-muted, #5a6470);
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-ghost {
+    padding: 8px 14px;
+    border: 1px solid rgba(11, 27, 43, 0.16);
+    background: transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--fg-default, #0B1B2B);
+    transition: background 0.15s ease;
+  }
+  .btn-ghost:hover { background: rgba(11, 27, 43, 0.04); }
+
+  .panel {
+    background: var(--bg-raised, #ffffff);
+    border-radius: 18px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 36px rgba(11, 27, 43, 0.06);
+    margin-bottom: 22px;
+  }
+  @media (max-width: 600px) {
+    main { padding: 24px 14px 60px; }
+    .panel { padding: 22px 18px; border-radius: 14px; }
+  }
+
+  .panel h2 {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-weight: 500;
+    color: var(--navy, #0B1B2B);
+    font-size: 18px;
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Findings table */
+  table.findings {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table.findings th, table.findings td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(11, 27, 43, 0.08);
+    vertical-align: top;
+  }
+  table.findings th {
+    font-weight: 500;
+    color: var(--fg-muted, #5a6470);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+  .sev-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .sev-critical { background: rgba(165, 74, 58, 0.14); color: var(--clay, #A54A3A); }
+  .sev-warn     { background: rgba(201, 169, 97, 0.16); color: #8a6a1e; }
+  .sev-info     { background: rgba(110, 150, 128, 0.16); color: var(--sage-deep, #4E7765); }
+
+  .empty {
+    color: var(--fg-muted, #5a6470);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* Markdown render */
+  .md {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--fg-default, #0B1B2B);
+  }
+  .md h1 { font-size: 22px; margin: 0 0 10px; font-weight: 500; }
+  .md h2 { font-size: 16px; margin: 22px 0 8px; font-weight: 500; color: var(--navy, #0B1B2B); text-transform: uppercase; letter-spacing: 0.06em; }
+  .md h3 { font-size: 14px; margin: 16px 0 6px; font-weight: 500; }
+  .md p  { margin: 6px 0 14px; }
+  .md table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 18px;
+    font-size: 13px;
+  }
+  .md th, .md td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(11, 27, 43, 0.08);
+  }
+  .md th { font-weight: 500; color: var(--fg-muted, #5a6470); background: rgba(11, 27, 43, 0.025); }
+  .md code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: rgba(11, 27, 43, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .md hr { border: none; border-top: 1px solid rgba(11, 27, 43, 0.08); margin: 22px 0; }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    color: var(--fg-muted, #5a6470);
+  }
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(11, 27, 43, 0.12);
+    border-top-color: var(--coral, #FF6B47);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-right: 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-panel {
+    background: rgba(165, 74, 58, 0.08);
+    border-left: 3px solid var(--clay, #A54A3A);
+    padding: 16px 20px;
+    border-radius: 8px;
+    color: var(--clay, #A54A3A);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
+
+<main>
+  <div class="topbar">
+    <div>
+      <h1>Onderhoud · <em>ik ben ok</em></h1>
+      <div class="meta" id="meta">—</div>
+    </div>
+    <div class="actions">
+      <button class="btn-ghost" id="refresh-btn">↻ Refresh</button>
+      <button class="btn-ghost" id="logout-btn">Uitloggen</button>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="loading"><div class="spinner"></div>Data ophalen…</div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@14.1.3/marked.min.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+  import {
+    getFunctions,
+    httpsCallable,
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-functions.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2VJDiadxwHWFjTRV_CIueONIyAG4Zu-A",
+    authDomain: "ikbenok-prod.firebaseapp.com",
+    projectId: "ikbenok-prod",
+    storageBucket: "ikbenok-prod.firebasestorage.app",
+    messagingSenderId: "149184356516",
+    appId: "1:149184356516:web:placeholder",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const functions = getFunctions(app, 'europe-west1');
+  const getData = httpsCallable(functions, 'getAdminMaintenanceData');
+
+  const contentEl = document.getElementById('content');
+  const metaEl = document.getElementById('meta');
+  const refreshBtn = document.getElementById('refresh-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    })[c]);
+  }
+
+  function renderFindings(findings) {
+    const items = Array.isArray(findings?.findings) ? findings.findings : [];
+    if (!items.length) {
+      return `<p class="empty">Geen audit-bevindingen — scanner is gezond.</p>`;
+    }
+    const order = { critical: 0, warn: 1, info: 2 };
+    const sorted = [...items].sort((a, b) => (order[a.severity] ?? 9) - (order[b.severity] ?? 9));
+    const rows = sorted.map(f => `
+      <tr>
+        <td><span class="sev-badge sev-${escapeHtml(f.severity)}">${escapeHtml(f.severity)}</span></td>
+        <td>${escapeHtml(f.kind)}</td>
+        <td>${escapeHtml(f.target)}</td>
+        <td>${escapeHtml(f.message)}</td>
+        <td>${escapeHtml(f.suggestion || '—')}</td>
+      </tr>
+    `).join('');
+    return `
+      <table class="findings">
+        <thead>
+          <tr><th>Severity</th><th>Kind</th><th>Target</th><th>Bericht</th><th>Voorstel</th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+
+  function fmtRelative(iso) {
+    if (!iso) return '—';
+    const then = new Date(iso).getTime();
+    if (!Number.isFinite(then)) return iso;
+    const diff = Date.now() - then;
+    const mins = Math.round(diff / 60000);
+    if (mins < 1) return 'zojuist';
+    if (mins < 60) return `${mins} min geleden`;
+    const hrs = Math.round(mins / 60);
+    if (hrs < 48) return `${hrs}u geleden`;
+    const days = Math.round(hrs / 24);
+    return `${days}d geleden`;
+  }
+
+  async function load() {
+    contentEl.innerHTML = `<div class="loading"><div class="spinner"></div>Data ophalen…</div>`;
+    metaEl.textContent = '—';
+    try {
+      const result = await getData();
+      const data = result.data;
+      metaEl.textContent = `Geüpload ${fmtRelative(data.uploadedAt)} · opgehaald ${fmtRelative(data.fetchedAt)}`;
+      contentEl.innerHTML = `
+        <div class="panel">
+          <h2>Audit-laag</h2>
+          ${renderFindings(data.findings)}
+        </div>
+        <div class="panel">
+          <h2>Maintenance dashboard</h2>
+          <div class="md">${marked.parse(data.maintenanceMd || '_Geen markdown beschikbaar._')}</div>
+        </div>
+        ${data.auditMd ? `
+          <div class="panel">
+            <h2>Audit history</h2>
+            <div class="md">${marked.parse(data.auditMd)}</div>
+          </div>` : ''}
+      `;
+    } catch (err) {
+      const code = err?.code ?? '';
+      let msg = err?.message ?? String(err);
+      if (code === 'functions/unauthenticated' || code === 'functions/permission-denied') {
+        msg = `${msg} — opnieuw inloggen.`;
+        setTimeout(() => { window.location.href = '/admin/login/'; }, 2000);
+      } else if (code === 'functions/not-found') {
+        msg = `${msg}. Wacht tot de scheduled task de eerste keer draait (zondag 09:00) of trigger handmatig: \`python -m scripts.maintenance\` in ~/projects/ikbenok.`;
+      }
+      contentEl.innerHTML = `<div class="error-panel"><strong>Fout:</strong> ${escapeHtml(msg)}</div>`;
+    }
+  }
+
+  refreshBtn.addEventListener('click', () => load());
+  logoutBtn.addEventListener('click', async () => {
+    await signOut(auth);
+    window.location.href = '/admin/login/';
+  });
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = '/admin/login/';
+      return;
+    }
+    const token = await user.getIdTokenResult();
+    if (token.claims.admin !== true) {
+      window.location.href = '/admin/login/';
+      return;
+    }
+    load();
+  });
+</script>
+</body>
+</html>

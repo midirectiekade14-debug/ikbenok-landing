@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Admin login — ik ben ok</title>
+<meta name="theme-color" content="#F5EFE3" />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="stylesheet" href="../../styles/colors_and_type.css?v=1" />
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream, #F5EFE3);
+    color: var(--fg-default, #0B1B2B);
+    font-family: var(--font-body, 'Dosis', system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.10), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.10), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.05), transparent 70%);
+  }
+  .ci-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url('../../assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.28; mix-blend-mode: multiply;
+  }
+
+  main {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+  }
+  .card {
+    background: var(--bg-raised, #ffffff);
+    border-radius: 22px;
+    padding: 44px 36px;
+    box-shadow: 0 12px 48px rgba(11, 27, 43, 0.08), 0 1px 0 rgba(11, 27, 43, 0.04);
+  }
+  @media (max-width: 540px) {
+    main { padding: 40px 16px 60px; }
+    .card { padding: 32px 22px; border-radius: 18px; }
+  }
+
+  h1 {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-weight: 500;
+    color: var(--navy, #0B1B2B);
+    font-size: 26px;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin: 0 0 6px;
+    text-align: center;
+  }
+  .lead {
+    font-size: 15px;
+    color: var(--fg-muted, #5a6470);
+    margin: 0 0 24px;
+    text-align: center;
+  }
+
+  form { margin-top: 8px; }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fg-default, #0B1B2B);
+    margin: 14px 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  input {
+    width: 100%;
+    padding: 13px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 1px solid rgba(11, 27, 43, 0.18);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--navy, #0B1B2B);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus {
+    outline: none;
+    border-color: var(--coral, #FF6B47);
+    box-shadow: 0 0 0 3px rgba(255, 107, 71, 0.15);
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    background: var(--coral, #FF6B47);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 107, 71, 0.28);
+    transition: background 0.15s ease, transform 0.08s ease;
+  }
+  .btn:hover { background: var(--coral-soft, #FF8567); }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .error {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(165, 74, 58, 0.10);
+    color: var(--clay, #A54A3A);
+    font-size: 14px;
+    display: none;
+  }
+  .error.show { display: block; }
+</style>
+</head>
+<body>
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
+
+<main>
+  <div class="card">
+    <h1>Admin</h1>
+    <p class="lead">Login vereist voor toegang tot het onderhoudspanel.</p>
+
+    <form id="login-form">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="email" required />
+
+      <label for="password">Wachtwoord</label>
+      <input id="password" type="password" autocomplete="current-password" required />
+
+      <button type="submit" class="btn" id="submit-btn">Inloggen</button>
+      <div class="error" id="error"></div>
+    </form>
+  </div>
+</main>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+  // Source of truth: ~/projects/ikbenok/src/lib/firebase.web.ts
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2VJDiadxwHWFjTRV_CIueONIyAG4Zu-A",
+    authDomain: "ikbenok-prod.firebaseapp.com",
+    projectId: "ikbenok-prod",
+    storageBucket: "ikbenok-prod.firebasestorage.app",
+    messagingSenderId: "149184356516",
+    appId: "1:149184356516:web:placeholder",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const form = document.getElementById('login-form');
+  const emailEl = document.getElementById('email');
+  const passEl = document.getElementById('password');
+  const btn = document.getElementById('submit-btn');
+  const errEl = document.getElementById('error');
+
+  function showError(msg) {
+    errEl.textContent = msg;
+    errEl.classList.add('show');
+  }
+  function clearError() {
+    errEl.textContent = '';
+    errEl.classList.remove('show');
+  }
+
+  // Als al ingelogd + admin-claim → direct door
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+    try {
+      const token = await user.getIdTokenResult(true);
+      if (token.claims.admin === true) {
+        window.location.href = '/admin/onderhoud/';
+      }
+    } catch { /* ignore */ }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+    btn.disabled = true;
+    btn.textContent = 'Bezig…';
+    try {
+      const cred = await signInWithEmailAndPassword(auth, emailEl.value.trim(), passEl.value);
+      const token = await cred.user.getIdTokenResult(true);
+      if (token.claims.admin !== true) {
+        await auth.signOut();
+        showError('Account heeft geen admin-rechten.');
+        btn.disabled = false;
+        btn.textContent = 'Inloggen';
+        return;
+      }
+      window.location.href = '/admin/onderhoud/';
+    } catch (err) {
+      const code = err?.code ?? '';
+      let msg = 'Login mislukt.';
+      if (code === 'auth/invalid-credential' || code === 'auth/wrong-password') {
+        msg = 'Onjuiste e-mail of wachtwoord.';
+      } else if (code === 'auth/user-not-found') {
+        msg = 'Account bestaat niet.';
+      } else if (code === 'auth/too-many-requests') {
+        msg = 'Te veel pogingen — probeer later opnieuw.';
+      } else if (err?.message) {
+        msg = err.message;
+      }
+      showError(msg);
+      btn.disabled = false;
+      btn.textContent = 'Inloggen';
+    }
+  });
+</script>
+</body>
+</html>
