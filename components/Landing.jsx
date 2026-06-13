@@ -103,7 +103,7 @@ const Hero = ({ intensity }) => {
   }}>
     <div style={{ position: 'relative', zIndex: 2 }}>
       <h1 style={{
-      fontFamily: 'var(--font-display)', fontWeight: 600,
+      fontFamily: 'var(--font-display)', fontWeight: 500,
       fontSize: isMobile ? 'clamp(40px, 11vw, 56px)' : 'clamp(56px, 7vw, 104px)',
       lineHeight: 0.98,
       letterSpacing: '-0.025em', color: 'var(--navy)',
@@ -274,7 +274,7 @@ const HowItWorks = ({ intensity }) => {
     }}>
       <SectionLabel>Zo werkt het</SectionLabel>
       <h2 style={{
-        fontFamily: 'var(--font-display)', fontWeight: 600,
+        fontFamily: 'var(--font-display)', fontWeight: 500,
         fontSize: isMobile ? 'clamp(32px, 8vw, 44px)' : 64,
         lineHeight: 1.04,
         letterSpacing: '-0.02em', color: 'var(--navy)',
@@ -303,7 +303,7 @@ const HowItWorks = ({ intensity }) => {
               }}>{step.label}</span>
               </div>
               <h3 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 600,
+              fontFamily: 'var(--font-display)', fontWeight: 500,
               fontSize: isMobile ? 'clamp(28px, 7vw, 36px)' : 46,
               lineHeight: 1.05,
               letterSpacing: '-0.02em', color: 'var(--navy)',
@@ -386,7 +386,7 @@ const QuoteBlock = () => {
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
         fontSize: 'clamp(32px, 3.6vw, 52px)', lineHeight: 1.18,
         letterSpacing: '-0.015em', color: 'var(--cream)',
-        margin: '0 0 40px', fontWeight: 600, textWrap: 'balance'
+        margin: '0 0 40px', fontWeight: 500, textWrap: 'balance'
       }}>
           "Mijn moeder woont alleen sinds vorig jaar. Ik belde haar drie keer per dag — uit zorg, niet uit gewoonte. Nu zie ik <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>elke middag</span> dat ze heeft ingecheckt. Ik bel nu <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>omdat ik haar wil spreken</span>, niet omdat ik bang ben."
         </blockquote>
@@ -440,7 +440,7 @@ const Pricing = () => {
 }}>
     <SectionLabel align="center">Abonnement</SectionLabel>
     <h2 style={{
-    fontFamily: 'var(--font-display)', fontWeight: 600,
+    fontFamily: 'var(--font-display)', fontWeight: 500,
     fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.04,
     letterSpacing: '-0.02em', color: 'var(--navy)',
     margin: '0 auto 20px', maxWidth: 780, textWrap: 'balance',
