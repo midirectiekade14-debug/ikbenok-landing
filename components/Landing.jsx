@@ -109,7 +109,7 @@ const Hero = ({ intensity }) => {
       letterSpacing: '-0.025em', color: 'var(--navy)',
       margin: '0 0 26px', textWrap: 'balance'
     }}>
-        Een alarm dat afgaat als er <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>níet</em> gereageerd wordt
+        Een alarmering als er niet gereageerd wordt.
       </h1>
       <p style={{
       fontFamily: 'var(--font-body)', fontSize: isMobile ? 17 : 19, lineHeight: 1.55,
@@ -260,7 +260,7 @@ const HowItWorks = ({ intensity }) => {
   },
   {
     label: 'Voor de mantelzorger',
-    title: 'Altijd <em>verbonden</em>,<br/>nooit opdringerig',
+    title: 'Altijd <em>verbonden</em>,<br/>altijd op de achtergrond',
     body: 'Mantelzorgers zien in één oogopslag wanneer er is ingecheckt.',
     phone: <PhoneCaregiver />
   }];
@@ -446,7 +446,7 @@ const Pricing = () => {
     margin: '0 auto 20px', maxWidth: 780, textWrap: 'balance',
     textAlign: 'center'
   }}>
-      Eén prijs <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Geen zorgen</em>
+      Eén prijs <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Eén app</em>
     </h2>
     <p style={{
     fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.55,

@@ -77,12 +77,13 @@ const PhoneHome = ({ name = 'Margriet', progress = 0.62, intensity = 1, state = 
           background: buttonBg, color: '#fff',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           boxShadow: buttonShadow,
-          animation: intensity > 0 ? `phone-breathe ${breathDur} ease-in-out infinite` : 'none'
+          animation: intensity > 0 ? `phone-breathe ${breathDur} ease-in-out infinite` : 'none',
+          backfaceVisibility: 'hidden', willChange: 'transform'
         }}>
           <span style={{
-            fontFamily: 'var(--font-display)', fontStyle: 'italic',
+            fontFamily: 'var(--font-display)',
             fontSize: 12, opacity: 0.82, marginBottom: 5, letterSpacing: '0.02em'
-          }}>tik om te bevestigen</span>
+          }}>Druk om te bevestigen</span>
           <span style={{
             fontFamily: 'var(--font-display)', lineHeight: 1,
             letterSpacing: '-0.015em', fontWeight: 600,
@@ -288,7 +289,7 @@ const PhoneSchedule = () => {
       <p style={{
         fontFamily: 'var(--font-body)', fontSize: 10.5, lineHeight: 1.5,
         color: 'var(--fg-muted)', margin: '12px 0 0'
-      }}>Je krijgt op <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 momenten</span> per dag een vraag: <span style={{ color: 'var(--navy)', fontWeight: 600 }}>09:00 · 13:00 · 20:00</span>.</p>
+      }}>Je krijgt <span style={{ color: 'var(--navy)', fontWeight: 600 }}>3 check-in momenten</span> per dag.</p>
 
       <div style={{ flex: 1 }} />
     </div>);
