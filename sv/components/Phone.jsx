@@ -34,7 +34,7 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
           border: '1px solid rgba(110,150,128,0.3)',
           borderRadius: 999,
           fontFamily: 'var(--font-body)', fontSize: 10.5,
-          color: 'var(--navy)', fontWeight: 500, letterSpacing: '0.01em'
+          color: 'var(--navy)', fontWeight: 600, letterSpacing: '0.01em'
         }}>
           <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--sage)' }} />
           säkert kopplad
@@ -93,7 +93,7 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
           }}>tryck för att bekräfta</span>
           <span style={{
             fontFamily: 'var(--font-display)', lineHeight: 1,
-            letterSpacing: '-0.015em', fontWeight: 500,
+            letterSpacing: '-0.015em', fontWeight: 600,
             whiteSpace: 'nowrap', color: 'var(--cream)', fontSize: '35px', margin: '2px 0 16px'
           }}>
             jag är ok
@@ -109,7 +109,7 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
           border: '1px solid var(--line-soft)',
           borderRadius: 14
         }}>
-          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>senaste incheckning</div>
+          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 600, whiteSpace: 'nowrap' }}>senaste incheckning</div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--sage-deep)', whiteSpace: 'nowrap' }}>igår · 14:32</div>
         </div>
         <div style={{
@@ -118,7 +118,7 @@ const PhoneHome = ({ name = 'Astrid', progress = 0.62, intensity = 1, state = 'o
           border: '1px solid var(--line-soft)',
           borderRadius: 14
         }}>
-          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 500, whiteSpace: 'nowrap' }}>nästa incheckning</div>
+          <div style={{ fontSize: 7.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 3, fontWeight: 600, whiteSpace: 'nowrap' }}>nästa incheckning</div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--navy)', whiteSpace: 'nowrap' }}>idag · 16:00</div>
         </div>
       </div>
@@ -151,7 +151,7 @@ const PhoneCaregiver = () =>
       <span style={{ width: 18, height: 1.5, background: 'var(--coral)', display: 'inline-block' }} />
       <span style={{
         fontFamily: 'var(--font-display)', fontSize: 13, letterSpacing: 0,
-        color: 'var(--fg-default)', fontWeight: 500
+        color: 'var(--fg-default)', fontWeight: 600
       }}>Vem du följer</span>
     </div>
 
@@ -176,7 +176,7 @@ const PhoneCaregiver = () =>
       <div style={{
       fontFamily: 'var(--font-display)', fontStyle: 'italic',
       fontSize: 19, lineHeight: 1.15, letterSpacing: '-0.015em',
-      color: 'var(--coral)', fontWeight: 400
+      color: 'var(--coral)', fontWeight: 600
     }}>Astrid</div>
       {/* subtitle in display font */}
       <div style={{
@@ -191,7 +191,7 @@ const PhoneCaregiver = () =>
       {/* week toggle (collapsed by default — app default) */}
       <div style={{
       fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.05em',
-      color: 'var(--fg-muted)', fontWeight: 500, marginTop: 10
+      color: 'var(--fg-muted)', fontWeight: 600, marginTop: 10
     }}>+ Denna vecka</div>
     </div>
   </div>;
@@ -265,7 +265,7 @@ const PhoneSchedule = () => {
             }}>◷</div>
             <span style={{
               fontFamily: 'var(--font-display)', fontSize: 18, lineHeight: 1,
-              letterSpacing: '0.04em', color: 'var(--navy)', fontWeight: 500,
+              letterSpacing: '0.04em', color: 'var(--navy)', fontWeight: 600,
               flex: 1
             }}>{t.value}</span>
             <span style={{
@@ -289,7 +289,7 @@ const PhoneSchedule = () => {
         borderRadius: 12,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-default)',
-        fontWeight: 500
+        fontWeight: 600
       }}>+ Lägg till tid</div>
 
       {/* hint */}

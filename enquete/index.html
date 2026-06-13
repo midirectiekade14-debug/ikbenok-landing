@@ -69,6 +69,7 @@
   * { box-sizing: border-box; }
   body {
     font-family: var(--font-body);
+    font-weight: 600;
     background: var(--cream); color: var(--fg-default);
     margin: 0; padding: 40px 16px 80px; line-height: 1.55;
     -webkit-font-smoothing: antialiased;
@@ -93,7 +94,7 @@
     font-family: var(--font-italic) !important;
     font-style: italic !important;
     font-synthesis: style;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--coral);
   }
 
@@ -117,7 +118,7 @@
 
   /* ───── wordmark "ik ben [logo]" ───── */
   .wordmark {
-    font-family: var(--font-display); font-weight: 500;
+    font-family: var(--font-display); font-weight: 600;
     letter-spacing: -0.015em;
     display: inline-flex; align-items: center; gap: 0.12em;
     white-space: nowrap; color: var(--fg-strong);
@@ -150,7 +151,7 @@
   }
   .landing-hero .wordmark { font-size: clamp(40px, 6vw, 56px); margin-top: 6px; }
   .landing-claim {
-    font-family: var(--font-display); font-weight: 400;
+    font-family: var(--font-display); font-weight: 600;
     font-size: clamp(28px, 4.4vw, 40px);
     letter-spacing: -0.02em; line-height: 1.1;
     color: var(--fg-strong); text-align: center;
@@ -167,7 +168,7 @@
     box-shadow: var(--shadow-card); margin-bottom: 18px;
   }
   .landing-card h2 {
-    font-family: var(--font-display); font-weight: 400;
+    font-family: var(--font-display); font-weight: 600;
     font-size: 22px; letter-spacing: -0.01em;
     margin: 0 0 12px; color: var(--fg-strong);
   }
@@ -181,7 +182,7 @@
   .landing-cta { text-align: center; margin: 32px 0 16px; }
   .landing-cta button {
     background: var(--sage-deep); color: var(--cream);
-    font-family: var(--font-display); font-weight: 500;
+    font-family: var(--font-display); font-weight: 600;
     font-size: 18px; padding: 16px 36px;
     border: none; border-radius: 999px; cursor: pointer;
     box-shadow: 0 10px 26px -10px rgba(79,106,76,0.55);
@@ -226,7 +227,7 @@
   .section-label .label {
     font-family: var(--font-body); font-size: 11.5px;
     letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--fg-muted); font-weight: 500;
+    color: var(--fg-muted); font-weight: 600;
   }
   ::selection { background: rgba(255,107,71,0.22); color: var(--navy); }
 
@@ -235,11 +236,11 @@
   .brand-row { margin-bottom: 22px; font-size: 22px; }
   @media (max-width: 600px) { .brand-row { font-size: 19px; } }
   h1 {
-    font-family: var(--font-display); font-weight: 400;
+    font-family: var(--font-display); font-weight: 600;
     font-size: clamp(34px, 5vw, 46px); margin: 0 0 8px;
     letter-spacing: -0.02em; color: var(--fg-strong); line-height: 1.05;
   }
-  h1 em { font-family: var(--font-italic); font-style: italic; color: var(--coral); font-weight: 400; }
+  h1 em { font-family: var(--font-italic); font-style: italic; color: var(--coral); font-weight: 600; }
   .lead {
     color: var(--fg-muted); margin: 0 0 4px; font-size: 16px;
   }
@@ -258,14 +259,14 @@
   }
   .step.active { display: block; }
   .step h2 {
-    font-family: var(--font-display); font-weight: 400;
+    font-family: var(--font-display); font-weight: 600;
     font-size: 26px; line-height: 1.2; margin: 0 0 8px;
     letter-spacing: -0.01em; color: var(--fg-strong);
   }
-  .step h2 em { font-family: var(--font-italic); font-style: italic; color: var(--coral); font-weight: 400; }
+  .step h2 em { font-family: var(--font-italic); font-style: italic; color: var(--coral); font-weight: 600; }
   .step .qmeta {
     font-size: 11px; color: var(--fg-muted); margin-bottom: 22px;
-    letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
   }
   .step p { margin: 0 0 14px; }
 
@@ -335,7 +336,7 @@
     width: 38px; height: 38px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     background: var(--cream); color: var(--fg-strong);
-    font-weight: 500; font-size: 16px; margin-bottom: 8px;
+    font-weight: 600; font-size: 16px; margin-bottom: 8px;
     transition: all 0.18s;
   }
   .scale-labels {
@@ -368,7 +369,7 @@
   .nav { display: flex; justify-content: space-between; margin-top: 28px; gap: 12px; }
   button {
     padding: 14px 26px; border-radius: 999px; border: none;
-    font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit;
+    font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
     transition: all 0.18s cubic-bezier(0.2,0.7,0.2,1);
   }
   .btn-prev {
@@ -378,7 +379,7 @@
   .btn-prev:hover { background: var(--cream-warm); color: var(--fg-strong); }
   .btn-next, .btn-submit {
     background: var(--sage-deep); color: var(--cream); margin-left: auto;
-    font-family: var(--font-body); font-weight: 500;
+    font-family: var(--font-body); font-weight: 600;
     box-shadow:
       0 8px 18px -6px rgba(79,106,76,0.55),
       0 2px 4px rgba(11,27,43,0.12),
@@ -416,7 +417,7 @@
 
   .thankyou { text-align: center; padding: 60px 20px; }
   .thankyou h2 {
-    font-family: var(--font-display); font-weight: 400;
+    font-family: var(--font-display); font-weight: 600;
     font-size: 36px; margin-bottom: 14px; color: var(--fg-strong);
     letter-spacing: -0.02em;
   }
@@ -506,7 +507,7 @@
   body.edit-mode .branch-divider {
     display: block; margin: 36px 0 12px;
     font-size: 11px; letter-spacing: 0.22em;
-    color: var(--fg-muted); text-transform: uppercase; font-weight: 500;
+    color: var(--fg-muted); text-transform: uppercase; font-weight: 600;
     border-top: 1px solid var(--line); padding-top: 20px;
   }
   .branch-divider { display: none; }

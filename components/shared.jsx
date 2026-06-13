@@ -149,7 +149,7 @@ const Wordmark = ({ size = 24, color = 'var(--navy)', text = 'ik ben', markColor
       fontFamily: 'var(--font-display)',
       fontSize: inline ? 'inherit' : size,
       lineHeight: 1,
-      letterSpacing: '-0.015em', color, fontWeight: 500,
+      letterSpacing: '-0.015em', color, fontWeight: 600,
       display: 'inline-block',
       whiteSpace: 'nowrap'
     }}>

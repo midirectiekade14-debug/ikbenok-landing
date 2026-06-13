@@ -17,7 +17,7 @@ const SectionLabel = ({ children, align = 'left' }) =>
     <span style={{
     fontFamily: 'var(--font-body)', fontSize: 11.5,
     letterSpacing: '0.28em', textTransform: 'uppercase',
-    color: 'var(--fg-muted)', fontWeight: 500
+    color: 'var(--fg-muted)', fontWeight: 600
   }}>{children}</span>
   </div>;
 
@@ -73,7 +73,7 @@ const Nav = () => {
       <a href="#pris" style={{
         padding: isMobile ? '9px 14px' : '11px 18px', borderRadius: 999,
         background: 'var(--sage-deep)', color: 'var(--cream)',
-        fontFamily: 'var(--font-body)', fontSize: isMobile ? 13 : 14, fontWeight: 500,
+        fontFamily: 'var(--font-body)', fontSize: isMobile ? 13 : 14, fontWeight: 600,
         textDecoration: 'none', letterSpacing: '0.01em',
         display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap',
         boxShadow: '0 8px 18px -6px rgba(79,106,76,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)',
@@ -105,7 +105,7 @@ const Hero = ({ intensity }) => {
   }}>
     <div style={{ position: 'relative', zIndex: 2 }}>
       <h1 style={{
-      fontFamily: 'var(--font-display)', fontWeight: 400,
+      fontFamily: 'var(--font-display)', fontWeight: 600,
       fontSize: isMobile ? 'clamp(40px, 11vw, 56px)' : 'clamp(56px, 7vw, 104px)',
       lineHeight: 0.98,
       letterSpacing: '-0.025em', color: 'var(--navy)',
@@ -217,7 +217,7 @@ const StoreButton = ({ kind }) => {
         <div style={{
           fontFamily: 'var(--font-body)', fontSize: 10,
           letterSpacing: '0.14em', textTransform: 'uppercase',
-          opacity: 0.75, marginBottom: 3, fontWeight: 500
+          opacity: 0.75, marginBottom: 3, fontWeight: 600
         }}>{isApple ? 'Ladda ner från' : 'Nu på'}</div>
         <div style={{
           fontFamily: 'var(--font-display)', fontSize: 20,
@@ -262,7 +262,7 @@ const HowItWorks = ({ intensity }) => {
     }}>
       <SectionLabel>Så fungerar det</SectionLabel>
       <h2 style={{
-        fontFamily: 'var(--font-display)', fontWeight: 400,
+        fontFamily: 'var(--font-display)', fontWeight: 600,
         fontSize: isMobile ? 'clamp(32px, 8vw, 44px)' : 64,
         lineHeight: 1.04,
         letterSpacing: '-0.02em', color: 'var(--navy)',
@@ -287,11 +287,11 @@ const HowItWorks = ({ intensity }) => {
                 <span style={{
                 fontFamily: 'var(--font-body)', fontSize: 11,
                 letterSpacing: '0.28em', textTransform: 'uppercase',
-                color: 'var(--fg-muted)', fontWeight: 500
+                color: 'var(--fg-muted)', fontWeight: 600
               }}>{step.label}</span>
               </div>
               <h3 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 400,
+              fontFamily: 'var(--font-display)', fontWeight: 600,
               fontSize: isMobile ? 'clamp(28px, 7vw, 36px)' : 46,
               lineHeight: 1.05,
               letterSpacing: '-0.02em', color: 'var(--navy)',
@@ -363,7 +363,7 @@ const QuoteBlock = () => {
         <div style={{
         fontFamily: 'var(--font-body)', fontSize: 11.5,
         letterSpacing: '0.28em', textTransform: 'uppercase',
-        color: 'var(--coral)', fontWeight: 500, marginBottom: 32,
+        color: 'var(--coral)', fontWeight: 600, marginBottom: 32,
         display: 'flex', alignItems: 'center', gap: 16
       }}>
           <span style={{ width: 28, height: 2, background: 'var(--coral)', display: 'inline-block' }} />
@@ -374,7 +374,7 @@ const QuoteBlock = () => {
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
         fontSize: 'clamp(32px, 3.6vw, 52px)', lineHeight: 1.18,
         letterSpacing: '-0.015em', color: 'var(--cream)',
-        margin: '0 0 40px', fontWeight: 400, textWrap: 'balance'
+        margin: '0 0 40px', fontWeight: 600, textWrap: 'balance'
       }}>
           "Min mamma bor ensam sedan förra året. Jag ringde henne tre gånger om dagen — av oro, inte av vana. Nu ser jag <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>varje eftermiddag</span> att hon har checkat in. Jag ringer nu <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>för att jag vill prata med henne</span>, inte för att jag är rädd."
         </blockquote>
@@ -428,7 +428,7 @@ const Pricing = () => {
 }}>
     <SectionLabel align="center">Abonnemang</SectionLabel>
     <h2 style={{
-    fontFamily: 'var(--font-display)', fontWeight: 400,
+    fontFamily: 'var(--font-display)', fontWeight: 600,
     fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.04,
     letterSpacing: '-0.02em', color: 'var(--navy)',
     margin: '0 auto 20px', maxWidth: 780, textWrap: 'balance',
@@ -564,7 +564,7 @@ const Footer = ({ intensity }) => {
           <div style={{
         fontFamily: 'var(--font-body)', fontSize: 11,
         letterSpacing: '0.28em', textTransform: 'uppercase',
-        color: 'var(--fg-muted)', fontWeight: 500, marginBottom: 16
+        color: 'var(--fg-muted)', fontWeight: 600, marginBottom: 16
       }}>{col.title}</div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {col.items.map((it) => {

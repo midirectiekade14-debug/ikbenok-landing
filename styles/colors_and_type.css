@@ -116,7 +116,7 @@
 
 .ci h1, .ci-h1 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--fs-display-xxl);
   line-height: var(--lh-display);
   letter-spacing: -0.025em;
@@ -124,7 +124,7 @@
 }
 .ci h2, .ci-h2 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--fs-display-xl);
   line-height: var(--lh-heading);
   letter-spacing: -0.02em;
@@ -132,7 +132,7 @@
 }
 .ci h3, .ci-h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--fs-display-l);
   line-height: var(--lh-heading);
   letter-spacing: -0.01em;
@@ -140,7 +140,7 @@
 }
 .ci h4, .ci-h4 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--fs-display-m);
   line-height: 1.2;
   color: var(--fg-strong);
@@ -176,7 +176,7 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--fg-muted);
-  font-weight: 500;
+  font-weight: 600;
 }
 .ci-quote {
   font-family: var(--font-display);
@@ -187,7 +187,7 @@
 }
 .ci-wordmark {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.015em;
   color: var(--fg-strong);
 }
