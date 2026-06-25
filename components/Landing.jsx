@@ -79,7 +79,7 @@ const Nav = () => {
       }}
       onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--sage-deep)';e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = '0 14px 26px -8px rgba(79,106,76,0.55), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -2px 4px rgba(0,0,0,0.14)';}}
       onMouseLeave={(e) => {e.currentTarget.style.background = 'var(--coral)';e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 8px 18px -6px rgba(255,107,71,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)';}}>
-        {isMobile ? 'Download' : 'Download de app'}
+        {isMobile ? 'Binnenkort' : 'Binnenkort beschikbaar'}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
       </a>
     </div>
@@ -109,7 +109,7 @@ const Hero = ({ intensity }) => {
       letterSpacing: '-0.025em', color: 'var(--navy)',
       margin: '0 0 26px', textWrap: 'balance'
     }}>
-        Een alarmering als er niet gereageerd wordt.
+        Een alarm dat afgaat als er níet gereageerd wordt.
       </h1>
       <p style={{
       fontFamily: 'var(--font-body)', fontSize: isMobile ? 17 : 19, lineHeight: 1.55,
@@ -230,7 +230,7 @@ const StoreButton = ({ kind }) => {
           fontFamily: 'var(--font-body)', fontSize: 10,
           letterSpacing: '0.14em', textTransform: 'uppercase',
           opacity: 0.75, marginBottom: 3, fontWeight: 600
-        }}>{isApple ? 'Download in de' : 'Nu in'}</div>
+        }}>{isApple ? 'Binnenkort in de' : 'Binnenkort in'}</div>
         <div style={{
           fontFamily: 'var(--font-display)', fontSize: 20,
           letterSpacing: '-0.01em'
@@ -254,7 +254,7 @@ const HowItWorks = ({ intensity }) => {
   },
   {
     label: 'Bij stilte',
-    title: 'Dan geven wij een <em>seintje</em>!',
+    title: 'Dan geven wij een <em>seintje</em>.',
     body: 'Reageert de ander niet binnen 30 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp. Reageert je eerste contact niet, dan wordt de melding meteen doorgezet naar je tweede contact.',
     phone: <PhoneHome intensity={intensity} progress={1} state="alarm" scale={isMobile ? 1 : 260 / 304} />
   },
@@ -478,13 +478,22 @@ const Pricing = () => {
         <span style={{
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
         fontSize: isMobile ? 26 : 32, color: 'var(--coral)', lineHeight: 1
-      }}>,75</span>
+      }}>,79</span>
         <span style={{
         fontFamily: 'var(--font-body)', fontSize: 14,
         color: 'var(--fg-muted)', marginLeft: 14, letterSpacing: '0.01em',
         alignSelf: 'flex-end', paddingBottom: 4
       }}>per maand</span>
       </div>
+      {/* Regressie-guard: app staat nog niet publiek in de stores (vc186 internal / TestFlight).
+          Deze 'binnenkort' regel + de 'Binnenkort'-labels op de store-knoppen voorkomen een
+          valse download-belofte. Pas verwijderen/terugzetten naar 'Download' zodra de app
+          daadwerkelijk live staat in App Store + Google Play. */}
+      <div style={{
+        fontFamily: 'var(--font-body)', fontSize: 13,
+        color: 'var(--fg-muted)', letterSpacing: '0.01em',
+        marginBottom: 4
+      }}>Binnenkort beschikbaar in de App Store en Google Play</div>
       <div style={{
       borderTop: '1px solid var(--line-soft)',
       marginTop: 32,
