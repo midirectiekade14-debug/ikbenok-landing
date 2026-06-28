@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Teksten — ik ben ok</title>
+<meta name="theme-color" content="#F5EFE3" />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="stylesheet" href="../../styles/colors_and_type.css?v=1" />
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream, #F5EFE3);
+    color: var(--fg-default, #0B1B2B);
+    font-family: var(--font-body, 'Dosis', system-ui, sans-serif);
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .ci-dawn {
+    position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 50% at 85% 10%, rgba(255,107,71,0.10), transparent 60%),
+      radial-gradient(60% 50% at 10% 95%, rgba(110,150,128,0.10), transparent 60%),
+      radial-gradient(50% 40% at 50% 50%, rgba(201,169,97,0.05), transparent 70%);
+  }
+  .ci-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url('../../assets/paper-grain.svg');
+    background-size: 180px 180px;
+    opacity: 0.20; mix-blend-mode: multiply;
+  }
+
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 120px;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .topbar h1 {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-weight: 600;
+    color: var(--navy, #0B1B2B);
+    font-size: 28px;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .topbar h1 em {
+    font-style: italic;
+    color: var(--coral, #FF6B47);
+    font-weight: 600;
+  }
+  .meta {
+    font-size: 13px;
+    color: var(--fg-muted, #5a6470);
+  }
+  .actions { display: flex; gap: 10px; }
+  .btn-ghost {
+    padding: 8px 14px;
+    border: 1px solid rgba(11, 27, 43, 0.16);
+    background: transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--fg-default, #0B1B2B);
+    transition: background 0.15s ease;
+  }
+  .btn-ghost:hover { background: rgba(11, 27, 43, 0.04); }
+
+  .panel {
+    background: var(--bg-raised, #ffffff);
+    border-radius: 18px;
+    padding: 22px 26px;
+    box-shadow: 0 10px 36px rgba(11, 27, 43, 0.06);
+    margin-bottom: 18px;
+  }
+  @media (max-width: 600px) {
+    main { padding: 24px 14px 120px; }
+    .panel { padding: 18px 16px; border-radius: 14px; }
+  }
+
+  /* Collapsible content sections */
+  .section { border: 1px solid rgba(11,27,43,0.10); border-radius: 14px; margin-bottom: 14px; background: var(--bg-raised, #fff); overflow: hidden; }
+  .section-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 22px; cursor: pointer; user-select: none;
+    transition: background 0.15s ease;
+  }
+  .section-hdr:hover { background: rgba(11,27,43,0.025); }
+  .section-hdr h2 {
+    font-family: var(--font-display, 'Dosis', system-ui, sans-serif);
+    font-weight: 600; color: var(--navy, #0B1B2B);
+    font-size: 16px; margin: 0; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .section-arrow { font-size: 13px; color: var(--fg-muted, #5a6470); transition: transform 0.2s ease; }
+  .section.open .section-arrow { transform: rotate(180deg); }
+  .section-body { display: none; padding: 6px 22px 20px; }
+  .section.open .section-body { display: block; }
+
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .field-label {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--fg-muted, #5a6470); margin-bottom: 5px;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .field-path { font-size: 9px; letter-spacing: 0.04em; color: rgba(90,100,112,0.6); text-transform: none; }
+  .field-tag {
+    font-size: 9px; padding: 1px 6px; border-radius: 4px;
+    background: rgba(201,169,97,0.18); color: #8a6a1e; letter-spacing: 0.04em;
+  }
+  .field-input {
+    width: 100%; padding: 9px 12px; font-size: 15px; font-family: inherit; font-weight: 600;
+    background: var(--cream, #F5EFE3); border: 1px solid rgba(11,27,43,0.14);
+    border-radius: 9px; color: var(--fg-default, #0B1B2B); outline: none; line-height: 1.45;
+  }
+  .field-input:focus { border-color: var(--coral, #FF6B47); }
+  textarea.field-input { min-height: 70px; resize: vertical; }
+
+  /* Array (string list) */
+  .arr-group { border-left: 2px solid rgba(201,169,97,0.45); padding-left: 14px; margin-bottom: 14px; }
+  .arr-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; }
+  .arr-item .field-input { flex: 1; }
+  .arr-rm {
+    width: 34px; min-height: 38px; border: none; border-radius: 9px; flex-shrink: 0;
+    background: rgba(165,74,58,0.12); color: var(--clay, #A54A3A);
+    font-size: 14px; cursor: pointer; font-family: inherit;
+  }
+  .arr-rm:hover { background: rgba(165,74,58,0.22); }
+  .arr-add {
+    display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px;
+    font-size: 11px; font-family: inherit; letter-spacing: 0.06em; text-transform: uppercase;
+    background: transparent; border: 1px dashed rgba(11,27,43,0.22); border-radius: 9px;
+    color: var(--sage-deep, #4E7765); cursor: pointer; margin-top: 2px;
+  }
+  .arr-add:hover { border-color: var(--sage-deep, #4E7765); }
+
+  /* Object-array item card */
+  .obj-card { border: 1px solid rgba(11,27,43,0.10); border-radius: 11px; padding: 14px 16px; margin-bottom: 12px; background: var(--cream, #F5EFE3); }
+  .obj-card-title { font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--sage-deep, #4E7765); margin: 0 0 12px; font-weight: 600; }
+
+  /* Preview */
+  .preview-frame {
+    width: 100%; height: 460px; border: 1px solid rgba(11,27,43,0.12);
+    border-radius: 12px; background: var(--cream, #F5EFE3);
+  }
+  .preview-link { font-size: 13px; color: var(--coral, #FF6B47); text-decoration: none; }
+  .preview-link:hover { text-decoration: underline; }
+
+  /* Save bar */
+  .save-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: rgba(255,255,255,0.94); backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(11,27,43,0.10);
+    padding: 12px 24px; display: flex; gap: 12px; justify-content: flex-end; align-items: center;
+  }
+  .save-status { font-size: 12px; color: var(--fg-muted, #5a6470); margin-right: auto; }
+  .btn {
+    padding: 11px 24px; font-size: 14px; font-family: inherit; font-weight: 600;
+    border: none; border-radius: 11px; cursor: pointer; letter-spacing: 0.01em;
+  }
+  .btn-publish { background: var(--coral, #FF6B47); color: #fff; box-shadow: 0 6px 18px rgba(255,107,71,0.30); }
+  .btn-publish:hover { filter: brightness(1.05); }
+  .btn-publish:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
+  .btn-reset { background: transparent; color: var(--fg-muted, #5a6470); border: 1px solid rgba(11,27,43,0.16); }
+  .btn-reset:hover { background: rgba(11,27,43,0.04); }
+
+  .loading { display: flex; justify-content: center; align-items: center; padding: 60px 20px; color: var(--fg-muted, #5a6470); }
+  .spinner {
+    width: 24px; height: 24px; border: 2px solid rgba(11,27,43,0.12);
+    border-top-color: var(--coral, #FF6B47); border-radius: 50%;
+    animation: spin 0.9s linear infinite; margin-right: 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-panel {
+    background: rgba(165,74,58,0.08); border-left: 3px solid var(--clay, #A54A3A);
+    padding: 16px 20px; border-radius: 8px; color: var(--clay, #A54A3A); font-size: 14px;
+  }
+
+  /* Token modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(11,27,43,0.45); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+  .modal-bg.show { display: flex; }
+  .modal { background: var(--bg-raised, #fff); border-radius: 18px; padding: 28px; max-width: 440px; width: 100%; box-shadow: 0 20px 60px rgba(11,27,43,0.25); }
+  .modal h2 { font-family: var(--font-display, 'Dosis', system-ui, sans-serif); font-size: 18px; margin: 0 0 12px; color: var(--navy, #0B1B2B); text-transform: uppercase; letter-spacing: 0.05em; }
+  .modal p { font-size: 13px; color: var(--fg-muted, #5a6470); margin: 0 0 14px; line-height: 1.6; }
+  .modal input { width: 100%; padding: 10px 14px; font-family: inherit; font-size: 14px; background: var(--cream, #F5EFE3); border: 1px solid rgba(11,27,43,0.14); border-radius: 10px; color: var(--fg-default, #0B1B2B); outline: none; margin-bottom: 12px; }
+  .modal input:focus { border-color: var(--coral, #FF6B47); }
+  .modal code { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: rgba(11,27,43,0.05); padding: 2px 6px; border-radius: 4px; }
+  .modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
+  .modal-status { font-size: 12px; margin-top: 10px; min-height: 14px; }
+  .modal-status.err { color: var(--clay, #A54A3A); }
+  .modal-status.ok { color: var(--sage-deep, #4E7765); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 76px; right: 20px; padding: 11px 18px; font-size: 13px;
+    background: var(--navy, #0B1B2B); color: #fff; border-radius: 11px; z-index: 200;
+    opacity: 0; transform: translateY(8px); transition: all 0.3s ease; pointer-events: none;
+    box-shadow: 0 10px 30px rgba(11,27,43,0.25);
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.err { background: var(--clay, #A54A3A); }
+  .toast.ok { background: var(--sage-deep, #4E7765); }
+</style>
+</head>
+<body>
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
+
+<main>
+  <div class="topbar">
+    <div>
+      <h1>Teksten · <em>ik ben ok</em></h1>
+      <div class="meta" id="meta">—</div>
+    </div>
+    <div class="actions">
+      <a class="btn-ghost" id="site-link" href="/" target="_blank" rel="noopener">Bekijk site ↗</a>
+      <button class="btn-ghost" id="token-btn">GitHub-token</button>
+      <button class="btn-ghost" id="logout-btn">Uitloggen</button>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="loading"><div class="spinner"></div>Teksten ophalen…</div>
+  </div>
+
+  <div class="panel" id="preview-panel" style="display:none">
+    <h2 style="font-family:var(--font-display);font-size:16px;text-transform:uppercase;letter-spacing:0.06em;color:var(--navy);margin:0 0 12px">Voorbeeld (live site)</h2>
+    <p style="font-size:12px;color:var(--fg-muted);margin:0 0 12px">Dit is de <strong>huidige</strong> live site als referentie — niet je losse wijzigingen. Na publiceren ververst allesok.nl automatisch.</p>
+    <iframe class="preview-frame" id="preview-frame" src="/" title="Live site" loading="lazy"></iframe>
+    <div style="margin-top:10px"><a class="preview-link" href="/" target="_blank" rel="noopener">Open de site in een nieuw tabblad ↗</a></div>
+  </div>
+</main>
+
+<div class="save-bar" id="save-bar" style="display:none">
+  <span class="save-status" id="save-status"></span>
+  <button class="btn btn-reset" id="reset-btn">Reset</button>
+  <button class="btn btn-publish" id="publish-btn">Publiceer</button>
+</div>
+
+<!-- GitHub token modal -->
+<div class="modal-bg" id="token-modal">
+  <div class="modal">
+    <h2>GitHub-token</h2>
+    <p>Eenmalige setup. De token wordt alleen in <strong>je eigen browser</strong> bewaard (localStorage) — nooit in de repo. Met deze token publiceert "Publiceer" rechtstreeks naar GitHub.</p>
+    <input type="text" id="gh-repo" placeholder="user/repo" value="midirectiekade14-debug/ikbenok-landing" />
+    <input type="password" id="gh-token" placeholder="GitHub token (gh auth token)" />
+    <p style="font-size:11px;color:var(--fg-muted);margin-top:2px">Tip: run <code>gh auth token</code> in de terminal voor een geldige token.</p>
+    <div class="modal-btns">
+      <button class="btn-ghost" id="token-cancel">Annuleer</button>
+      <button class="btn btn-publish" id="token-save" style="box-shadow:none">Opslaan</button>
+    </div>
+    <div class="modal-status" id="token-status"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+  // ── Firebase admin-gate (zelfde config + patroon als admin/onderhoud/) ──
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2VJDiadxwHWFjTRV_CIueONIyAG4Zu-A",
+    authDomain: "ikbenok-prod.firebaseapp.com",
+    projectId: "ikbenok-prod",
+    storageBucket: "ikbenok-prod.firebasestorage.app",
+    messagingSenderId: "149184356516",
+    appId: "1:149184356516:web:placeholder",
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // ── Repo / token (alleen in browser-localStorage; nooit in de repo) ──
+  const LS_TOKEN = 'ikbenok-gh-token';
+  const LS_REPO  = 'ikbenok-gh-repo';
+  const DEFAULT_REPO = 'midirectiekade14-debug/ikbenok-landing';
+  const BRANCH = 'main';
+
+  // Auto-inject token via URL-hash: admin/teksten/#token=xxx[&repo=user/repo]
+  (function () {
+    const h = window.location.hash;
+    if (!h) return;
+    const m = h.match(/token=([^&]+)/);
+    if (m) {
+      localStorage.setItem(LS_TOKEN, m[1]);
+      const r = h.match(/repo=([^&]+)/);
+      if (r) localStorage.setItem(LS_REPO, decodeURIComponent(r[1]));
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  })();
+
+  const contentEl = document.getElementById('content');
+  const metaEl = document.getElementById('meta');
+  const saveBar = document.getElementById('save-bar');
+  const saveStatus = document.getElementById('save-status');
+  const previewPanel = document.getElementById('preview-panel');
+  const publishBtn = document.getElementById('publish-btn');
+  const resetBtn = document.getElementById('reset-btn');
+
+  // Werkdata — de live-bewerkte kopie van window.CONTENT
+  let DATA = null;
+
+  // ── Toast ──
+  let toastTimer = null;
+  function toast(msg, kind) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (kind ? ' ' + kind : '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.className = 'toast'; }, 3200);
+  }
+
+  // ── Secties (top-level keys → leesbare titels, vaste volgorde) ──
+  const SECTION_TITLES = {
+    nav: 'Navigatie', hero: 'Hero', store: 'Store-knoppen', how: 'Zo werkt het',
+    quote: 'Quote', pricing: 'Prijs', footer: 'Footer',
+  };
+  const SECTION_ORDER = ['nav', 'hero', 'store', 'how', 'quote', 'pricing', 'footer'];
+
+  function humanize(key) {
+    return String(key)
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/[_-]+/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
+  // Lange of HTML-houdende strings → textarea
+  function isMultiline(v) {
+    return v.length > 56 || v.indexOf('<') !== -1 || v.indexOf('\n') !== -1;
+  }
+  function hasHtml(v) { return /<\/?[a-z][\s\S]*>/i.test(v); }
+
+  function makeField(parent, key, value, pathStr) {
+    const wrap = document.createElement('div');
+    wrap.className = 'field';
+    const lb = document.createElement('div');
+    lb.className = 'field-label';
+    const lbText = document.createElement('span');
+    lbText.textContent = humanize(key);
+    lb.appendChild(lbText);
+    if (hasHtml(value)) {
+      const tag = document.createElement('span');
+      tag.className = 'field-tag';
+      tag.textContent = 'HTML';
+      lb.appendChild(tag);
+    }
+    const p = document.createElement('span');
+    p.className = 'field-path';
+    p.textContent = pathStr;
+    lb.appendChild(p);
+    wrap.appendChild(lb);
+
+    const ml = isMultiline(value);
+    const inp = document.createElement(ml ? 'textarea' : 'input');
+    inp.className = 'field-input';
+    if (!ml) inp.type = 'text';
+    inp.value = value;
+    // Verbatim opslaan — geen <br>↔newline-conversie → idempotente round-trip
+    inp.addEventListener('input', () => { parent[key] = inp.value; markDirty(); });
+    wrap.appendChild(inp);
+    return wrap;
+  }
+
+  // Recursief: render elke waarde onder `obj` in `container`
+  function renderNode(obj, container, pathPrefix) {
+    Object.keys(obj).forEach((key) => {
+      const value = obj[key];
+      const pathStr = pathPrefix ? pathPrefix + '.' + key : key;
+      if (typeof value === 'string') {
+        container.appendChild(makeField(obj, key, value, pathStr));
+      } else if (Array.isArray(value)) {
+        container.appendChild(renderArray(obj, key, value, pathStr));
+      } else if (value && typeof value === 'object') {
+        // Geneste object → kop + ingesprongen blok
+        const grp = document.createElement('div');
+        grp.className = 'arr-group';
+        const title = document.createElement('div');
+        title.className = 'obj-card-title';
+        title.textContent = humanize(key);
+        grp.appendChild(title);
+        renderNode(value, grp, pathStr);
+        container.appendChild(grp);
+      }
+    });
+  }
+
+  function renderArray(parent, key, arr, pathStr) {
+    const wrap = document.createElement('div');
+    wrap.className = 'field';
+    const lb = document.createElement('div');
+    lb.className = 'field-label';
+    const lbText = document.createElement('span');
+    lbText.textContent = humanize(key);
+    lb.appendChild(lbText);
+    const p = document.createElement('span');
+    p.className = 'field-path';
+    p.textContent = pathStr;
+    lb.appendChild(p);
+    wrap.appendChild(lb);
+
+    const allStrings = arr.every((x) => typeof x === 'string');
+
+    if (allStrings) {
+      // Lijst van strings → toevoegen/verwijderen toegestaan (bv. features, footer-items)
+      const list = document.createElement('div');
+      function render() {
+        list.innerHTML = '';
+        arr.forEach((item, i) => {
+          const row = document.createElement('div');
+          row.className = 'arr-item';
+          const ml = isMultiline(item);
+          const inp = document.createElement(ml ? 'textarea' : 'input');
+          inp.className = 'field-input';
+          if (!ml) inp.type = 'text';
+          inp.value = item;
+          inp.addEventListener('input', () => { arr[i] = inp.value; markDirty(); });
+          row.appendChild(inp);
+          const rm = document.createElement('button');
+          rm.className = 'arr-rm';
+          rm.textContent = '✕';
+          rm.title = 'Verwijderen';
+          rm.addEventListener('click', () => { arr.splice(i, 1); render(); markDirty(); });
+          row.appendChild(rm);
+          list.appendChild(row);
+        });
+      }
+      render();
+      wrap.appendChild(list);
+      const add = document.createElement('button');
+      add.className = 'arr-add';
+      add.textContent = '+ Toevoegen';
+      add.addEventListener('click', () => { arr.push(''); render(); markDirty(); });
+      wrap.appendChild(add);
+    } else {
+      // Lijst van objecten (bv. steps, footer-kolommen) → vaste structuur, per item een kaart
+      arr.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'obj-card';
+        const ct = document.createElement('div');
+        ct.className = 'obj-card-title';
+        ct.textContent = humanize(key) + ' ' + (i + 1);
+        card.appendChild(ct);
+        if (item && typeof item === 'object') {
+          renderNode(item, card, pathStr + '[' + i + ']');
+        }
+        wrap.appendChild(card);
+      });
+    }
+    return wrap;
+  }
+
+  // ── Dirty-state ──
+  let dirty = false;
+  function markDirty() {
+    if (!dirty) { dirty = true; saveStatus.textContent = 'Niet-opgeslagen wijzigingen'; }
+  }
+
+  function buildForm() {
+    contentEl.innerHTML = '';
+    const keys = SECTION_ORDER.filter((k) => k in DATA)
+      .concat(Object.keys(DATA).filter((k) => SECTION_ORDER.indexOf(k) === -1));
+    keys.forEach((sectionKey, idx) => {
+      const sec = document.createElement('div');
+      sec.className = 'section' + (idx === 0 ? ' open' : '');
+      const hdr = document.createElement('div');
+      hdr.className = 'section-hdr';
+      const h2 = document.createElement('h2');
+      h2.textContent = SECTION_TITLES[sectionKey] || humanize(sectionKey);
+      hdr.appendChild(h2);
+      const ar = document.createElement('span');
+      ar.className = 'section-arrow';
+      ar.textContent = '▼';
+      hdr.appendChild(ar);
+      hdr.addEventListener('click', () => sec.classList.toggle('open'));
+      sec.appendChild(hdr);
+      const body = document.createElement('div');
+      body.className = 'section-body';
+      const val = DATA[sectionKey];
+      if (val && typeof val === 'object' && !Array.isArray(val)) {
+        renderNode(val, body, sectionKey);
+      } else if (Array.isArray(val)) {
+        body.appendChild(renderArray(DATA, sectionKey, val, sectionKey));
+      } else {
+        body.appendChild(makeField(DATA, sectionKey, String(val), sectionKey));
+      }
+      sec.appendChild(body);
+      contentEl.appendChild(sec);
+    });
+    saveBar.style.display = 'flex';
+    previewPanel.style.display = 'block';
+  }
+
+  // ── content.js van GitHub laden (fallback: window.CONTENT van live site) ──
+  function decodeB64(b64) { return decodeURIComponent(escape(atob(b64.replace(/\s/g, '')))); }
+  function parseContentJs(raw) {
+    const m = raw.match(/window\.CONTENT\s*=\s*/);
+    if (!m) throw new Error('content.js: kan window.CONTENT niet vinden');
+    const js = raw.substring(m.index + m[0].length).replace(/;\s*$/, '').trim();
+    return JSON.parse(js);
+  }
+
+  async function loadContent() {
+    contentEl.innerHTML = '<div class="loading"><div class="spinner"></div>Teksten ophalen…</div>';
+    const repo = localStorage.getItem(LS_REPO) || DEFAULT_REPO;
+    const token = localStorage.getItem(LS_TOKEN);
+    // Probeer GitHub (single source of truth) als er een token is
+    if (token) {
+      try {
+        const r = await fetch('https://api.github.com/repos/' + repo + '/contents/content.js?ref=' + BRANCH + '&_t=' + Date.now(), {
+          headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' },
+        });
+        if (r.ok) {
+          const d = await r.json();
+          DATA = parseContentJs(decodeB64(d.content));
+          metaEl.textContent = 'Geladen van GitHub (' + repo + ' · ' + BRANCH + ')';
+          buildForm();
+          return;
+        }
+        if (r.status === 401 || r.status === 403) {
+          localStorage.removeItem(LS_TOKEN);
+          toast('Token verlopen — vul een nieuwe in', 'err');
+        }
+      } catch (e) {
+        console.warn('GitHub content laden mislukt:', e);
+      }
+    }
+    // Fallback: probeer content.js van de live site (zelfde origin)
+    try {
+      const r = await fetch('/content.js?_t=' + Date.now());
+      if (r.ok) {
+        DATA = parseContentJs(await r.text());
+        metaEl.textContent = 'Geladen van de live site (geen GitHub-token)';
+        buildForm();
+        return;
+      }
+    } catch (e) {
+      console.warn('Live content.js laden mislukt:', e);
+    }
+    contentEl.innerHTML = '<div class="error-panel"><strong>Kon de teksten niet laden.</strong> Controleer je GitHub-token (knop rechtsboven) of je internetverbinding.</div>';
+  }
+
+  // ── Publiceren (werkplaats3b-mechaniek, branch = main) ──
+  function getGHConfig() {
+    const repo = localStorage.getItem(LS_REPO) || DEFAULT_REPO;
+    const token = localStorage.getItem(LS_TOKEN);
+    if (!token) { showTokenModal(); return null; }
+    return { repo, token };
+  }
+
+  const shaCache = {};
+  function fetchT(url, opts, timeoutMs) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), timeoutMs || 15000);
+    return fetch(url, Object.assign({}, opts || {}, { signal: ctrl.signal }))
+      .finally(() => clearTimeout(t));
+  }
+
+  async function publishFile(path, content, message) {
+    const gh = getGHConfig();
+    if (!gh) { toast('Geen GitHub-token — vul hem in', 'err'); return false; }
+    async function attemptPut(sha) {
+      const body = { message: message || 'Update ' + path, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH };
+      if (sha) body.sha = sha;
+      return fetchT('https://api.github.com/repos/' + gh.repo + '/contents/' + path, {
+        method: 'PUT',
+        headers: { 'Authorization': 'Bearer ' + gh.token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      }, 20000);
+    }
+    async function freshSha() {
+      const r = await fetchT('https://api.github.com/repos/' + gh.repo + '/contents/' + path + '?ref=' + BRANCH + '&_t=' + Date.now(), {
+        headers: { 'Authorization': 'Bearer ' + gh.token, 'Accept': 'application/vnd.github.v3+json' },
+      }, 15000);
+      if (r.ok) { const d = await r.json(); return d.sha; }
+      if (r.status === 404) return null;
+      throw new Error('Kon SHA niet ophalen: HTTP ' + r.status);
+    }
+    try {
+      const sha = shaCache[path] || await freshSha();
+      let r2 = await attemptPut(sha);
+      if (r2.status === 409 || r2.status === 422) {
+        delete shaCache[path];
+        r2 = await attemptPut(await freshSha());
+      }
+      if (!r2.ok) {
+        let err = {};
+        try { err = await r2.json(); } catch (_) {}
+        if (r2.status === 401 || r2.status === 403) {
+          localStorage.removeItem(LS_TOKEN);
+          showTokenModal();
+          throw new Error('Token verlopen — voer een nieuwe token in');
+        }
+        throw new Error(err.message || 'HTTP ' + r2.status);
+      }
+      const putData = await r2.json();
+      if (putData && putData.content && putData.content.sha) shaCache[path] = putData.content.sha;
+      return true;
+    } catch (e) {
+      let msg = e.message || String(e);
+      if (e.name === 'AbortError') msg = 'Timeout (20s) — netwerk/VPN blokkeert de GitHub API?';
+      else if (msg === 'Failed to fetch') msg = 'Netwerk geblokkeerd — check VPN / adblocker / extensies';
+      console.error('[publishFile]', e);
+      toast('Publiceren mislukt: ' + msg, 'err');
+      return false;
+    }
+  }
+
+  function generateContentJs() {
+    return 'window.CONTENT = ' + JSON.stringify(DATA, null, 2) + ';\n';
+  }
+
+  async function doPublish() {
+    if (!DATA) return;
+    publishBtn.disabled = true;
+    publishBtn.textContent = 'Publiceren…';
+    saveStatus.textContent = 'Publiceren…';
+    try {
+      const js = generateContentJs();
+      const ok = await publishFile('content.js', js, 'Teksten bijgewerkt via admin (' + new Date().toLocaleString('nl-NL') + ')');
+      if (ok) {
+        dirty = false;
+        saveStatus.textContent = 'Gepubliceerd om ' + new Date().toLocaleTimeString('nl-NL') + ' — allesok.nl ververst zo';
+        toast('Gepubliceerd ✓', 'ok');
+        const f = document.getElementById('preview-frame');
+        setTimeout(() => { try { f.src = '/?_t=' + Date.now(); } catch (_) {} }, 4000);
+      }
+    } finally {
+      publishBtn.disabled = false;
+      publishBtn.textContent = 'Publiceer';
+    }
+  }
+
+  // ── Token-modal ──
+  const tokenModal = document.getElementById('token-modal');
+  function showTokenModal() {
+    document.getElementById('gh-repo').value = localStorage.getItem(LS_REPO) || DEFAULT_REPO;
+    document.getElementById('token-status').textContent = '';
+    document.getElementById('token-status').className = 'modal-status';
+    tokenModal.classList.add('show');
+  }
+  document.getElementById('token-btn').addEventListener('click', showTokenModal);
+  document.getElementById('token-cancel').addEventListener('click', () => tokenModal.classList.remove('show'));
+  document.getElementById('token-save').addEventListener('click', () => {
+    const repo = document.getElementById('gh-repo').value.trim();
+    const token = document.getElementById('gh-token').value.trim();
+    const st = document.getElementById('token-status');
+    if (!repo || !token) { st.textContent = 'Vul beide velden in'; st.className = 'modal-status err'; return; }
+    localStorage.setItem(LS_REPO, repo);
+    localStorage.setItem(LS_TOKEN, token);
+    document.getElementById('gh-token').value = '';
+    tokenModal.classList.remove('show');
+    toast('GitHub-token opgeslagen', 'ok');
+    // Herlaad de teksten nu we (mogelijk) van GitHub kunnen lezen
+    loadContent();
+  });
+
+  publishBtn.addEventListener('click', doPublish);
+  resetBtn.addEventListener('click', () => {
+    if (dirty && !confirm('Alle niet-opgeslagen wijzigingen ongedaan maken?')) return;
+    dirty = false;
+    saveStatus.textContent = '';
+    loadContent();
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', async () => {
+    await signOut(auth);
+    window.location.href = '/admin/login/';
+  });
+
+  window.addEventListener('beforeunload', (e) => {
+    if (dirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+
+  // ── Gate ──
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) { window.location.href = '/admin/login/'; return; }
+    const token = await user.getIdTokenResult();
+    if (token.claims.admin !== true) { window.location.href = '/admin/login/'; return; }
+    loadContent();
+  });
+</script>
+</body>
+</html>

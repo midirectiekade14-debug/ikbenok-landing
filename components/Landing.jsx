@@ -6,6 +6,13 @@
 const { useState, useEffect } = React;
 const { useIsMobile, IkBenOkMark, Wordmark, Brand } = window;
 
+// Teksten komen uit content.js (window.CONTENT) — single source of truth voor de
+// admin-teksteditor (admin/teksten/). content.js wordt als gewone <script> vóór
+// dit babel-blok geladen, dus window.CONTENT bestaat gegarandeerd. De extractie is
+// letter-voor-letter: marks (<Wordmark>/<Brand>/<IkBenOkMark>), <em>/<span>-wrappers
+// en <br/> blijven vaste JSX; alleen de tekst-leaves verhuizen naar CONTENT.
+const C = window.CONTENT;
+
 const SectionLabel = ({ children, align = 'left' }) =>
 <div style={{
   display: 'flex', alignItems: 'center', gap: 18, marginBottom: 22,
@@ -59,9 +66,9 @@ const Nav = () => {
     </div>
     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 0 : 36 }}>
       {!isMobile && [
-        { label: 'Zo werkt het', href: '#zo-werkt-het' },
-        { label: 'Voor wie', href: '#voor-wie' },
-        { label: 'Prijs', href: '#prijs' }
+        { label: C.nav.links.zoWerkt, href: '#zo-werkt-het' },
+        { label: C.nav.links.voorWie, href: '#voor-wie' },
+        { label: C.nav.links.prijs, href: '#prijs' }
       ].map((l) =>
         <a key={l.label} href={l.href} style={{
           fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-default)',
@@ -79,7 +86,7 @@ const Nav = () => {
       }}
       onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--sage-deep)';e.currentTarget.style.transform = 'translateY(-2px)';e.currentTarget.style.boxShadow = '0 14px 26px -8px rgba(79,106,76,0.55), 0 3px 6px rgba(11,27,43,0.15), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -2px 4px rgba(0,0,0,0.14)';}}
       onMouseLeave={(e) => {e.currentTarget.style.background = 'var(--coral)';e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = '0 8px 18px -6px rgba(255,107,71,0.55), 0 2px 4px rgba(11,27,43,0.12), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)';}}>
-        {isMobile ? 'Binnenkort' : 'Binnenkort beschikbaar'}
+        {isMobile ? C.nav.cta.short : C.nav.cta.long}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
       </a>
     </div>
@@ -109,13 +116,13 @@ const Hero = ({ intensity }) => {
       letterSpacing: '-0.025em', color: 'var(--navy)',
       margin: '0 0 26px', textWrap: 'balance'
     }}>
-        Een alarm dat afgaat als er níet gereageerd wordt.
+        {C.hero.h1}
       </h1>
       <p style={{
       fontFamily: 'var(--font-body)', fontSize: isMobile ? 17 : 19, lineHeight: 1.55,
       color: 'var(--fg-default)', maxWidth: 520, margin: '0 0 36px'
     }}>
-        <Wordmark inline /> brengt dagelijkse gemoedsrust aan alleenwonende ouderen en hun mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.
+        <Wordmark inline /> {C.hero.intro}
       </p>
 
       {/* CTAs */}
@@ -134,7 +141,7 @@ const Hero = ({ intensity }) => {
       }}
       onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--coral)'; e.currentTarget.style.borderBottomColor = 'var(--coral)'; }}
       onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg-default)'; e.currentTarget.style.borderBottomColor = 'var(--line)'; }}>
-        <span>Vul de enquête in en <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>word testgebruiker</em></span>
+        <span>{C.hero.survey.pre} <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>{C.hero.survey.em}</em></span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
       </a>
 
@@ -175,11 +182,11 @@ const Hero = ({ intensity }) => {
           <div style={{
           fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase',
           color: 'var(--sage-deep)', fontWeight: 600, marginBottom: 3
-        }}>Ingecheckt</div>
+        }}>{C.hero.checkInBadge.label}</div>
           <div style={{
           fontFamily: 'var(--font-display)', fontSize: 15, lineHeight: 1.1,
           color: 'var(--navy)'
-        }}><em style={{ fontStyle: 'italic', color: 'var(--sage-deep)' }}>Margriet</em> · 16:00</div>
+        }}><em style={{ fontStyle: 'italic', color: 'var(--sage-deep)' }}>{C.hero.checkInBadge.name}</em> · {C.hero.checkInBadge.time}</div>
         </div>
       </div>}
       {/* small corner badge — missed reply (desktop only) */}
@@ -195,8 +202,8 @@ const Hero = ({ intensity }) => {
         <div style={{
         fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase',
         color: 'var(--coral)', fontWeight: 600, marginBottom: 4
-      }}>Alarmering contactpersoon</div>
-        Na 30 minuten zonder reactie<br />— wanneer de knop niet wordt ingedrukt —
+      }}>{C.hero.alarmBadge.label}</div>
+        {C.hero.alarmBadge.line1}<br />{C.hero.alarmBadge.line2}
       </div>}
     </div>
   </section>);
@@ -230,11 +237,11 @@ const StoreButton = ({ kind }) => {
           fontFamily: 'var(--font-body)', fontSize: 10,
           letterSpacing: '0.14em', textTransform: 'uppercase',
           opacity: 0.75, marginBottom: 3, fontWeight: 600
-        }}>{isApple ? 'Binnenkort in de' : 'Binnenkort in'}</div>
+        }}>{isApple ? C.store.apple.eyebrow : C.store.google.eyebrow}</div>
         <div style={{
           fontFamily: 'var(--font-display)', fontSize: 20,
           letterSpacing: '-0.01em'
-        }}>{isApple ? 'App Store' : 'Play Store'}</div>
+        }}>{isApple ? C.store.apple.title : C.store.google.title}</div>
       </div>
     </a>);
 
@@ -247,21 +254,21 @@ const HowItWorks = ({ intensity }) => {
   const isMobile = useIsMobile();
   const steps = [
   {
-    label: 'Op vaste tijden',
-    title: 'Check-in wanneer jij <em>wilt</em>',
-    body: <>Zo vaak als je wilt stuurt <Brand /> een bericht. Je drukt één keer om aan te geven dat alles oké is.</>,
+    label: C.how.steps[0].label,
+    title: C.how.steps[0].title,
+    body: <>{C.how.steps[0].bodyPre} <Brand /> {C.how.steps[0].bodyPost}</>,
     phone: <PhoneSchedule />
   },
   {
-    label: 'Bij stilte',
-    title: 'Dan geven wij een <em>seintje</em>.',
-    body: 'Reageert de ander niet binnen 30 minuten, dan ontvangt de mantelzorger een bericht — met de laatst bekende locatie en contactopties voor directe hulp. Reageert je eerste contact niet, dan wordt de melding meteen doorgezet naar je tweede contact.',
+    label: C.how.steps[1].label,
+    title: C.how.steps[1].title,
+    body: C.how.steps[1].body,
     phone: <PhoneHome intensity={intensity} progress={1} state="alarm" scale={isMobile ? 1 : 260 / 304} />
   },
   {
-    label: 'Voor de mantelzorger',
-    title: 'Altijd <em>verbonden</em>,<br/>altijd op de achtergrond',
-    body: 'Mantelzorgers zien in één oogopslag wanneer er is ingecheckt.',
+    label: C.how.steps[2].label,
+    title: C.how.steps[2].title,
+    body: C.how.steps[2].body,
     phone: <PhoneCaregiver />
   }];
 
@@ -272,7 +279,7 @@ const HowItWorks = ({ intensity }) => {
       padding: isMobile ? '40px 20px 60px' : '60px 40px 120px',
       position: 'relative', zIndex: 2
     }}>
-      <SectionLabel>Zo werkt het</SectionLabel>
+      <SectionLabel>{C.how.sectionLabel}</SectionLabel>
       <h2 style={{
         fontFamily: 'var(--font-display)', fontWeight: 500,
         fontSize: isMobile ? 'clamp(32px, 8vw, 44px)' : 64,
@@ -281,7 +288,7 @@ const HowItWorks = ({ intensity }) => {
         margin: isMobile ? '0 0 48px' : '0 0 80px',
         maxWidth: 780, textWrap: 'balance'
       }}>
-        Je bepaalt zelf het moment, voegt een <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>contactpersoon</em> toe en <Brand /> doet de rest
+        {C.how.h2.pre} <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>{C.how.h2.em}</em> {C.how.h2.mid} <Brand /> {C.how.h2.post}
       </h2>
 
       <div style={{ display: 'grid', gap: isMobile ? 56 : 80 }}>
@@ -379,7 +386,7 @@ const QuoteBlock = () => {
         display: 'flex', alignItems: 'center', gap: 16
       }}>
           <span style={{ width: 28, height: 2, background: 'var(--coral)', display: 'inline-block' }} />
-          Een mantelzorger vertelt
+          {C.quote.eyebrow}
         </div>
 
         <blockquote style={{
@@ -388,7 +395,7 @@ const QuoteBlock = () => {
         letterSpacing: '-0.015em', color: 'var(--cream)',
         margin: '0 0 40px', fontWeight: 500, textWrap: 'balance'
       }}>
-          "Mijn moeder woont alleen sinds vorig jaar. Ik belde haar drie keer per dag — uit zorg, niet uit gewoonte. Nu zie ik <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>elke middag</span> dat ze heeft ingecheckt. Ik bel nu <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>omdat ik haar wil spreken</span>, niet omdat ik bang ben."
+          {C.quote.text.s1} <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>{C.quote.text.h1}</span> {C.quote.text.s2} <span style={{ color: 'var(--coral)', fontStyle: 'italic' }}>{C.quote.text.h2}</span>{C.quote.text.s3}
         </blockquote>
 
         <div style={{
@@ -403,23 +410,23 @@ const QuoteBlock = () => {
           display: 'grid', placeItems: 'center',
           fontFamily: 'var(--font-display)', fontStyle: 'italic',
           fontSize: 22, letterSpacing: '-0.02em', flexShrink: 0
-        }}>M</div>
+        }}>{C.quote.avatar}</div>
           <div style={{ minWidth: 0 }}>
             <div style={{
             fontFamily: 'var(--font-display)', fontSize: 20,
             letterSpacing: '-0.01em', color: 'var(--cream)'
-          }}>Mira, 48 jaar</div>
+          }}>{C.quote.name}</div>
             <div style={{
             fontFamily: 'var(--font-body)', fontSize: 13,
             color: 'rgba(245,239,227,0.65)', letterSpacing: '0.01em',
             marginTop: 2
-          }}>Mantelzorger · moeder Margriet (82) · Haarlem</div>
+          }}>{C.quote.meta}</div>
           </div>
           <div style={{ flex: 1 }} />
           <div style={{
           fontFamily: 'var(--font-display)', fontStyle: 'italic',
           fontSize: 13, color: 'rgba(245,239,227,0.55)'
-        }}>dinsdag · 14:32</div>
+        }}>{C.quote.time}</div>
         </div>
       </div>
     </div>
@@ -438,7 +445,7 @@ const Pricing = () => {
   padding: isMobile ? '40px 20px 60px' : '60px 40px 120px',
   position: 'relative', zIndex: 2
 }}>
-    <SectionLabel align="center">Abonnement</SectionLabel>
+    <SectionLabel align="center">{C.pricing.sectionLabel}</SectionLabel>
     <h2 style={{
     fontFamily: 'var(--font-display)', fontWeight: 500,
     fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.04,
@@ -446,15 +453,14 @@ const Pricing = () => {
     margin: '0 auto 20px', maxWidth: 780, textWrap: 'balance',
     textAlign: 'center'
   }}>
-      Eén prijs <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>Eén app</em>
+      {C.pricing.h2.pre} <em style={{ fontStyle: 'italic', color: 'var(--coral)' }}>{C.pricing.h2.em}</em>
     </h2>
     <p style={{
     fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.55,
     color: 'var(--fg-default)', margin: '0 auto 64px', maxWidth: 580,
     textAlign: 'center'
   }}>
-      Een abonnement op <Brand /> proberen we zo betaalbaar mogelijk te houden.<br />
-      Opzegbaar per maand. Je kunt 5 contacten toevoegen.
+      {C.pricing.intro.pre} <Brand /> {C.pricing.intro.mid}<br />{C.pricing.intro.post}
     </p>
 
     <div style={{
@@ -474,16 +480,16 @@ const Pricing = () => {
         fontFamily: 'var(--font-display)',
         fontSize: isMobile ? 68 : 92,
         letterSpacing: '-0.035em', color: 'var(--navy)', lineHeight: 1
-      }}>€2</span>
+      }}>{C.pricing.price.whole}</span>
         <span style={{
         fontFamily: 'var(--font-display)', fontStyle: 'italic',
         fontSize: isMobile ? 26 : 32, color: 'var(--coral)', lineHeight: 1
-      }}>,79</span>
+      }}>{C.pricing.price.decimal}</span>
         <span style={{
         fontFamily: 'var(--font-body)', fontSize: 14,
         color: 'var(--fg-muted)', marginLeft: 14, letterSpacing: '0.01em',
         alignSelf: 'flex-end', paddingBottom: 4
-      }}>per maand</span>
+      }}>{C.pricing.price.period}</span>
       </div>
       {/* Regressie-guard: app staat nog niet publiek in de stores (vc186 internal / TestFlight).
           Deze 'binnenkort' regel + de 'Binnenkort'-labels op de store-knoppen voorkomen een
@@ -493,18 +499,13 @@ const Pricing = () => {
         fontFamily: 'var(--font-body)', fontSize: 13,
         color: 'var(--fg-muted)', letterSpacing: '0.01em',
         marginBottom: 4
-      }}>Binnenkort beschikbaar in de App Store en Google Play</div>
+      }}>{C.pricing.soonNote}</div>
       <div style={{
       borderTop: '1px solid var(--line-soft)',
       marginTop: 32,
       paddingTop: 24, marginBottom: 28
     }}>
-        {[
-      'Onbeperkte check-ins per dag — tijden instelbaar',
-      'Tot 5 contactpersonen koppelen',
-      'Automatisch bericht bij stilte — met GPS locatie',
-      'Weekoverzicht voor contactpersonen',
-      'Opzegbaar per maand · probeer het 14 dagen gratis'].
+        {C.pricing.features.
       map((f, i) =>
       <div key={i} style={{
         display: 'flex', alignItems: 'flex-start', gap: 12,
@@ -530,7 +531,7 @@ const Pricing = () => {
     fontSize: 15, color: 'var(--fg-muted)',
     textAlign: 'center', marginTop: 28
   }}>
-      Voor zorgorganisaties — <a href="mailto:hallo@allesok.nl?subject=Zorgorganisatie%20-%20volumetarieven" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>neem contact op</a> voor volumetarieven.
+      {C.pricing.orgs.pre} <a href="mailto:hallo@allesok.nl?subject=Zorgorganisatie%20-%20volumetarieven" style={{ color: 'var(--coral)', textDecoration: 'underline', textUnderlineOffset: 4 }}>{C.pricing.orgs.link}</a> {C.pricing.orgs.post}
     </p>
   </section>);
 };
@@ -559,26 +560,26 @@ const Footer = ({ intensity }) => {
       </div>
 
       {[
-    { title: 'Product', items: [
-      { label: 'Zo werkt het', href: '#zo-werkt-het' },
-      { label: 'Voor wie', href: '#voor-wie' },
-      { label: 'Prijs', href: '#prijs' },
-      { label: 'Help mee aan onderzoek', href: 'enquete/' },
-      { label: 'Gratis checklist (mantelzorgers)', href: 'checklist/' },
-      { label: 'Blog', href: 'blog/' },
-      { label: 'Veelgestelde vragen', href: null }
+    { title: C.footer.cols[0].title, items: [
+      { label: C.footer.cols[0].items[0], href: '#zo-werkt-het' },
+      { label: C.footer.cols[0].items[1], href: '#voor-wie' },
+      { label: C.footer.cols[0].items[2], href: '#prijs' },
+      { label: C.footer.cols[0].items[3], href: 'enquete/' },
+      { label: C.footer.cols[0].items[4], href: 'checklist/' },
+      { label: C.footer.cols[0].items[5], href: 'blog/' },
+      { label: C.footer.cols[0].items[6], href: null }
     ]},
-    { title: 'Contact', items: [
-      { label: 'hallo@allesok.nl', href: 'mailto:hallo@allesok.nl' },
-      { label: 'Voor zorgorganisaties', href: 'mailto:hallo@allesok.nl?subject=Zorgorganisatie' },
-      { label: 'Pers & partners', href: 'mailto:hallo@allesok.nl?subject=Pers' }
+    { title: C.footer.cols[1].title, items: [
+      { label: C.footer.cols[1].items[0], href: 'mailto:hallo@allesok.nl' },
+      { label: C.footer.cols[1].items[1], href: 'mailto:hallo@allesok.nl?subject=Zorgorganisatie' },
+      { label: C.footer.cols[1].items[2], href: 'mailto:hallo@allesok.nl?subject=Pers' }
     ]},
-    { title: 'Juridisch', items: [
-      { label: 'Privacy in gewone taal', href: 'privacy-uitleg/' },
-      { label: 'Privacybeleid', href: 'privacy/' },
-      { label: 'Cookies', href: 'cookies/' },
-      { label: 'Algemene voorwaarden', href: 'voorwaarden/' },
-      { label: 'DPA voor zorgorganisaties', href: 'mailto:hallo@allesok.nl?subject=DPA%20-%20zorgorganisatie' }
+    { title: C.footer.cols[2].title, items: [
+      { label: C.footer.cols[2].items[0], href: 'privacy-uitleg/' },
+      { label: C.footer.cols[2].items[1], href: 'privacy/' },
+      { label: C.footer.cols[2].items[2], href: 'cookies/' },
+      { label: C.footer.cols[2].items[3], href: 'voorwaarden/' },
+      { label: C.footer.cols[2].items[4], href: 'mailto:hallo@allesok.nl?subject=DPA%20-%20zorgorganisatie' }
     ]}].
     map((col) =>
     <div key={col.title}>
@@ -622,7 +623,7 @@ const Footer = ({ intensity }) => {
       <div style={{
       fontFamily: 'var(--font-body)', fontSize: 12,
       color: 'var(--fg-muted)', letterSpacing: '0.01em'
-    }}>© 2026 ik ben ok. Nederland</div>
+    }}>{C.footer.copyright}</div>
 
     </div>
   </footer>);
