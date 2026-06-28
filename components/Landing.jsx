@@ -564,6 +564,8 @@ const Footer = ({ intensity }) => {
       { label: 'Voor wie', href: '#voor-wie' },
       { label: 'Prijs', href: '#prijs' },
       { label: 'Help mee aan onderzoek', href: 'enquete/' },
+      { label: 'Gratis checklist (mantelzorgers)', href: 'checklist/' },
+      { label: 'Blog', href: 'blog/' },
       { label: 'Veelgestelde vragen', href: null }
     ]},
     { title: 'Contact', items: [
@@ -572,6 +574,7 @@ const Footer = ({ intensity }) => {
       { label: 'Pers & partners', href: 'mailto:hallo@allesok.nl?subject=Pers' }
     ]},
     { title: 'Juridisch', items: [
+      { label: 'Privacy in gewone taal', href: 'privacy-uitleg/' },
       { label: 'Privacybeleid', href: 'privacy/' },
       { label: 'Cookies', href: 'cookies/' },
       { label: 'Algemene voorwaarden', href: 'voorwaarden/' },
