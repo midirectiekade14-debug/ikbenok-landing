@@ -564,6 +564,7 @@ const Footer = ({ intensity }) => {
       { label: 'Voor wie', href: '#voor-wie' },
       { label: 'Prijs', href: '#prijs' },
       { label: 'Help mee aan onderzoek', href: 'enquete/' },
+      { label: 'Gratis checklist (mantelzorgers)', href: 'checklist/' },
       { label: 'Veelgestelde vragen', href: null }
     ]},
     { title: 'Contact', items: [

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="index,follow" />
+<title>Gratis checklist voor mantelzorgers — ik ben ok</title>
+<meta name="description" content="Gratis checklist voor mantelzorgers: in een paar minuten weet je of je alleenwonende ouder veilig thuis is, en wat je kunt regelen. Direct te downloaden — geen gedoe." />
+<meta name="theme-color" content="#F5EFE3" />
+<link rel="canonical" href="https://allesok.nl/checklist/" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="apple-touch-icon" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../styles/content.css?v=1" />
+
+<!-- ============================================================
+     LEAD-CAPTURE — €0-aanpak (geen backend, geen account nodig)
+     ------------------------------------------------------------
+     Bij verzenden gebeurt twee dingen:
+       1. De checklist-PDF wordt direct downloadbaar (gegarandeerde levering,
+          werkt ook als de mailstap mislukt).
+       2. Er opent een vooringevulde mailto naar hallo@allesok.nl met het
+          ingevoerde adres → zachte lead-capture zodra de bezoeker verstuurt.
+
+     UPGRADE-PAD (zodra er budget/tijd is voor een formulierdienst):
+       Vervang het <form>-onsubmit-blok hieronder door een echte POST naar
+       Formspree (of Buttondown / MailerLite / een eigen Cloud Function):
+         <form action="https://formspree.io/f/XXXXXXXX" method="POST">
+       Dan vervalt de mailto-stap, wordt het adres serverside opgeslagen en
+       kan er een automatische welkomstmail mét PDF-link uitgaan. Houd in dat
+       geval de directe download-kaart als fallback. Geen account => mailto-flow.
+     ============================================================ -->
+</head>
+<body>
+
+<div class="ci-dawn"></div>
+<div class="ci-grain"></div>
+
+<nav class="legal-nav">
+  <a class="legal-wordmark" href="../" aria-label="ik ben ok — naar home">
+    <svg viewBox="0 0 437.3 210" role="img" aria-label="ik ben ok"><use href="/assets/ikbenok-wordmark.svg#ikbenok-wordmark"/></svg>
+  </a>
+  <a class="back-link" href="../">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Terug naar home
+  </a>
+</nav>
+
+<article class="content-article">
+  <p class="eyebrow">Gratis voor mantelzorgers</p>
+  <h1>De checklist die je <em>nachtrust</em> teruggeeft</h1>
+  <p class="lead">In een paar minuten weet je of je alleenwonende vader of moeder veilig thuis is — en wat je concreet kunt regelen. Geen paniekverhaal, gewoon vijf vragen en drie praktische manieren om gerust te zijn.</p>
+
+  <ul>
+    <li><strong>Vijf vragen</strong> om eerlijk je situatie in te schatten.</li>
+    <li><strong>Drie manieren</strong> om dagelijkse gerustheid te organiseren — met de voor- en nadelen.</li>
+    <li><strong>Privacy in gewone taal</strong>: wie ziet wat, en wat niet.</li>
+  </ul>
+
+  <form id="capture" class="capture-form" novalidate>
+    <input id="email" type="email" name="email" inputmode="email" autocomplete="email"
+           placeholder="Je e-mailadres" aria-label="Je e-mailadres" required />
+    <button type="submit" class="cta-button">Stuur mij de checklist</button>
+  </form>
+  <p class="capture-note">We gebruiken je e-mailadres alleen om contact met je op te nemen over de checklist. Geen spam, en je kunt je altijd afmelden.</p>
+
+  <div id="done" class="download-card" hidden>
+    <p><strong>Je checklist staat klaar.</strong> Klik hieronder om 'm meteen te openen of te bewaren — er opent ook een e-mail zodat we weten waar we 'm naartoe mogen sturen.</p>
+    <p><a class="cta-button" href="../assets/checklist-mantelzorger.pdf" download>Download de checklist (PDF)</a></p>
+  </div>
+
+  <div class="content-cta">
+    <h2>Liever eerst meer weten?</h2>
+    <p>Lees hoe "ik ben ok" werkt en waarom het rust geeft — voor je ouder én voor jou.</p>
+    <a class="cta-button" href="../">Bekijk hoe het werkt</a>
+  </div>
+
+  <p style="text-align:center">Vragen? Mail gerust naar <a href="mailto:hallo@allesok.nl">hallo@allesok.nl</a>.</p>
+</article>
+
+<footer class="legal-footer">
+  <div>© 2026 ik ben ok</div>
+  <div class="footer-links">
+    <a href="../">Home</a>
+    <a href="../privacy-uitleg/">Privacy in gewone taal</a>
+    <a href="../privacy/">Privacybeleid</a>
+    <a href="../voorwaarden/">Voorwaarden</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('capture');
+  var emailInput = document.getElementById('email');
+  var done = document.getElementById('done');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (emailInput.value || '').trim();
+    // Simpele e-mailcheck — voldoende voor deze €0-flow.
+    if (!email || email.indexOf('@') < 1 || email.indexOf('.') < 0) {
+      emailInput.focus();
+      emailInput.setAttribute('aria-invalid', 'true');
+      return;
+    }
+    emailInput.removeAttribute('aria-invalid');
+
+    // 1. Toon direct de downloadkaart (gegarandeerde levering).
+    done.hidden = false;
+    form.hidden = true;
+
+    // 2. Zachte lead-capture via mailto (bezoeker bevestigt zelf het versturen).
+    var subject = encodeURIComponent('Checklist voor mantelzorgers — graag toesturen');
+    var body = encodeURIComponent(
+      'Hoi,\n\nStuur mij graag de checklist voor mantelzorgers.\n\n' +
+      'Mijn e-mailadres: ' + email + '\n\nGroet'
+    );
+    done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    window.location.href = 'mailto:hallo@allesok.nl?subject=' + subject + '&body=' + body;
+  });
+})();
+</script>
+
+</body>
+</html>
