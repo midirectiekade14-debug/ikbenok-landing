@@ -12,7 +12,7 @@ window.CONTENT = {
   },
   "hero": {
     "h1": "Een alarm dat afgaat als er níet gereageerd wordt.",
-    "intro": "brengt dagelijkse gemoedsrust aan alleenwonende ouderen en hun mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles goed is.",
+    "intro": "brengt dagelijkse gemoedsrust voor  ouderen en mantelzorgers — geen paniekknop, geen halsketting om te vergeten — alleen een bevestiging dat alles ok is.",
     "survey": {
       "pre": "Vul de enquête in en",
       "em": "word testgebruiker"
